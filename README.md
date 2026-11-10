@@ -2,7 +2,7 @@
 
 Curso interactivo de Git en formato de diapositivas, de los fundamentos hasta nivel senior.
 
-[![Vista previa](preview.jpg)](https://jdswe.github.io/git-mastery/)
+[![Vista previa](preview.png)](https://jdswe.github.io/git-mastery/)
 
 🔗 **Ver en línea:** https://jdswe.github.io/git-mastery/
 
