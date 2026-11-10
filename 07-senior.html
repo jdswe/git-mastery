@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nivel Senior — Git Mastery</title>
+<link rel="stylesheet" href="assets/slides.css">
+</head>
+<body>
+<div class="progress-wrap"><div class="progress"></div></div>
+<div class="topnav">
+  <a href="index.html" class="brand"><img src="https://cdn.simpleicons.org/git/f05033" alt="Git" style="height:20px">Git Mastery</a>
+  <button class="toc-btn" data-nav="toc">☰ Índice</button>
+</div>
+<div class="counter"><span class="cur">01</span> / 00</div>
+<div class="controls">
+  <button class="ctrl-btn" data-nav="prev">‹</button>
+  <button class="ctrl-btn" data-nav="next">›</button>
+</div>
+<div class="toc-overlay">
+  <button class="toc-close" data-nav="close-toc">✕</button>
+  <h2 data-en="Index — Senior" data-pt="Índice — Sênior">Índice — Senior</h2>
+  <div class="toc-list"></div>
+</div>
+<div class="deck">
+
+<!-- 1 -->
+<section class="slide title-slide" data-title="Nivel Senior" data-en-title="Senior level" data-pt-title="Nível Sênior">
+  <span class="badge" data-en="Module 7 · Senior" data-pt="Módulo 7 · Sênior">Módulo 7 · Senior</span>
+  <img src="https://cdn.simpleicons.org/git/f78166" alt="Git" style="width:88px;height:88px;margin-bottom:1rem;filter:drop-shadow(0 0 20px rgba(247,129,102,.4))">
+  <h1 data-en="<span class='hl'>Senior</span> Git" data-pt="Git <span class='hl'>Sênior</span>">Git <span class="hl">Senior</span></h1>
+  <p class="lead" data-en="Git internals, branching strategies, monorepos, signed commits, .env/secrets and security auditing." data-pt="Internals do Git, estratégias de branch, monorepos, commits assinados, .env/secrets e auditoria de segurança.">Git internals, estrategias de branching, monorepos, commits firmados, .env/secrets y auditoría de seguridad.</p>
+  <div class="stats">
+    <div class="stat"><div class="num">17</div><div class="lbl" data-en="slides" data-pt="slides">slides</div></div>
+    <div class="stat"><div class="num">🏆</div><div class="lbl" data-en="mastery" data-pt="domínio">dominio</div></div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="slide" data-title="Git internals — objetos" data-en-title="Git internals — objects" data-pt-title="Internals — objetos">
+  <div class="slide-num">02</div>
+  <div class="kicker" data-en="Theory" data-pt="Teoria">Teoría</div>
+  <h2 data-en="Git <span class='hl'>internals</span> — objects" data-pt="Internals do <span class='hl'>Git</span> — objetos">Git <span class="hl">internals</span> — objetos</h2>
+  <p data-en="Everything in .git is an object addressed by its SHA-1 hash. Three core types:" data-pt="Tudo no .git é um objeto endereçado por seu hash SHA-1. Três tipos principais:">Todo en .git es un objeto direccionado por su hash SHA-1. Tres tipos principales:</p>
+  <div class="cards" style="max-width:1000px">
+    <div class="card g"><div class="card-icon">📄</div><h4 data-en="blob" data-pt="blob">blob</h4><p data-en="The content of a file (no name, no path)." data-pt="O conteúdo de um arquivo (sem nome, sem caminho).">El contenido de un archivo (sin nombre, sin ruta).</p></div>
+    <div class="card b"><div class="card-icon">🌳</div><h4 data-en="tree" data-pt="tree">tree</h4><p data-en="A folder: lists blobs and sub-trees with their names." data-pt="Uma pasta: lista blobs e sub-trees com seus nomes.">Una carpeta: lista blobs y sub-trees con sus nombres.</p></div>
+    <div class="card p"><div class="card-icon">🔗</div><h4 data-en="commit" data-pt="commit">commit</h4><p data-en="Points to a tree + parent + author/message." data-pt="Aponta para uma tree + pai + autor/mensagem.">Apunta a una tree + padre + autor/mensaje.</p></div>
+    <div class="card o"><div class="card-icon">🏷️</div><h4 data-en="tag" data-pt="tag">tag</h4><p data-en="An annotated tag is also an object." data-pt="Uma tag anotada também é um objeto.">Un tag anotado también es un objeto.</p></div>
+  </div>
+  <div class="note"><span class="note-label" data-en="Key idea" data-pt="Ideia-chave">Idea clave</span><p data-en="A commit points to a tree (the snapshot); the tree points to blobs (the files). Change one byte and every hash up the chain changes." data-pt="Um commit aponta para uma tree (o snapshot); a tree aponta para blobs (os arquivos). Mude um byte e todos os hashes mudam.">Un commit apunta a una tree (el snapshot); la tree apunta a blobs (los archivos). Cambia un byte y todos los hashes de la cadena cambian.</p></div>
+</section>
+
+<!-- 3 -->
+<section class="slide" data-title="Git internals — práctica" data-en-title="Git internals — practice" data-pt-title="Internals — prática">
+  <div class="slide-num">03</div>
+  <div class="kicker" data-en="Practice" data-pt="Prática">Práctica</div>
+  <h2 data-en="Look inside with <span class='hl'>cat-file</span>" data-pt="Olhe dentro com <span class='hl'>cat-file</span>">Mira dentro con <span class="hl">cat-file</span></h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="plumbing commands" data-pt="comandos plumbing">comandos plumbing</span></div>
+    <pre><span class="c"># Ver el tipo de un objeto por su hash</span>
+<span class="t">git</span> <span class="k">cat-file</span> -t a1b2c3d
+<span class="c"># commit</span>
+
+<span class="c"># Ver el contenido (legible)</span>
+<span class="t">git</span> <span class="k">cat-file</span> -p a1b2c3d
+<span class="c"># tree 9f8e7d...  author: Ana ...  parent: ...</span>
+
+<span class="c"># Inspeccionar la tree de ese commit</span>
+<span class="t">git</span> <span class="k">ls-tree</span> a1b2c3d
+<span class="c"># 100644 blob 3a2b1c...  README.md</span>
+
+<span class="c"># Crear un blob a mano desde un archivo</span>
+<span class="t">git</span> <span class="k">hash-object</span> -w app.js
+<span class="c"># → devuelve el hash del nuevo blob</span>
+
+<span class="c"># Contar objetos y su tamaño</span>
+<span class="t">git</span> <span class="k">count-objects</span> -vH</pre>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="Why it matters" data-pt="Por que importa">Por qué importa</span><p data-en="Knowing plumbing lets you recover data, write custom hooks and debug the impossible." data-pt="Saber plumbing permite recuperar dados, escrever hooks custom e debugar o impossível.">Saber plumbing te permite recuperar datos, escribir hooks personalizados y depurar lo imposible.</p></div>
+</section>
+
+<!-- 4 -->
+<section class="slide" data-title="Estrategias de branching" data-en-title="Branching strategies" data-pt-title="Estratégias de branching">
+  <div class="slide-num">04</div>
+  <div class="kicker" data-en="Theory + practice" data-pt="Teoria + prática">Teoría + práctica</div>
+  <h2 data-en="Branching <span class='hl'>strategies</span>" data-pt="Estratégias de <span class='hl'>branching</span>">Estrategias de <span class="hl">branching</span></h2>
+  <table class="tbl">
+    <tr><th data-en="Strategy" data-pt="Estratégia">Estrategia</th><th data-en="Best for" data-pt="Melhor para">Mejor para</th><th data-en="Tradeoff" data-pt="Tradeoff">Compromiso</th></tr>
+    <tr><td data-en="Git Flow" data-pt="Git Flow">Git Flow</td><td data-en="Releases scheduled, many versions" data-pt="Releases programadas, várias versões">Releases programadas, muchas versiones</td><td data-en="Complex, many branches" data-pt="Complexo, muitas branches">Complejo, muchas ramas</td></tr>
+    <tr><td>GitHub Flow</td><td data-en="Continuous deploy, one prod" data-pt="Deploy contínuo, um prod">Deploy continuo, una prod</td><td data-en="main must always be deployable" data-pt="main sempre pronto pra deploy">main siempre desplegable</td></tr>
+    <tr><td data-en="Trunk-based" data-pt="Trunk-based">Trunk-based</td><td data-en="Fast teams, short-lived branches" data-pt="Times rápidos, branches curtas">Equipos rápidos, ramas cortas</td><td data-en="Needs CI + feature flags" data-pt="Precisa de CI + feature flags">Necesita CI + feature flags</td></tr>
+    <tr><td>GitLab Flow</td><td data-en="Env-per-branch, multi-deploys" data-pt="Env-por-branch, vários deploys">Env-por-rama, varios deploys</td><td data-en="More branches to manage" data-pt="Mais branches pra gerenciar">Más ramas que gestionar</td></tr>
+  </table>
+  <div class="tip"><span class="tip-label" data-en="Practice" data-pt="Prática">Práctica</span><p data-en="Match the strategy to your release cadence, not the other way around." data-pt="Adeque a estratégia à cadência de release, não o contrário.">Adapta la estrategia a tu cadencia de releases, no al revés.</p></div>
+</section>
+
+<!-- 5 -->
+<section class="slide" data-title="Trunk-based" data-en-title="Trunk-based" data-pt-title="Trunk-based">
+  <div class="slide-num">05</div>
+  <div class="kicker" data-en="Theory + practice" data-pt="Teoria + prática">Teoría + práctica</div>
+  <h2 data-en="<span class='hl'>Trunk-based</span> development" data-pt="Desenvolvimento <span class='hl'>trunk-based</span>">Desarrollo <span class="hl">trunk-based</span></h2>
+  <p data-en="Everyone commits to main (or very short branches &lt; 2 days). Incomplete features hide behind feature flags." data-pt="Todos commitam no main (ou branches curtas &lt; 2 dias). Features incompletas ficam atrás de feature flags.">Todos commitean a main (o ramas muy cortas &lt; 2 días). Las features incompletas se esconden tras feature flags.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="feature flag pattern" data-pt="padrão de feature flag">patrón feature flag</span></div>
+    <pre><span class="c"># código/main.go</span>
+<span class="k">if</span> config.FeatureEnabled(<span class="s">"new_checkout"</span>) {
+    <span class="k">return</span> newCheckout()
+}
+<span class="k">return</span> oldCheckout()
+
+<span class="c"># La feature vive en main pero apagada; la activas cuando esté lista</span></pre>
+  </div>
+  <div class="note"><span class="note-label" data-en="Why" data-pt="Por que">Por qué</span><p data-en="Short branches = fewer merge conflicts, faster integration, smaller PRs." data-pt="Branches curtas = menos conflitos, integração rápida, PRs menores.">Ramas cortas = menos conflictos, integración rápida, PRs más pequeños.</p></div>
+</section>
+
+<!-- 6 -->
+<section class="slide" data-title="Monorepos" data-en-title="Monorepos" data-pt-title="Monorepos">
+  <div class="slide-num">06</div>
+  <div class="kicker" data-en="Theory + practice" data-pt="Teoria + prática">Teoría + práctica</div>
+  <h2 data-en="<span class='hl'>Monorepos</span> in Git" data-pt="<span class='hl'>Monorepos</span> no Git"><span class="hl">Monorepos</span> en Git</h2>
+  <p data-en="One repo, many projects. Git can handle it, but you use tools to keep it fast." data-pt="Um repo, vários projetos. O Git aguenta, mas você usa ferramentas pra manter rápido.">Un repo, muchos proyectos. Git lo maneja, pero usas herramientas para mantenerlo rápido.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="monorepo toolkit" data-pt="kit de monorepo">kit de monorepo</span></div>
+    <pre><span class="c"># Solo bajar las carpetas que necesitas (sin clonar todo)</span>
+<span class="t">git</span> <span class="k">clone</span> --filter=blob:none --sparse <span class="s">git@github.com:org/mono.git</span>
+<span class="t">git</span> <span class="k">sparse-checkout</span> set apps/web apps/api
+
+<span class="c"># Herramientas que escalan el monorepo:</span>
+<span class="c">#  - pnpm workspaces / npm workspaces  (JS)</span>
+<span class="c">#  - Nx / Turborepo                   (build cache, affected)</span>
+<span class="c">#  - Bazel                            (multi-lenguaje)</span>
+
+<span class="c"># "Solo construye lo que cambió" (Turborepo)</span>
+<span class="t">npx</span> turbo run build --filter=<span class="s">...@org/ui@latest</span></pre>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="Practice" data-pt="Prática">Práctica</span><p data-en="Sparse checkout + a build cache (Nx/Turbo) = monorepo that feels as fast as a small repo." data-pt="Sparse checkout + cache de build (Nx/Turbo) = monorepo tão rápido quanto um repo pequeno.">Sparse checkout + un cache de build (Nx/Turbo) = monorepo tan rápido como un repo pequeño.</p></div>
+</section>
+
+<!-- 7 -->
+<section class="slide" data-title="Commits firmados — GPG" data-en-title="Signed commits — GPG" data-pt-title="Commits assinados — GPG">
+  <div class="slide-num">07</div>
+  <div class="kicker" data-en="Theory + practice" data-pt="Teoria + prática">Teoría + práctica</div>
+  <h2 data-en="Signed commits — <span class='hl'>GPG</span>" data-pt="Commits assinados — <span class='hl'>GPG</span>">Commits firmados — <span class="hl">GPG</span></h2>
+  <p data-en="A signed commit proves it really came from you. GitHub/GitLab show a 'Verified' badge." data-pt="Um commit assinado prova que veio mesmo de você. GitHub/GitLab mostram o selo 'Verified'.">Un commit firmado prueba que vino de verdad de ti. GitHub/GitLab muestran el sello 'Verified'.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="GPG setup" data-pt="setup GPG">setup GPG</span></div>
+    <pre><span class="c"># 1. Genera una llave GPG</span>
+<span class="t">gpg</span> --full-generate-key
+<span class="c">#    → tipo RSA, 4096, tu email (el mismo de GitHub)</span>
+
+<span class="c"># 2. Lista tus llaves y copia el ID</span>
+<span class="t">gpg</span> --list-secret-keys --keyid-format=long
+
+<span class="c"># 3. Dile a Git que firme con esa llave</span>
+<span class="t">git</span> <span class="k">config</span> --global user.signingkey ABCD1234
+<span class="t">git</span> <span class="k">config</span> --global commit.gpgsign true
+
+<span class="c"># 4. Firma un commit</span>
+<span class="t">git</span> <span class="k">commit</span> -S -m <span class="s">"feat: login"</span>
+
+<span class="c"># 5. Exporta la llave pública y súbelo a GitHub</span>
+<span class="t">gpg</span> --armor --export ABCD1234 | <span class="k">pbcopy</span></pre>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="slide" data-title="Commits firmados — SSH" data-en-title="Signed commits — SSH" data-pt-title="Commits assinados — SSH">
+  <div class="slide-num">08</div>
+  <div class="kicker" data-en="Practice" data-pt="Prática">Práctica</div>
+  <h2 data-en="Signed commits — <span class='hl'>SSH</span>" data-pt="Commits assinados — <span class='hl'>SSH</span>">Commits firmados — <span class="hl">SSH</span></h2>
+  <p data-en="Newer and simpler: sign with the same SSH key you already use to push. No GPG setup." data-pt="Novo e simples: assine com a mesma chave SSH que já usa pra push. Sem setup de GPG.">Nuevo y simple: firma con la misma llave SSH que ya usas para push. Sin configurar GPG.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="SSH signing" data-pt="assinatura SSH">firma SSH</span></div>
+    <pre><span class="c"># 1. Dile a Git que firme con SSH</span>
+<span class="t">git</span> <span class="k">config</span> --global gpg.format ssh
+<span class="t">git</span> <span class="k">config</span> --global user.signingkey ~/.ssh/id_ed25519.pub
+<span class="t">git</span> <span class="k">config</span> --global commit.gpgsign true
+
+<span class="c"># 2. Sube la MISMA llave pública a GitHub como "Signing Key"</span>
+<span class="c">#    Settings → SSH and GPG keys → New SSH key → tipo: Signing Key</span>
+
+<span class="c"># 3. Firma</span>
+<span class="t">git</span> <span class="k">commit</span> -S -m <span class="s">"feat: login"</span>
+
+<span class="c"># 4. Verifica localmente</span>
+<span class="t">git</span> <span class="k">verify-commit</span> HEAD</pre>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="Tip" data-pt="Dica">Tip</span><p data-en="SSH signing = one key for both auth and signing. Less to manage than GPG." data-pt="Assinatura SSH = uma chave pra auth e assinatura. Menos pra gerenciar que GPG.">Firma SSH = una llave para auth y firma. Menos cosas que gestionar que GPG.</p></div>
+</section>
+
+<!-- 9 -->
+<section class="slide" data-title=".env & secrets — regla de oro" data-en-title=".env & secrets — golden rule" data-pt-title=".env & secrets — regra de ouro">
+  <div class="slide-num">09</div>
+  <div class="kicker" data-en="Security · theory" data-pt="Segurança · teoria">Seguridad · teoría</div>
+  <h2 data-en="<span class='hl'>.env</span> & secrets — golden rule" data-pt="<span class='hl'>.env</span> & secrets — regra de ouro"><span class="hl">.env</span> & secrets — regla de oro</h2>
+  <p data-en="Secrets (API keys, DB passwords, tokens) NEVER go in the repo. Once pushed, consider them leaked." data-pt="Segredos (API keys, senhas de DB, tokens) NUNCA entram no repo. Uma vez no push, considere vazados.">Los secretos (API keys, contraseñas de DB, tokens) NUNCA van al repo. Una vez pusheados, considéralos filtrados.</p>
+  <div class="warn"><span class="warn-label" data-en="If you already pushed a secret" data-pt="Se já fez push de um segredo">Si ya subiste un secreto</span><p data-en="1) Rotate it immediately (generate a new one). 2) Remove it from history. 3) It's not enough to delete the file — the old commits still have it." data-pt="1) Rotacione já (gere um novo). 2) Remova do histórico. 3) Não basta apagar o arquivo — os commits antigos ainda têm.">1) Rótalo ya (genera uno nuevo). 2) Bórralo del historial. 3) No basta con borrar el archivo — los commits viejos todavía lo tienen.</p></div>
+  <div class="tip"><span class="tip-label" data-en="Golden rule" data-pt="Regra de ouro">Regla de oro</span><p data-en="Real values live outside the repo (env vars, a vault, CI/CD variables). The repo only keeps a template with fake values." data-pt="Valores reais ficam fora do repo (env vars, vault, variáveis de CI/CD). O repo só guarda um template com valores falsos.">Los valores reales viven fuera del repo (env vars, un vault, variables de CI/CD). El repo solo guarda una plantilla con valores falsos.</p></div>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-title=".env — práctica" data-en-title=".env — practice" data-pt-title=".env — prática">
+  <div class="slide-num">10</div>
+  <div class="kicker" data-en="Security · practice" data-pt="Segurança · prática">Seguridad · práctica</div>
+  <h2 data-en="<span class='hl'>.env</span> done right" data-pt="<span class='hl'>.env</span> feito certo"><span class="hl">.env</span> bien hecho</h2>
+  <div class="cols">
+    <div>
+      <h3 data-en=".gitignore" data-pt=".gitignore">.gitignore</h3>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>.gitignore</div>
+        <pre><span class="c"># NUNCA subas el real</span>
+.env
+.env.local
+.env.*.local
+*.pem
+secrets.yml
+
+<span class="c"># La plantilla SÍ se sube</span>
+<span class="c"># (valores falsos, para que otros sepan qué vars existen)</span></pre>
+      </div>
+    </div>
+    <div>
+      <h3 data-en=".env.example (committed)" data-pt=".env.example (commitado)">.env.example (commiteado)</h3>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>.env.example</div>
+        <pre><span class="c"># copia a .env y rellena con valores reales</span>
+DATABASE_URL=<span class="s">postgres://user:pass@host/db</span>
+API_KEY=<span class="s">pon-aqui-tu-key</span>
+JWT_SECRET=<span class="s">cambia-esto</span>
+PORT=<span class="n">3000</span></pre>
+      </div>
+    </div>
+  </div>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="load env safely" data-pt="carregar env com segurança">cargar env de forma segura</span></div>
+    <pre><span class="c"># 1. Cada dev copia la plantilla y rellena sus valores locales</span>
+<span class="k">cp</span> .env.example .env
+<span class="c"># 2. En producción, los valores vienen del CI/CD o del servidor (no del repo)</span>
+<span class="c"># 3. La librería los lee en runtime (dotenv, os.Getenv, etc.)</span></pre>
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-title="git-secrets y escaneo" data-en-title="git-secrets and scanning" data-pt-title="git-secrets e scan">
+  <div class="slide-num">11</div>
+  <div class="kicker" data-en="Security · practice" data-pt="Segurança · prática">Seguridad · práctica</div>
+  <h2 data-en="<span class='hl'>git-secrets</span> — block secrets before commit" data-pt="<span class='hl'>git-secrets</span> — bloqueia segredos antes do commit"><span class="hl">git-secrets</span> — bloquea secretos antes del commit</h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>git-secrets</div>
+    <pre><span class="c"># Instala (macOS)</span>
+<span class="t">brew</span> install git-secrets
+<span class="c"># Linux: clona y make install</span>
+<span class="t">git</span> <span class="k">clone</span> <span class="s">https://github.com/awslabs/git-secrets</span> && <span class="k">cd</span> git-secrets && <span class="k">make</span> install
+
+<span class="c"># Activa en un repo (instala un hook pre-commit que escanea)</span>
+<span class="t">git</span> <span class="k">secrets</span> --install
+<span class="c"># Añade patrones (AWS por defecto + los tuyos)</span>
+<span class="t">git</span> <span class="k">secrets</span> --register-aws
+<span class="t">git</span> <span class="k">secrets</span> --add <span class="s">'password\s*=\s*.*'</span>
+
+<span class="c"># Escanea todo el historial en busca de secretos ya subidos</span>
+<span class="t">git</span> <span class="k">secrets</span> --scan-history</pre>
+  </div>
+  <div class="note"><span class="note-label" data-en="More tools" data-pt="Mais ferramentas">Más herramientas</span><p data-en="GitHub secret scanning + GitLab secret detection catch leaks server-side. gitleaks and trufflehog scan locally and in CI." data-pt="GitHub secret scanning + GitLab secret detection pegam vazamentos no servidor. gitleaks e trufflehog escaneiam local e no CI.">GitHub secret scanning + GitLab secret detection detectan fugas en el servidor. gitleaks y trufflehog escanean local y en CI.</p></div>
+</section>
+
+<!-- 12 -->
+<section class="slide" data-title="Borrar secreto del historial" data-en-title="Remove secret from history" data-pt-title="Remover segredo do histórico">
+  <div class="slide-num">12</div>
+  <div class="kicker" data-en="Security · recovery" data-pt="Segurança · recuperação">Seguridad · recuperación</div>
+  <h2 data-en="Remove a leaked secret <span class='hl'>from history</span>" data-pt="Remover um segredo vazado <span class='hl'>do histórico</span>">Borrar un secreto filtrado <span class="hl">del historial</span></h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>git filter-repo</div>
+    <pre><span class="c"># 1. PRIMERO rota el secreto (genera uno nuevo). El viejo ya está comprometido.</span>
+<span class="c"># 2. Borra el archivo de TODO el historial</span>
+<span class="t">git</span> <span class="k">filter-repo</span> --path .env --invert-paths
+
+<span class="c"># 3. O borra solo la línea con el secreto</span>
+<span class="t">git</span> <span class="k">filter-repo</span> --replace-text expressions.txt
+<span class="c">#   expressions.txt:  VIEJO_SECRETO==>***REMOVIDO***</span>
+
+<span class="c"># 4. Fuerza el push (todos los hashes cambiaron)</span>
+<span class="t">git</span> <span class="k">push</span> --force-with-lease --all
+
+<span class="c"># 5. Avisa al equipo: todos deben re-clonar</span></pre>
+  </div>
+  <div class="warn"><span class="warn-label" data-en="Order matters" data-pt="A ordem importa">El orden importa</span><p data-en="Rotate first, then clean. If you clean first, the secret is still valid and attackers may already have it." data-pt="Rotacione primeiro, depois limpe. Se limpar antes, o segredo ainda vale e invasores podem já ter.">Rota primero, luego limpia. Si limpias primero, el secreto sigue válido y los atacantes pueden tenerlo ya.</p></div>
+</section>
+
+<!-- 13 -->
+<section class="slide" data-title="Auditoría y forense" data-en-title="Audit and forensics" data-pt-title="Auditoria e forense">
+  <div class="slide-num">13</div>
+  <div class="kicker" data-en="Audit" data-pt="Auditoria">Auditoría</div>
+  <h2 data-en="Audit & <span class='hl'>forensics</span>" data-pt="Auditoria & <span class='hl'>forense</span>">Auditoría y <span class="hl">forense</span></h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="find anything" data-pt="achar qualquer coisa">encontrar cualquier cosa</span></div>
+    <pre><span class="c"># ¿Quién cambió cada línea?</span>
+<span class="t">git</span> <span class="k">blame</span> app.js -L 10,30
+
+<span class="c"># ¿Cuándo se añadió/borró una cadena? (-S busca additions)</span>
+<span class="t">git</span> <span class="k">log</span> -S <span class="s">"API_KEY=abc123"</span> --oneline
+
+<span class="c"># Commits cuyo mensaje coincide con un patrón</span>
+<span class="t">git</span> <span class="k">log</span> --grep <span class="s">"CVE"</span> --grep <span class="s">"security"</span> --all-match
+
+<span class="c"># Todos los commits de una persona</span>
+<span class="t">git</span> <span class="k">log</span> --author=<span class="s">"Ana"</span> --since=<span class="s">"2 weeks ago"</span>
+
+<span class="c"># Ver qué hizo cada persona (reporte corto)</span>
+<span class="t">git</span> <span class="k">shortlog</span> -sne
+
+<span class="c"># ¿Qué referencias apuntan a un commit? (para auditoría de merges)</span>
+<span class="t">git</span> <span class="k">branch</span> --contains a1b2c3d</pre>
+  </div>
+</section>
+
+<!-- 14 -->
+<section class="slide" data-title="Performance y mantenimiento" data-en-title="Performance and maintenance" data-pt-title="Performance e manutenção">
+  <div class="slide-num">14</div>
+  <div class="kicker" data-en="Performance" data-pt="Performance">Performance</div>
+  <h2 data-en="Repo <span class='hl'>health</span>" data-pt="<span class='hl'>Saúde</span> do repo">Salud del <span class="hl">repo</span></h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="maintenance" data-pt="manutenção">mantenimiento</span></div>
+    <pre><span class="c"># Limpia y compacta objetos (repo más rápido y pequeño)</span>
+<span class="t">git</span> <span class="k">gc</span> --prune=now
+<span class="t">git</span> <span class="k">gc</span> --aggressive
+
+<span class="c"># Verifica la integridad del repo</span>
+<span class="t">git</span> <span class="k">fsck</span> --full
+
+<span class="c"># Pre-empaqueta objetos compartidos (clone más rápido)</span>
+<span class="t">git</span> <span class="k">repack</span> -a -d --depth=250 --window=250
+
+<span class="c"># ¿Qué rama local ya se mergeó? (para limpiar)</span>
+<span class="t">git</span> <span class="k">branch</span> --merged main
+
+<span class="c"># Evita que archivos enormes ensucien el repo</span>
+<span class="t">git</span> <span class="k">config</span> --global core.bigFileThreshold 50m</pre>
+  </div>
+</section>
+
+<!-- 15 -->
+<section class="slide" data-title="Git LFS" data-en-title="Git LFS" data-pt-title="Git LFS">
+  <div class="slide-num">15</div>
+  <div class="kicker" data-en="Large files" data-pt="Arquivos grandes">Archivos grandes</div>
+  <h2 data-en="Git <span class='hl'>LFS</span> — large file storage" data-pt="Git <span class='hl'>LFS</span> — armazenamento de grandes arquivos">Git <span class="hl">LFS</span> — archivos grandes</h2>
+  <p data-en="Git stores a tiny pointer in the repo; the real big file (video, model, binary) lives on the LFS server." data-pt="O Git guarda um ponteiro minúsculo no repo; o arquivo grande real (vídeo, modelo, binário) vive no servidor LFS.">Git guarda un puntero diminuto en el repo; el archivo grande real (video, modelo, binario) vive en el servidor LFS.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="LFS setup" data-pt="setup LFS">setup LFS</span></div>
+    <pre><span class="c"># Instala (una vez por máquina)</span>
+<span class="t">brew</span> install git-lfs   <span class="c"># o: apt install git-lfs</span>
+<span class="t">git</span> lfs install
+
+<span class="c"># Dile qué archivos van por LFS</span>
+<span class="t">git</span> lfs track <span class="s">"*.psd"</span>
+<span class="t">git</span> lfs track <span class="s">"videos/*.mp4"</span>
+
+<span class="c"># ¡commitea el .gitattributes! (define el tracking)</span>
+<span class="t">git</span> <span class="k">add</span> .gitattributes
+
+<span class="c"># Ahora add/commit funciona normal, pero los grandes van al LFS</span>
+<span class="t">git</span> <span class="k">add</span> diseño.psd && <span class="t">git</span> <span class="k">commit</span> -m <span class="s">"Añadir diseño"</span>
+
+<span class="c"># Ver qué rastrea LFS</span>
+<span class="t">git</span> lfs ls-files</pre>
+  </div>
+</section>
+
+<!-- 16 -->
+<section class="slide" data-title="Checklist senior" data-en-title="Senior checklist" data-pt-title="Checklist sênior">
+  <div class="slide-num">16</div>
+  <div class="kicker" data-en="Checklist" data-pt="Checklist">Checklist</div>
+  <h2 data-en="Senior <span class='hl'>checklist</span>" data-pt="Checklist <span class='hl'>sênior</span>">Checklist <span class="hl">senior</span></h2>
+  <ul class="checklist">
+    <li class="done" data-en="Knows blob/tree/commit objects and can use cat-file">Conoce los objetos blob/tree/commit y usa cat-file</li>
+    <li class="done" data-en="Picked a branching strategy on purpose, not by habit">Eligió una estrategia de branching a propósito</li>
+    <li class="done" data-en="Signs commits (GPG or SSH) with Verified badge">Firma commits (GPG o SSH) con sello Verified</li>
+    <li class="done" data-en=".env never committed; .env.example template exists">.env nunca commiteado; existe plantilla .env.example</li>
+    <li class="done" data-en="git-secrets / gitleaks runs in pre-commit and CI">git-secrets / gitleaks corre en pre-commit y CI</li>
+    <li class="done" data-en="Knows how to rotate + remove a leaked secret">Sabe rotar y borrar un secreto filtrado</li>
+    <li class="done" data-en="Uses sparse-checkout + build cache in monorepos">Usa sparse-checkout + cache de build en monorepos</li>
+    <li class="done" data-en="Can recover lost work with reflog + bisect">Recupera trabajo perdido con reflog + bisect</li>
+    <li class="done" data-en="Runs gc/fsck to keep the repo healthy">Corre gc/fsck para mantener el repo sano</li>
+  </ul>
+</section>
+
+<!-- 17 -->
+<section class="slide title-slide" data-title="Siguiente: Glosario" data-en-title="Next: Glossary" data-pt-title="Próximo: Glossário">
+  <img src="https://cdn.simpleicons.org/git/f78166" alt="Git" style="width:80px;height:80px;margin-bottom:1rem;filter:drop-shadow(0 0 18px rgba(247,129,102,.4))">
+  <h2 data-en="The full <span class='hl'>command glossary</span>" data-pt="O <span class='hl'>glossário</span> completo de comandos">El <span class="hl">glosario</span> completo de comandos</h2>
+  <p class="lead" data-en="Every git, gh and glab command: what it is and what it's for." data-pt="Todos os comandos git, gh e glab: o que são e para que servem.">Todos los comandos git, gh y glab: qué son y para qué se usan.</p>
+  <div class="cards" style="max-width:700px">
+    <a href="08-glosario.html" class="card" style="text-decoration:none;color:inherit;--card-border:var(--accent)"><div class="card-icon">📖</div><h4 data-en="Module 8: Glossary" data-pt="Módulo 8: Glossário">Módulo 8: Glosario</h4><p data-en="git + gh + glab reference" data-pt="referência git + gh + glab">referencia git + gh + glab</p></a>
+    <a href="index.html" class="card" style="text-decoration:none;color:inherit"><div class="card-icon">🏠</div><h4 data-en="Back to start" data-pt="Voltar ao início">Volver al inicio</h4><p data-en="Full index" data-pt="Índice completo">Índice completo</p></a>
+  </div>
+</section>
+
+</div>
+<script src="assets/bg.js"></script>
+<script src="assets/slides.js"></script>
+</body>
+</html>

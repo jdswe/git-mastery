@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glosario de Comandos — Git Mastery</title>
+<link rel="stylesheet" href="assets/slides.css">
+</head>
+<body>
+<div class="progress-wrap"><div class="progress"></div></div>
+<div class="topnav">
+  <a href="index.html" class="brand"><img src="https://cdn.simpleicons.org/git/f05033" alt="Git" style="height:20px">Git Mastery</a>
+  <button class="toc-btn" data-nav="toc">☰ Índice</button>
+</div>
+<div class="counter"><span class="cur">01</span> / 00</div>
+<div class="controls">
+  <button class="ctrl-btn" data-nav="prev">‹</button>
+  <button class="ctrl-btn" data-nav="next">›</button>
+</div>
+<div class="toc-overlay">
+  <button class="toc-close" data-nav="close-toc">✕</button>
+  <h2 data-en="Index — Glossary" data-pt="Índice — Glossário">Índice — Glosario</h2>
+  <div class="toc-list"></div>
+</div>
+<div class="deck">
+
+<!-- 1 -->
+<section class="slide title-slide" data-title="Glosario de Comandos" data-en-title="Command Glossary" data-pt-title="Glossário de Comandos">
+  <span class="badge" data-en="Module 8 · Reference" data-pt="Módulo 8 · Referência">Módulo 8 · Referencia</span>
+  <img src="https://cdn.simpleicons.org/git/f05033" alt="Git" style="width:88px;height:88px;margin-bottom:1rem;filter:drop-shadow(0 0 20px rgba(240,80,51,.4))">
+  <h1 data-en="Command <span class='hl'>Glossary</span>" data-pt="Glossário de <span class='hl'>Comandos</span>">Glosario de <span class="hl">Comandos</span></h1>
+  <p class="lead" data-en="Every git, gh and glab command: what it is and what it's used for." data-pt="Todos os comandos git, gh e glab: o que são e para que servem.">Todos los comandos git, gh y glab: qué son y para qué se usan.</p>
+  <div class="stats">
+    <div class="stat"><div class="num">60+</div><div class="lbl" data-en="commands" data-pt="comandos">comandos</div></div>
+    <div class="stat"><div class="num">3</div><div class="lbl" data-en="CLIs" data-pt="CLIs">CLIs</div></div>
+  </div>
+</section>
+
+<!-- GIT setup -->
+<section class="slide" data-title="Git — setup" data-en-title="Git — setup" data-pt-title="Git — setup">
+  <div class="slide-num">02</div>
+  <div class="kicker">git · setup</div>
+  <h2 data-en="git — <span class='hl'>setup</span>" data-pt="git — <span class='hl'>setup</span>">git — <span class="hl">setup</span></h2>
+  <table class="tbl">
+    <tr><th data-en="Command" data-pt="Comando">Comando</th><th data-en="What it is" data-pt="O que é">Qué es</th><th data-en="Used for" data-pt="Serve para">Para qué se usa</th></tr>
+    <tr><td><code>git config</code></td><td data-en="Set/read options" data-pt="Define/lê opções">Define/lee opciones</td><td data-en="Name, email, editor, defaults (global or local)" data-pt="Nome, email, editor, padrões (global ou local)">Nombre, email, editor, valores por defecto</td></tr>
+    <tr><td><code>git init</code></td><td data-en="Create a repo" data-pt="Cria um repo">Crea un repo</td><td data-en="Turn a folder into a Git repo (.git/)" data-pt="Transforma uma pasta num repo Git (.git/)">Convierte una carpeta en un repo Git (.git/)</td></tr>
+    <tr><td><code>git clone</code></td><td data-en="Copy a repo" data-pt="Copia um repo">Copia un repo</td><td data-en="Download a repo with all its history" data-pt="Baixa um repo com todo o histórico">Descarga un repo con todo su historial</td></tr>
+    <tr><td><code>git --version</code></td><td data-en="Version info" data-pt="Info de versão">Info de versión</td><td data-en="Check the installed Git version" data-pt="Verifica a versão do Git instalada">Verifica la versión de Git instalada</td></tr>
+  </table>
+</section>
+
+<!-- GIT staging -->
+<section class="slide" data-title="Git — staging & commit" data-en-title="Git — staging & commit" data-pt-title="Git — staging & commit">
+  <div class="slide-num">03</div>
+  <div class="kicker">git · staging</div>
+  <h2 data-en="git — staging & <span class='hl'>commit</span>" data-pt="git — staging & <span class='hl'>commit</span>">git — staging & <span class="hl">commit</span></h2>
+  <table class="tbl">
+    <tr><th data-en="Command" data-pt="Comando">Comando</th><th data-en="What it is" data-pt="O que é">Qué es</th><th data-en="Used for" data-pt="Serve para">Para qué se usa</th></tr>
+    <tr><td><code>git status</code></td><td data-en="State viewer" data-pt="Visualizador de estado">Visor de estado</td><td data-en="See what changed/staged/untracked" data-pt="Ver o que mudou/staged/não rastreado">Ver qué cambió/staged/sin seguimiento</td></tr>
+    <tr><td><code>git add</code></td><td data-en="Stage" data-pt="Prepara">Prepara</td><td data-en="Move changes to the staging area" data-pt="Move mudanças pra staging area">Mueve cambios al staging area</td></tr>
+    <tr><td><code>git commit</code></td><td data-en="Snapshot" data-pt="Snapshot">Snapshot</td><td data-en="Save the staged snapshot to history" data-pt="Salva o snapshot staged no histórico">Guarda el snapshot staged en el historial</td></tr>
+    <tr><td><code>git commit --amend</code></td><td data-en="Edit last commit" data-pt="Edita o último commit">Edita el último commit</td><td data-en="Fix message or add forgotten files" data-pt="Corrige msg ou add arquivos esquecidos">Corrige mensaje o añade archivos olvidados</td></tr>
+    <tr><td><code>git restore</code></td><td data-en="Restore files" data-pt="Restaura arquivos">Restaura archivos</td><td data-en="Discard changes or unstage" data-pt="Descarta mudanças ou tira do staging">Descarta cambios o saca del staging</td></tr>
+    <tr><td><code>git rm --cached</code></td><td data-en="Untrack" data-pt="Tira do rastreamento">Quita seguimiento</td><td data-en="Stop tracking a file (keep it on disk)" data-pt="Para de rastrear (mantém no disco)">Deja de seguir un archivo (lo guarda en disco)</td></tr>
+  </table>
+</section>
+
+<!-- GIT history -->
+<section class="slide" data-title="Git — history & diff" data-en-title="Git — history & diff" data-pt-title="Git — histórico & diff">
+  <div class="slide-num">04</div>
+  <div class="kicker">git · history</div>
+  <h2 data-en="git — history & <span class='hl'>diff</span>" data-pt="git — histórico & <span class='hl'>diff</span>">git — historial & <span class="hl">diff</span></h2>
+  <table class="tbl">
+    <tr><th data-en="Command" data-pt="Comando">Comando</th><th data-en="What it is" data-pt="O que é">Qué es</th><th data-en="Used for" data-pt="Serve para">Para qué se usa</th></tr>
+    <tr><td><code>git log</code></td><td data-en="History viewer" data-pt="Visor de histórico">Visor de historial</td><td data-en="List commits (filters, graph, etc.)" data-pt="Lista commits (filtros, grafo, etc.)">Lista commits (filtros, grafo, etc.)</td></tr>
+    <tr><td><code>git log --oneline --graph</code></td><td data-en="Compact graph" data-pt="Grafo compacto">Grafo compacto</td><td data-en="See branch history as a graph" data-pt="Ver o histórico como grafo">Ver el historial de ramas como grafo</td></tr>
+    <tr><td><code>git diff</code></td><td data-en="Difference" data-pt="Diferença">Diferencia</td><td data-en="Show line-by-line changes" data-pt="Mostra mudanças linha a linha">Muestra cambios línea por línea</td></tr>
+    <tr><td><code>git show</code></td><td data-en="Commit detail" data-pt="Detalhe do commit">Detalle de commit</td><td data-en="Show one commit's changes" data-pt="Mostra as mudanças de um commit">Muestra los cambios de un commit</td></tr>
+    <tr><td><code>git blame</code></td><td data-en="Line author" data-pt="Autor da linha">Autor de línea</td><td data-en="See who changed each line" data-pt="Ver quem mudou cada linha">Ver quién cambió cada línea</td></tr>
+    <tr><td><code>git shortlog</code></td><td data-en="Contributor report" data-pt="Relatório de contribuidores">Reporte de contribuidores</td><td data-en="Summarize commits by author" data-pt="Sumariza commits por autor">Resume commits por autor</td></tr>
+  </table>
+</section>
+
+<!-- GIT branches -->
+<section class="slide" data-title="Git — branches" data-en-title="Git — branches" data-pt-title="Git — branches">
+  <div class="slide-num">05</div>
+  <div class="kicker">git · branches</div>
+  <h2 data-en="git — <span class='hl'>branches</span>" data-pt="git — <span class='hl'>branches</span>">git — <span class="hl">ramas</span></h2>
+  <table class="tbl">
+    <tr><th data-en="Command" data-pt="Comando">Comando</th><th data-en="What it is" data-pt="O que é">Qué es</th><th data-en="Used for" data-pt="Serve para">Para qué se usa</th></tr>
+    <tr><td><code>git branch</code></td><td data-en="Branch manager" data-pt="Gerencia branches">Gestiona ramas</td><td data-en="List, create or delete branches" data-pt="Lista, cria ou apaga branches">Lista, crea o borra ramas</td></tr>
+    <tr><td><code>git switch</code></td><td data-en="Switch branch" data-pt="Troca de branch">Cambia de rama</td><td data-en="Move HEAD to a branch (-c creates)" data-pt="Move o HEAD a um branch (-c cria)">Mueve HEAD a una rama (-c crea)</td></tr>
+    <tr><td><code>git checkout</code></td><td data-en="Old switch" data-pt="Switch antigo">Switch antiguo</td><td data-en="Legacy: switch branches/restore files" data-pt="Legado: trocar branches/restaurar arquivos">Legado: cambiar ramas/restaurar archivos</td></tr>
+    <tr><td><code>git merge</code></td><td data-en="Join branches" data-pt="Junta branches">Junta ramas</td><td data-en="Combine one branch into another" data-pt="Combina um branch noutro">Combina una rama en otra</td></tr>
+    <tr><td><code>git merge --no-ff</code></td><td data-en="Force merge commit" data-pt="Força merge commit">Fuerza commit de merge</td><td data-en="Always create a merge commit" data-pt="Sempre cria um merge commit">Siempre crea un commit de merge</td></tr>
+    <tr><td><code>git merge --squash</code></td><td data-en="Squash merge" data-pt="Squash merge">Squash merge</td><td data-en="Collapse all commits into one" data-pt="Colapsa todos os commits num só">Colapsa todos los commits en uno</td></tr>
+    <tr><td><code>git rebase</code></td><td data-en="Replant commits" data-pt="Replanta commits">Replanta commits</td><td data-en="Move commits onto another base" data-pt="Move commits para outra base">Mueve commits sobre otra base</td></tr>
+    <tr><td><code>git cherry-pick</code></td><td data-en="Copy a commit" data-pt="Copia um commit">Copia un commit</td><td data-en="Apply one commit elsewhere" data-pt="Aplica um commit em outro lugar">Aplica un commit en otro sitio</td></tr>
+    <tr><td><code>git stash</code></td><td data-en="Park changes" data-pt="Estaciona mudanças">Aparca cambios</td><td data-en="Save WIP without committing" data-pt="Salva WIP sem commit">Guarda WIP sin commitear</td></tr>
+  </table>
+</section>
+
+<!-- GIT remote -->
+<section class="slide" data-title="Git — remotes" data-en-title="Git — remotes" data-pt-title="Git — remotes">
+  <div class="slide-num">06</div>
+  <div class="kicker">git · remote</div>
+  <h2 data-en="git — <span class='hl'>remotes</span>" data-pt="git — <span class='hl'>remotes</span>">git — <span class="hl">remotos</span></h2>
+  <table class="tbl">
+    <tr><th data-en="Command" data-pt="Comando">Comando</th><th data-en="What it is" data-pt="O que é">Qué es</th><th data-en="Used for" data-pt="Serve para">Para qué se usa</th></tr>
+    <tr><td><code>git remote</code></td><td data-en="Remote manager" data-pt="Gerencia remotes">Gestiona remotos</td><td data-en="Add/list/rename/remove remotes" data-pt="Add/lista/renomeia/remove remotes">Añade/lista/renombra/borra remotos</td></tr>
+    <tr><td><code>git fetch</code></td><td data-en="Download" data-pt="Download">Descarga</td><td data-en="Get remote changes without merging" data-pt="Baixa mudanças sem mesclar">Trae cambios remotos sin mezclar</td></tr>
+    <tr><td><code>git pull</code></td><td data-en="Fetch + merge" data-pt="Fetch + merge">Fetch + merge</td><td data-en="Update local branch from remote" data-pt="Atualiza branch local do remote">Actualiza rama local desde el remoto</td></tr>
+    <tr><td><code>git push</code></td><td data-en="Upload" data-pt="Upload">Sube</td><td data-en="Send local commits to remote" data-pt="Envia commits locais ao remote">Envía commits locales al remoto</td></tr>
+    <tr><td><code>git push -u</code></td><td data-en="Set upstream" data-pt="Define upstream">Define upstream</td><td data-en="Link local branch to remote" data-pt="Liga branch local ao remote">Enlaza rama local con el remoto</td></tr>
+    <tr><td><code>git push --force-with-lease</code></td><td data-en="Safe force" data-pt="Force seguro">Force seguro</td><td data-en="Force push only if no one else pushed" data-pt="Força só se ninguém mais subiu">Fuerza solo si nadie más subió</td></tr>
+  </table>
+</section>
+
+<!-- GIT undo -->
+<section class="slide" data-title="Git — undo & recovery" data-en-title="Git — undo & recovery" data-pt-title="Git — desfazer & recuperação">
+  <div class="slide-num">07</div>
+  <div class="kicker">git · undo</div>
+  <h2 data-en="git — undo & <span class='hl'>recovery</span>" data-pt="git — desfazer & <span class='hl'>recuperação</span>">git — deshacer & <span class="hl">recuperación</span></h2>
+  <table class="tbl">
+    <tr><th data-en="Command" data-pt="Comando">Comando</th><th data-en="What it is" data-pt="O que é">Qué es</th><th data-en="Used for" data-pt="Serve para">Para qué se usa</th></tr>
+    <tr><td><code>git revert</code></td><td data-en="Safe undo" data-pt="Desfazer seguro">Deshacer seguro</td><td data-en="Create a commit that undoes another" data-pt="Cria um commit que desfaz outro">Crea un commit que deshace otro</td></tr>
+    <tr><td><code>git reset</code></td><td data-en="Move HEAD" data-pt="Move o HEAD">Mueve HEAD</td><td data-en="Reset to a commit (--soft/--mixed/--hard)" data-pt="Reset para um commit (soft/mixed/hard)">Resetea a un commit (soft/mixed/hard)</td></tr>
+    <tr><td><code>git reflog</code></td><td data-en="HEAD log" data-pt="Log do HEAD">Log de HEAD</td><td data-en="See every HEAD move; recover lost commits" data-pt="Vê todo movimento do HEAD; recupera commits">Ve cada movimiento de HEAD; recupera commits</td></tr>
+    <tr><td><code>git bisect</code></td><td data-en="Binary search" data-pt="Busca binária">Búsqueda binaria</td><td data-en="Find the commit that introduced a bug" data-pt="Achar o commit que introduziu um bug">Encontrar el commit que introdujo un bug</td></tr>
+    <tr><td><code>git clean</code></td><td data-en="Remove untracked" data-pt="Remove não rastreados">Borra sin seguimiento</td><td data-en="Delete untracked files/folders" data-pt="Apaga arquivos/pastas não rastreados">Borra archivos/carpetas sin seguimiento</td></tr>
+  </table>
+</section>
+
+<!-- GIT advanced -->
+<section class="slide" data-title="Git — advanced" data-en-title="Git — advanced" data-pt-title="Git — avançado">
+  <div class="slide-num">08</div>
+  <div class="kicker">git · advanced</div>
+  <h2 data-en="git — <span class='hl'>advanced</span>" data-pt="git — <span class='hl'>avançado</span>">git — <span class="hl">avanzado</span></h2>
+  <table class="tbl">
+    <tr><th data-en="Command" data-pt="Comando">Comando</th><th data-en="What it is" data-pt="O que é">Qué es</th><th data-en="Used for" data-pt="Serve para">Para qué se usa</th></tr>
+    <tr><td><code>git tag</code></td><td data-en="Marker" data-pt="Marcador">Marcador</td><td data-en="Mark a release point (v1.0.0)" data-pt="Marca um release (v1.0.0)">Marca un punto de release (v1.0.0)</td></tr>
+    <tr><td><code>git submodule</code></td><td data-en="Repo in repo" data-pt="Repo em repo">Repo en repo</td><td data-en="Embed another repo as a dependency" data-pt="Embutir outro repo como dependência">Embebe otro repo como dependencia</td></tr>
+    <tr><td><code>git worktree</code></td><td data-en="Extra worktree" data-pt="Worktree extra">Worktree extra</td><td data-en="Check out branches in separate folders" data-pt="Checkout de branches em pastas separadas">Abre ramas en carpetas separadas</td></tr>
+    <tr><td><code>git archive</code></td><td data-en="Export" data-pt="Exportar">Exportar</td><td data-en="Export the project without .git/" data-pt="Exporta o projeto sem .git/">Exporta el proyecto sin .git/</td></tr>
+    <tr><td><code>git sparse-checkout</code></td><td data-en="Partial checkout" data-pt="Checkout parcial">Checkout parcial</td><td data-en="Check out only needed folders" data-pt="Checkout só das pastas necessárias">Abre solo las carpetas necesarias</td></tr>
+    <tr><td><code>git filter-repo</code></td><td data-en="History rewrite" data-pt="Reescrita de histórico">Reescritura de historial</td><td data-en="Remove files/secrets from all history" data-pt="Remove arquivos/segredos de todo o histórico">Borra archivos/secretos de todo el historial</td></tr>
+    <tr><td><code>git gc</code></td><td data-en="Garbage collect" data-pt="Garbage collect">Garbage collect</td><td data-en="Compress and clean up objects" data-pt="Compacta e limpa objetos">Compacta y limpia objetos</td></tr>
+    <tr><td><code>git fsck</code></td><td data-en="Integrity check" data-pt="Verificação de integridade">Verificación de integridad</td><td data-en="Verify the repo is not corrupt" data-pt="Verifica que o repo não está corrompido">Verifica que el repo no está corrupto</td></tr>
+    <tr><td><code>git lfs</code></td><td data-en="Large files" data-pt="Arquivos grandes">Archivos grandes</td><td data-en="Store big files outside the repo" data-pt="Guarda arquivos grandes fora do repo">Guarda archivos grandes fuera del repo</td></tr>
+  </table>
+</section>
+
+<!-- GIT internals -->
+<section class="slide" data-title="Git — internals (plumbing)" data-en-title="Git — internals (plumbing)" data-pt-title="Git — internals (plumbing)">
+  <div class="slide-num">09</div>
+  <div class="kicker">git · plumbing</div>
+  <h2 data-en="git — <span class='hl'>internals</span>" data-pt="git — <span class='hl'>internals</span>">git — <span class="hl">internals</span></h2>
+  <table class="tbl">
+    <tr><th data-en="Command" data-pt="Comando">Comando</th><th data-en="What it is" data-pt="O que é">Qué es</th><th data-en="Used for" data-pt="Serve para">Para qué se usa</th></tr>
+    <tr><td><code>git cat-file</code></td><td data-en="Object reader" data-pt="Leitor de objetos">Lector de objetos</td><td data-en="Inspect a blob/tree/commit by hash" data-pt="Inspeciona um blob/tree/commit por hash">Inspecciona un blob/tree/commit por hash</td></tr>
+    <tr><td><code>git hash-object</code></td><td data-en="Make a blob" data-pt="Cria um blob">Crea un blob</td><td data-en="Compute/store an object from content" data-pt="Calcula/armazena um objeto do conteúdo">Calcula/guarda un objeto desde contenido</td></tr>
+    <tr><td><code>git ls-tree</code></td><td data-en="Tree lister" data-pt="Lista a tree">Lista la tree</td><td data-en="List entries of a tree object" data-pt="Lista entradas de um objeto tree">Lista entradas de un objeto tree</td></tr>
+    <tr><td><code>git count-objects</code></td><td data-en="Size report" data-pt="Relatório de tamanho">Reporte de tamaño</td><td data-en="Count and size of stored objects" data-pt="Conta e mede os objetos guardados">Cuenta y mide los objetos guardados</td></tr>
+    <tr><td><code>git verify-commit</code></td><td data-en="Verify signature" data-pt="Verifica assinatura">Verifica firma</td><td data-en="Check a commit's GPG/SSH signature" data-pt="Confere a assinatura GPG/SSH do commit">Comprueba la firma GPG/SSH de un commit</td></tr>
+  </table>
+</section>
+
+<!-- gh CLI -->
+<section class="slide" data-title="gh — GitHub CLI" data-en-title="gh — GitHub CLI" data-pt-title="gh — CLI do GitHub">
+  <div class="slide-num">10</div>
+  <div class="kicker" data-en="GitHub CLI" data-pt="CLI do GitHub">GitHub CLI</div>
+  <h2 data-en="<span class='hl'>gh</span> — GitHub CLI" data-pt="<span class='hl'>gh</span> — CLI do GitHub"><span class="hl">gh</span> — GitHub CLI</h2>
+  <table class="tbl">
+    <tr><th data-en="Command" data-pt="Comando">Comando</th><th data-en="What it is" data-pt="O que é">Qué es</th><th data-en="Used for" data-pt="Serve para">Para qué se usa</th></tr>
+    <tr><td><code>gh auth login</code></td><td data-en="Login" data-pt="Login">Login</td><td data-en="Authenticate gh with your account" data-pt="Autentica o gh com sua conta">Autentica gh con tu cuenta</td></tr>
+    <tr><td><code>gh auth status</code></td><td data-en="Auth status" data-pt="Status de auth">Estado de auth</td><td data-en="Check current login" data-pt="Verifica o login atual">Verifica el login actual</td></tr>
+    <tr><td><code>gh repo create</code></td><td data-en="Create repo" data-pt="Cria repo">Crea repo</td><td data-en="Create a GitHub repo from terminal" data-pt="Cria um repo GitHub do terminal">Crea un repo GitHub desde terminal</td></tr>
+    <tr><td><code>gh repo clone</code></td><td data-en="Clone repo" data-pt="Clona repo">Clona repo</td><td data-en="Clone a repo" data-pt="Clona um repo">Clona un repo</td></tr>
+    <tr><td><code>gh repo fork</code></td><td data-en="Fork" data-pt="Fork">Fork</td><td data-en="Fork and optionally clone" data-pt="Faz fork e opcionalmente clona">Hace fork y opcionalmente clona</td></tr>
+    <tr><td><code>gh pr create</code></td><td data-en="Open PR" data-pt="Abre PR">Abre PR</td><td data-en="Create a pull request" data-pt="Cria um pull request">Crea un pull request</td></tr>
+    <tr><td><code>gh pr list</code></td><td data-en="List PRs" data-pt="Lista PRs">Lista PRs</td><td data-en="List open pull requests" data-pt="Lista pull requests abertos">Lista pull requests abiertos</td></tr>
+    <tr><td><code>gh pr checkout</code></td><td data-en="Get PR locally" data-pt="Pega PR local">Trae PR local</td><td data-en="Check out a PR branch locally" data-pt="Faz checkout do branch do PR">Abre la rama del PR en local</td></tr>
+    <tr><td><code>gh pr review</code></td><td data-en="Review PR" data-pt="Revê PR">Revisa PR</td><td data-en="Approve/request changes/comment" data-pt="Aprova/pede mudanças/comenta">Aprueba/pide cambios/comenta</td></tr>
+    <tr><td><code>gh pr merge</code></td><td data-en="Merge PR" data-pt="Merge do PR">Mergea PR</td><td data-en="Merge a PR (--squash/--rebase)" data-pt="Faz merge do PR (squash/rebase)">Mergea un PR (--squash/--rebase)</td></tr>
+    <tr><td><code>gh issue create/list/view</code></td><td data-en="Issues" data-pt="Issues">Issues</td><td data-en="Manage issues" data-pt="Gerencia issues">Gestiona issues</td></tr>
+    <tr><td><code>gh run list/watch</code></td><td data-en="Actions runs" data-pt="Runs de Actions">Runs de Actions</td><td data-en="See/watch CI workflow runs" data-pt="Vê/assiste runs de CI">Ve/sigue runs de CI</td></tr>
+    <tr><td><code>gh release create</code></td><td data-en="Release" data-pt="Release">Release</td><td data-en="Create a release + tag" data-pt="Cria um release + tag">Crea un release + tag</td></tr>
+    <tr><td><code>gh gist create</code></td><td data-en="Gist" data-pt="Gist">Gist</td><td data-en="Share a code snippet" data-pt="Compartilha um snippet">Comparte un snippet</td></tr>
+    <tr><td><code>gh extension install</code></td><td data-en="Extension" data-pt="Extensão">Extensión</td><td data-en="Install a community extension" data-pt="Instala uma extensão da comunidade">Instala una extensión de la comunidad</td></tr>
+  </table>
+</section>
+
+<!-- glab CLI -->
+<section class="slide" data-title="glab — GitLab CLI" data-en-title="glab — GitLab CLI" data-pt-title="glab — CLI do GitLab">
+  <div class="slide-num">11</div>
+  <div class="kicker" data-en="GitLab CLI" data-pt="CLI do GitLab">GitLab CLI</div>
+  <h2 data-en="<span class='hl'>glab</span> — GitLab CLI" data-pt="<span class='hl'>glab</span> — CLI do GitLab"><span class="hl">glab</span> — GitLab CLI</h2>
+  <table class="tbl">
+    <tr><th data-en="Command" data-pt="Comando">Comando</th><th data-en="What it is" data-pt="O que é">Qué es</th><th data-en="Used for" data-pt="Serve para">Para qué se usa</th></tr>
+    <tr><td><code>glab auth login</code></td><td data-en="Login" data-pt="Login">Login</td><td data-en="Authenticate glab with your account" data-pt="Autentica o glab com sua conta">Autentica glab con tu cuenta</td></tr>
+    <tr><td><code>glab auth status</code></td><td data-en="Auth status" data-pt="Status de auth">Estado de auth</td><td data-en="Check current login" data-pt="Verifica o login atual">Verifica el login actual</td></tr>
+    <tr><td><code>glab repo create</code></td><td data-en="Create repo" data-pt="Cria repo">Crea repo</td><td data-en="Create a GitLab repo from terminal" data-pt="Cria um repo GitLab do terminal">Crea un repo GitLab desde terminal</td></tr>
+    <tr><td><code>glab repo clone</code></td><td data-en="Clone repo" data-pt="Clona repo">Clona repo</td><td data-en="Clone a repo" data-pt="Clona um repo">Clona un repo</td></tr>
+    <tr><td><code>glab mr create</code></td><td data-en="Open MR" data-pt="Abre MR">Abre MR</td><td data-en="Create a merge request" data-pt="Cria um merge request">Crea un merge request</td></tr>
+    <tr><td><code>glab mr list</code></td><td data-en="List MRs" data-pt="Lista MRs">Lista MRs</td><td data-en="List open merge requests" data-pt="Lista merge requests abertos">Lista merge requests abiertos</td></tr>
+    <tr><td><code>glab mr checkout</code></td><td data-en="Get MR locally" data-pt="Pega MR local">Trae MR local</td><td data-en="Check out an MR branch locally" data-pt="Faz checkout do branch do MR">Abre la rama del MR en local</td></tr>
+    <tr><td><code>glab mr approve</code></td><td data-en="Approve MR" data-pt="Aprova MR">Aprueba MR</td><td data-en="Approve a merge request" data-pt="Aprova um merge request">Aprueba un merge request</td></tr>
+    <tr><td><code>glab mr merge</code></td><td data-en="Merge MR" data-pt="Merge do MR">Mergea MR</td><td data-en="Merge a MR (--squash)" data-pt="Faz merge do MR (squash)">Mergea un MR (--squash)</td></tr>
+    <tr><td><code>glab issue create/list/view</code></td><td data-en="Issues" data-pt="Issues">Issues</td><td data-en="Manage issues" data-pt="Gerencia issues">Gestiona issues</td></tr>
+    <tr><td><code>glab ci list/status</code></td><td data-en="Pipelines" data-pt="Pipelines">Pipelines</td><td data-en="See pipeline runs/status" data-pt="Vê runs/status dos pipelines">Ve runs/estado de pipelines</td></tr>
+    <tr><td><code>glab release create</code></td><td data-en="Release" data-pt="Release">Release</td><td data-en="Create a release + tag" data-pt="Cria um release + tag">Crea un release + tag</td></tr>
+    <tr><td><code>glab snippet create</code></td><td data-en="Snippet" data-pt="Snippet">Snippet</td><td data-en="Share a code snippet" data-pt="Compartilha um snippet">Comparte un snippet</td></tr>
+    <tr><td><code>glab repo view --web</code></td><td data-en="Open in browser" data-pt="Abre no navegador">Abre en navegador</td><td data-en="Open the repo on GitLab" data-pt="Abre o repo no GitLab">Abre el repo en GitLab</td></tr>
+  </table>
+</section>
+
+<!-- ssh-keygen / gpg -->
+<section class="slide" data-title="SSH y firma" data-en-title="SSH and signing" data-pt-title="SSH e assinatura">
+  <div class="slide-num">12</div>
+  <div class="kicker" data-en="Keys & signing" data-pt="Chaves e assinatura">Llaves y firma</div>
+  <h2 data-en="<span class='hl'>ssh-keygen</span> & <span class='hl'>gpg</span>" data-pt="<span class='hl'>ssh-keygen</span> & <span class='hl'>gpg</span>"><span class="hl">ssh-keygen</span> & <span class="hl">gpg</span></h2>
+  <table class="tbl">
+    <tr><th data-en="Command" data-pt="Comando">Comando</th><th data-en="What it is" data-pt="O que é">Qué es</th><th data-en="Used for" data-pt="Serve para">Para qué se usa</th></tr>
+    <tr><td><code>ssh-keygen</code></td><td data-en="Key generator" data-pt="Gerador de chaves">Generador de llaves</td><td data-en="Create an SSH key pair (ed25519)" data-pt="Cria um par de chaves SSH (ed25519)">Crea un par de llaves SSH (ed25519)</td></tr>
+    <tr><td><code>ssh-add</code></td><td data-en="Agent loader" data-pt="Carrega o agent">Carga del agent</td><td data-en="Load a key into ssh-agent" data-pt="Carrega uma chave no ssh-agent">Carga una llave en ssh-agent</td></tr>
+    <tr><td><code>ssh -T git@github.com</code></td><td data-en="Connection test" data-pt="Teste de conexão">Test de conexión</td><td data-en="Verify SSH auth to GitHub" data-pt="Verifica auth SSH ao GitHub">Verifica auth SSH a GitHub</td></tr>
+    <tr><td><code>gpg --full-generate-key</code></td><td data-en="GPG key" data-pt="Chave GPG">Llave GPG</td><td data-en="Create a GPG signing key" data-pt="Cria uma chave GPG de assinatura">Crea una llave de firma GPG</td></tr>
+    <tr><td><code>gpg --armor --export</code></td><td data-en="Export pub key" data-pt="Exporta chave pública">Exporta llave pública</td><td data-en="Get your public GPG key for GitHub" data-pt="Pega sua chave GPG pública pro GitHub">Obtiene tu llave GPG pública para GitHub</td></tr>
+  </table>
+</section>
+
+<!-- git-secrets / gitleaks -->
+<section class="slide" data-title="Seguridad — herramientas" data-en-title="Security — tools" data-pt-title="Segurança — ferramentas">
+  <div class="slide-num">13</div>
+  <div class="kicker" data-en="Security tools" data-pt="Ferramentas de segurança">Herramientas de seguridad</div>
+  <h2 data-en="Security <span class='hl'>tools</span>" data-pt="Ferramentas de <span class='hl'>segurança</span>">Herramientas de <span class="hl">seguridad</span></h2>
+  <table class="tbl">
+    <tr><th data-en="Tool" data-pt="Ferramenta">Herramienta</th><th data-en="What it is" data-pt="O que é">Qué es</th><th data-en="Used for" data-pt="Serve para">Para qué se usa</th></tr>
+    <tr><td><code>git-secrets</code></td><td data-en="Pre-commit scanner" data-pt="Scanner de pre-commit">Scanner pre-commit</td><td data-en="Block secrets before they're committed" data-pt="Bloqueia segredos antes do commit">Bloquea secretos antes del commit</td></tr>
+    <tr><td><code>gitleaks</code></td><td data-en="Secret scanner" data-pt="Scanner de segredos">Scanner de secretos</td><td data-en="Scan repos/CI for leaked secrets" data-pt="Escaneia repos/CI por segredos">Escanea repos/CI en busca de secretos</td></tr>
+    <tr><td><code>trufflehog</code></td><td data-en="Secret scanner" data-pt="Scanner de segredos">Scanner de secretos</td><td data-en="Find & verify secrets in history" data-pt="Acha e verifica segredos no histórico">Busca y verifica secretos en el historial</td></tr>
+    <tr><td><code>git filter-repo</code></td><td data-en="History rewriter" data-pt="Reescritor de histórico">Reescritor de historial</td><td data-en="Remove secrets from all history" data-pt="Remove segredos de todo o histórico">Borra secretos de todo el historial</td></tr>
+  </table>
+</section>
+
+<!-- end -->
+<section class="slide title-slide" data-title="Fin" data-en-title="The end" data-pt-title="Fim">
+  <img src="https://cdn.simpleicons.org/git/f05033" alt="Git" style="width:84px;height:84px;margin-bottom:1rem;filter:drop-shadow(0 0 20px rgba(240,80,51,.4))">
+  <h2 data-en="From <span class='hl'>zero to senior</span> — done" data-pt="Do <span class='hl'>zero ao sênior</span> — feito">De <span class="hl">cero a senior</span> — listo</h2>
+  <p class="lead" data-en="You covered fundamentals, branches, collaboration, GitHub, GitLab, advanced, senior and the full glossary." data-pt="Você cobriu fundamentos, branches, colaboração, GitHub, GitLab, avançado, sênior e o glossário completo.">Cubriste fundamentos, ramas, colaboración, GitHub, GitLab, avanzado, senior y el glosario completo.</p>
+  <div class="cards" style="max-width:600px">
+    <a href="index.html" class="card" style="text-decoration:none;color:inherit"><div class="card-icon">🏠</div><h4 data-en="Back to start" data-pt="Voltar ao início">Volver al inicio</h4><p data-en="Full index of all modules" data-pt="Índice completo de todos os módulos">Índice completo de todos los módulos</p></a>
+    <a href="01-fundamentos.html" class="card g" style="text-decoration:none;color:inherit"><div class="card-icon">🌱</div><h4 data-en="Start over" data-pt="Recomeçar">Empezar de nuevo</h4><p data-en="Module 1: Fundamentals" data-pt="Módulo 1: Fundamentos">Módulo 1: Fundamentos</p></a>
+  </div>
+</section>
+
+</div>
+<script src="assets/bg.js"></script>
+<script src="assets/slides.js"></script>
+</body>
+</html>

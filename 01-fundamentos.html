@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Git Fundamentos — De Cero a Senior</title>
+<link rel="stylesheet" href="assets/slides.css">
+</head>
+<body>
+
+<div class="progress-wrap"><div class="progress"></div></div>
+
+<div class="topnav">
+  <a href="index.html" class="brand"><img src="https://cdn.simpleicons.org/git/f05033" alt="Git" style="height:20px">Git Mastery</a>
+  <button class="toc-btn" data-nav="toc">☰ Índice</button>
+</div>
+
+<div class="counter"><span class="cur">01</span> / 00</div>
+
+<div class="controls">
+  <button class="ctrl-btn" data-nav="prev">‹</button>
+  <button class="ctrl-btn" data-nav="next">›</button>
+</div>
+
+<div class="toc-overlay">
+  <button class="toc-close" data-nav="close-toc">✕</button>
+  <h2 data-en="Index — Fundamentals" data-pt="Índice — Fundamentos">Índice — Fundamentos</h2>
+  <div class="toc-list"></div>
+</div>
+
+<div class="deck">
+
+<!-- 1 -->
+<section class="slide title-slide" data-title="Fundamentos de Git" data-en-title="Git Fundamentals" data-pt-title="Fundamentos do Git">
+  <span class="badge" data-en="Module 1 · Beginner" data-pt="Módulo 1 · Iniciante">Módulo 1 · Principiante</span>
+  <img src="https://cdn.simpleicons.org/git/f05033" alt="Git" style="width:88px;height:88px;margin-bottom:1rem;filter:drop-shadow(0 0 20px rgba(240,80,51,.4))">
+  <h1 data-en="Git <span class='hl'>Fundamentals</span>" data-pt="<span class='hl'>Fundamentos</span> de Git">Fundamentos de <span class="hl">Git</span></h1>
+  <p class="lead" data-en="From zero to your first repository. No shortcuts, real examples." data-pt="Do zero ao seu primeiro repositório. Sem atalhos, com exemplos reais.">De cero a tu primer repositorio. Sin atajos, con ejemplos reales.</p>
+  <div class="stats">
+    <div class="stat"><div class="num">22</div><div class="lbl" data-en="slides" data-pt="slides">slides</div></div>
+    <div class="stat"><div class="num">30+</div><div class="lbl" data-en="commands" data-pt="comandos">comandos</div></div>
+    <div class="stat"><div class="num">0</div><div class="lbl" data-en="prerequisites" data-pt="pré-requisitos">previos</div></div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="slide" data-title="¿Qué es el control de versiones?" data-en-title="What is version control?" data-pt-title="O que é controle de versão?">
+  <div class="slide-num">02</div>
+  <div class="kicker" data-en="Core concept" data-pt="Conceito base">Concepto base</div>
+  <h2 data-en="What is <span class='hl'>version control</span>?" data-pt="O que é o <span class='hl'>controle de versão</span>?">¿Qué es el <span class="hl">control de versiones</span>?</h2>
+  <p data-en="A system that records changes to a file (or project) over time, so you can return to any earlier state." data-pt="Um sistema que registra mudanças de um arquivo (ou projeto) ao longo do tempo, para você voltar a qualquer estado anterior.">Un sistema que registra los cambios de un archivo (o un proyecto) a lo largo del tiempo. Así puedes volver a cualquier estado anterior.</p>
+  <div class="cards" style="max-width:1000px">
+    <div class="card g"><div class="card-icon">📁</div><h4 data-en="Without control" data-pt="Sem controle">Sin control</h4><p data-en="project_final_v2_REAL_final.docx → manual copies, chaos, lost changes." data-pt="projeto_final_v2_REAL_final.docx → cópias manuais, caos, mudanças perdidas.">proyecto_final_v2_REAL_final.docx → copias manuales, caos, cambios perdidos.</p></div>
+    <div class="card b"><div class="card-icon">🌳</div><h4 data-en="With control" data-pt="Com controle">Con control</h4><p data-en="A history with every change, who made it, when and why. Go back to any point." data-pt="Um histórico com cada mudança, quem fez, quando e por quê. Volte a qualquer ponto.">Un historial con cada cambio, quién lo hizo, cuándo y por qué. Vuelves a cualquier punto.</p></div>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="Key idea" data-pt="Ideia-chave">Idea clave</span><p data-en="Git stores <strong>snapshots</strong> of your project, not line-by-line diffs." data-pt="O Git guarda <strong>snapshots</strong> do seu projeto, não diffs linha a linha.">Git guarda <strong>fotografías (snapshots)</strong> de tu proyecto, no la diferencia línea por línea.</p></div>
+</section>
+
+<!-- 3 -->
+<section class="slide" data-title="¿Por qué Git?" data-en-title="Why Git?" data-pt-title="Por que Git?">
+  <div class="slide-num">03</div>
+  <div class="kicker" data-en="Motivation" data-pt="Motivação">Motivación</div>
+  <h2 data-en="Why <span class='hl'>Git</span> and not something else?" data-pt="Por que <span class='hl'>Git</span> e não outra coisa?">¿Por qué <span class="hl">Git</span> y no otra cosa?</h2>
+  <div class="cols">
+    <div>
+      <ul>
+        <li data-en="<strong>Distributed:</strong> everyone has the full history, no central server needed."><strong>Distribuido:</strong> cada persona tiene el historial completo, sin depender de un servidor central.</li>
+        <li data-en="<strong>Fast:</strong> almost everything happens locally, no network."><strong>Rápido:</strong> casi todo ocurre en local, sin red.</li>
+        <li data-en="<strong>Cheap branching:</strong> creating a branch costs almost nothing."><strong>Ramificación barata:</strong> crear una rama cuesta casi nada.</li>
+        <li data-en="<strong>Integrity:</strong> every change has a hash (SHA-1) that identifies and protects it."><strong>Integridad:</strong> cada cambio tiene un hash (SHA-1) que lo identifica y protege.</li>
+        <li data-en="<strong>Standard:</strong> the whole industry uses it."><strong>Estándar:</strong> lo usa la industria entera.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>git --version</div>
+        <pre><span class="t">git</span> --version
+<span class="c"># git version 2.43.0</span></pre>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="num">94%</div><div class="lbl" data-en="devs use Git" data-pt="devs usam Git">devs usan Git</div></div>
+        <div class="stat"><div class="num">2005</div><div class="lbl" data-en="by Linus" data-pt="por Linus">creado por Linus</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="slide" data-title="Cómo funciona Git internamente" data-en-title="How Git works inside" data-pt-title="Como o Git funciona por dentro">
+  <div class="slide-num">04</div>
+  <div class="kicker" data-en="Internals lite" data-pt="Internals leve">Internals ligero</div>
+  <h2 data-en="How it works <span class='hl'>inside</span>" data-pt="Como funciona <span class='hl'>por dentro</span>">Cómo funciona <span class="hl">por dentro</span></h2>
+  <p data-en="Git doesn't store deltas (changes). It stores <strong>snapshots</strong>: a full picture of the project at each commit." data-pt="O Git não guarda deltas (mudanças). Guarda <strong>snapshots</strong>: uma foto completa do projeto a cada commit.">Git no guarda deltas (cambios). Guarda <strong>snapshots</strong>: una foto completa del proyecto en cada commit.</p>
+  <div class="diagram">
+    <div class="node g">Commit 1<br><span class="muted" style="font-size:.75rem">abc1234</span></div>
+    <span class="arrow">→</span>
+    <div class="node g">Commit 2<br><span class="muted" style="font-size:.75rem">def5678</span></div>
+    <span class="arrow">→</span>
+    <div class="node g">Commit 3<br><span class="muted" style="font-size:.75rem">ghi9012</span></div>
+  </div>
+  <p data-en="Each commit points to the snapshot and its parent. If a file didn't change, Git reuses the old reference (saves space)." data-pt="Cada commit aponta para o snapshot e seu pai. Se um arquivo não mudou, o Git reusa a referência antiga (economiza espaço).">Cada commit apunta al snapshot y al commit padre. Si un archivo no cambió, Git reusa la referencia anterior (ahorra espacio).</p>
+  <div class="note"><span class="note-label" data-en="SHA-1" data-pt="SHA-1">SHA-1</span><p data-en="The hash <code>abc1234</code> identifies the commit. Change one bit and the hash changes completely. That guarantees integrity." data-pt="O hash <code>abc1234</code> identifica o commit. Mude um bit e o hash muda completamente. Isso garante integridade.">El hash <code>abc1234</code> identifica el commit. Cambia un solo bit y el hash cambia completamente. Eso garantiza integridad.</p></div>
+</section>
+
+<!-- 5 -->
+<section class="slide" data-title="Los tres estados de Git" data-en-title="Git's three states" data-pt-title="Os três estados do Git">
+  <div class="slide-num">05</div>
+  <div class="kicker" data-en="Fundamental concept" data-pt="Conceito fundamental">Concepto fundamental</div>
+  <h2 data-en="The <span class='hl'>three states</span>" data-pt="Os <span class='hl'>três estados</span>">Los <span class="hl">tres estados</span></h2>
+  <p data-en="Every file passes through three places. Understanding this is understanding Git." data-pt="Todo arquivo passa por três lugares. Entender isso é entender o Git.">Todo archivo pasa por tres lugares. Entender esto es entender Git.</p>
+  <div class="diagram">
+    <div class="node o" data-en="Working<br>Directory" data-pt="Working<br>Directory">Working<br>Directory</div>
+    <span class="arrow">git add →</span>
+    <div class="node y" data-en="Staging<br>Area" data-pt="Staging<br>Area">Staging<br>Area</div>
+    <span class="arrow">git commit →</span>
+    <div class="node g" data-en="Repository" data-pt="Repository">Repository</div>
+  </div>
+  <div class="cards" style="max-width:1000px">
+    <div class="card o"><h4>1. Modified</h4><p data-en="You changed the file but haven't staged it." data-pt="Você mudou o arquivo mas não preparou.">Cambiaste el archivo pero no lo preparaste.</p></div>
+    <div class="card y"><h4>2. Staged</h4><p data-en="You marked it for the next commit." data-pt="Você marcou para o próximo commit.">Lo marcaste para entrar en el próximo commit.</p></div>
+    <div class="card g"><h4>3. Committed</h4><p data-en="Saved in history permanently." data-pt="Salvo no histórico permanentemente.">Ya está guardado en el historial de forma permanente.</p></div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="slide" data-title="Instalar Git por sistema" data-en-title="Install Git per OS" data-pt-title="Instalar o Git por sistema">
+  <div class="slide-num">06</div>
+  <div class="kicker" data-en="Setup · install" data-pt="Setup · instalar">Setup · instalar</div>
+  <h2 data-en="Install <span class='hl'>Git</span> — per system" data-pt="Instalar <span class='hl'>Git</span> — por sistema">Instalar <span class="hl">Git</span> — por sistema</h2>
+  <p data-en="Before anything, you need Git installed. Pick your operating system:" data-pt="Antes de tudo, você precisa do Git instalado. Escolha seu sistema:">Antes de nada, necesitas Git instalado. Elige tu sistema operativo:</p>
+  <div class="os-tabs" data-os-group="git-install">
+    <div class="os-tab active" data-os="win">🪟 Windows</div>
+    <div class="os-tab" data-os="mac">🍎 macOS</div>
+    <div class="os-tab" data-os="linux">🐧 Linux</div>
+  </div>
+  <div class="os-panel active" data-os="win" data-os-group="git-install">
+    <div class="code-block"><div class="code-header"><div class="dots"><span></span><span></span><span></span></div>Windows</div>
+      <pre><span class="c"># Opción 1: winget (Windows 10/11)</span>
+<span class="t">winget</span> install --id Git.Git -e --source winget
+
+<span class="c"># Opción 2: descarga el instalador oficial</span>
+<span class="c"># https://git-scm.com/download/win → ejecuta el .exe</span>
+
+<span class="c"># Opción 3: Scoop</span>
+<span class="t">scoop</span> install git
+
+<span class="c"># Opción 4: Chocolatey</span>
+<span class="t">choco</span> install git
+
+<span class="c"># Verifica (incluye Git Bash)</span>
+<span class="t">git</span> --version</pre>
+    </div>
+  </div>
+  <div class="os-panel" data-os="mac" data-os-group="git-install">
+    <div class="code-block"><div class="code-header"><div class="dots"><span></span><span></span><span></span></div>macOS</div>
+      <pre><span class="c"># Homebrew (recomendado)</span>
+<span class="t">brew</span> install git
+
+<span class="c"># MacPorts</span>
+<span class="t">port</span> install git
+
+<span class="c"># O descarga el instalador oficial:</span>
+<span class="c"># https://git-scm.com/download/mac</span>
+
+<span class="c"># Verifica</span>
+<span class="t">git</span> --version</pre>
+    </div>
+  </div>
+  <div class="os-panel" data-os="linux" data-os-group="git-install">
+    <div class="code-block"><div class="code-header"><div class="dots"><span></span><span></span><span></span></div>Linux</div>
+      <pre><span class="c"># Debian / Ubuntu</span>
+<span class="k">sudo</span> apt update && <span class="k">sudo</span> apt install git
+
+<span class="c"># Fedora / RHEL / CentOS</span>
+<span class="k">sudo</span> dnf install git
+
+<span class="c"># Arch / Manjaro</span>
+<span class="k">sudo</span> pacman -S git
+
+<span class="c"># openSUSE</span>
+<span class="k">sudo</span> zypper install git
+
+<span class="c"># Verifica</span>
+<span class="t">git</span> --version</pre>
+    </div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="slide" data-title="Configuración inicial" data-en-title="Initial config" data-pt-title="Configuração inicial">
+  <div class="slide-num">07</div>
+  <div class="kicker" data-en="Setup" data-pt="Setup">Setup</div>
+  <h2 data-en="Initial <span class='hl'>configuration</span>" data-pt="<span class='hl'>Configuração</span> inicial">Configuración <span class="hl">inicial</span></h2>
+  <p data-en="The first thing you do on any machine: tell Git who you are." data-pt="A primeira coisa em qualquer máquina: dizer ao Git quem você é.">Lo primero que haces en cualquier máquina: decirle a Git quién eres.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="global config" data-pt="config global">configuración global</span></div>
+    <pre><span class="c"># Tu nombre y email (queda en cada commit)</span>
+<span class="t">git</span> <span class="k">config</span> --global user.name <span class="s">"Ana López"</span>
+<span class="t">git</span> <span class="k">config</span> --global user.email <span class="s">"ana@ejemplo.com"</span>
+
+<span class="c"># El editor por defecto para mensajes de commit</span>
+<span class="t">git</span> <span class="k">config</span> --global core.editor <span class="s">"code --wait"</span>
+
+<span class="c"># Colores en la terminal</span>
+<span class="t">git</span> <span class="k">config</span> --global color.ui auto
+
+<span class="c"># Rama por defecto al inicializar</span>
+<span class="t">git</span> <span class="k">config</span> --global init.defaultBranch main
+
+<span class="c"># Ver toda tu configuración</span>
+<span class="t">git</span> <span class="k">config</span> --list</pre>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="Tip" data-pt="Dica">Tip</span><p data-en="The flag <code>--global</code> applies to all your repos. Without it, only the current repo." data-pt="O flag <code>--global</code> vale para todos os seus repos. Sem ele, só o repo atual.">El flag <code>--global</code> aplica a todos tus repos. Sin él, solo al repo actual.</p></div>
+</section>
+
+<!-- 8 -->
+<section class="slide" data-title="Tu primer repositorio" data-en-title="Your first repo" data-pt-title="Seu primeiro repositório">
+  <div class="slide-num">08</div>
+  <div class="kicker" data-en="Practice" data-pt="Prática">Práctica</div>
+  <h2 data-en="Your <span class='hl'>first repository</span>" data-pt="Seu <span class='hl'>primeiro repositório</span>">Tu <span class="hl">primer repositorio</span></h2>
+  <p data-en="Two paths: create a new one or bring one that already exists." data-pt="Dois caminhos: criar um novo ou trazer um que já existe.">Dos caminos: crear uno nuevo o traer uno que ya existe.</p>
+  <div class="cols">
+    <div>
+      <h3 data-en="🌱 Create new" data-pt="🌱 Criar novo">🌱 Crear nuevo</h3>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>git init</div>
+        <pre><span class="c"># Crea una carpeta y conviértela en repo</span>
+<span class="k">mkdir</span> mi-proyecto && <span class="k">cd</span> mi-proyecto
+<span class="t">git</span> <span class="k">init</span>
+<span class="c"># Crea .git/  ← aquí vive el historial</span></pre>
+      </div>
+    </div>
+    <div>
+      <h3 data-en="⬇️ Clone existing" data-pt="⬇️ Clonar existente">⬇️ Clonar existente</h3>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>git clone</div>
+        <pre><span class="c"># Trae un repo completo con todo su historial</span>
+<span class="t">git</span> <span class="k">clone</span> <span class="s">https://github.com/usuario/repo.git</span>
+<span class="c"># En una carpeta con otro nombre</span>
+<span class="t">git</span> <span class="k">clone</span> <span class="s">url</span> mi-copia</pre>
+      </div>
+    </div>
+  </div>
+  <div class="note"><span class="note-label" data-en="Behind the scenes" data-pt="Nos bastidores">Detrás de escena</span><p data-en="<code>git init</code> creates the <code>.git/</code> folder. That folder is everything: history, branches, config. Delete it and it's no longer a repo." data-pt="O <code>git init</code> cria a pasta <code>.git/</code>. Essa pasta é tudo: histórico, branches, config. Apague e deixa de ser repo."><code>git init</code> crea la carpeta <code>.git/</code>. Esa carpeta es todo: el historial, las ramas, la configuración. Bórrala y el repo deja de ser un repo.</p></div>
+</section>
+
+<!-- 9 -->
+<section class="slide" data-title="El flujo básico" data-en-title="The basic flow" data-pt-title="O fluxo básico">
+  <div class="slide-num">09</div>
+  <div class="kicker" data-en="Essential flow" data-pt="Fluxo essencial">Flujo esencial</div>
+  <h2 data-en="The <span class='hl'>basic flow</span>" data-pt="O <span class='hl'>fluxo básico</span>">El flujo <span class="hl">básico</span></h2>
+  <p data-en="Edit → stage → commit. These three commands repeat always." data-pt="Edita → prepara → confirma. Esses três comandos se repetem sempre.">Editas → preparas → confirmas. Estos tres comandos se repiten siempre.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>add → commit</div>
+    <pre><span class="c"># 1. Crea o edita un archivo</span>
+<span class="k">echo</span> <span class="s">"# Mi Proyecto"</span> > README.md
+
+<span class="c"># 2. Mira qué cambió</span>
+<span class="t">git</span> <span class="k">status</span>
+
+<span class="c"># 3. Prepara el archivo para el commit</span>
+<span class="t">git</span> <span class="k">add</span> README.md
+<span class="t">git</span> <span class="k">add</span> .          <span class="c"># prepara TODO (con cuidado)</span>
+
+<span class="c"># 4. Confirma con un mensaje claro</span>
+<span class="t">git</span> <span class="k">commit</span> -m <span class="s">"Añadir README inicial"</span></pre>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="Shortcut" data-pt="Atalho">Atajo</span><p data-en="<code>git commit -am "msg"</code> stages and commits at once, but only already-tracked files. Doesn't include new files." data-pt="O <code>git commit -am "msg"</code> prepara e confirma de uma vez, mas só arquivos já rastreados. Não inclui arquivos novos."><code>git commit -am "msg"</code> prepara y confirma a la vez, pero solo archivos ya seguidos (tracked). No incluye archivos nuevos.</p></div>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-title="Ver el estado" data-en-title="See the status" data-pt-title="Ver o status">
+  <div class="slide-num">10</div>
+  <div class="kicker" data-en="Diagnosis" data-pt="Diagnóstico">Diagnóstico</div>
+  <h2 data-en="See the <span class='hl'>status</span>" data-pt="Ver o <span class='hl'>status</span>">Ver el <span class="hl">estado</span></h2>
+  <p data-en="<code>git status</code> is your best friend. Use it constantly." data-pt="O <code>git status</code> é seu melhor amigo. Use sempre."><code>git status</code> es tu mejor amigo. Úsalo constantemente.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>git status</div>
+    <pre><span class="t">git</span> <span class="k">status</span>
+<span class="c"># On branch main</span>
+<span class="c"># Changes to be committed:</span>
+<span class="c">#   (use "git restore --staged ...") to unstage</span>
+<span class="c">#         new file:   README.md</span>
+<span class="c">#</span>
+<span class="c"># Changes not staged for commit:</span>
+<span class="c">#   (use "git add ..." to update)</span>
+<span class="c">#         modified:   app.js</span>
+
+<span class="c"># Versión compacta en una línea</span>
+<span class="t">git</span> <span class="k">status</span> -s
+<span class="c">#  M app.js      (M = modified, no staged)</span>
+<span class="c"># A  README.md   (A = added, staged)</span></pre>
+  </div>
+  <div class="note"><span class="note-label" data-en="Reading letters" data-pt="Lendo as letras">Lectura de letras</span><p data-en="Column 1 = staging state. Column 2 = working dir state. <code>??</code> = new untracked file." data-pt="Coluna 1 = estado no staging. Coluna 2 = estado no working dir. <code>??</code> = arquivo novo não rastreado.">Columna 1 = estado en staging. Columna 2 = estado en working dir. <code>??</code> = archivo nuevo sin seguimiento.</p></div>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-title="Ver el historial" data-en-title="See the history" data-pt-title="Ver o histórico">
+  <div class="slide-num">11</div>
+  <div class="kicker" data-en="Diagnosis" data-pt="Diagnóstico">Diagnóstico</div>
+  <h2 data-en="See the <span class='hl'>history</span>" data-pt="Ver o <span class='hl'>histórico</span>">Ver el <span class="hl">historial</span></h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>git log</div>
+    <pre><span class="c"># Historial completo</span>
+<span class="t">git</span> <span class="k">log</span>
+
+<span class="c"># Una línea por commit (muy legible)</span>
+<span class="t">git</span> <span class="k">log</span> --oneline
+<span class="c"># a1b2c3d Añadir README</span>
+<span class="c"># e4f5g6h Configurar proyecto</span>
+
+<span class="c"># Con el grafo de ramas dibujado</span>
+<span class="t">git</span> <span class="k">log</span> --oneline --graph --all --decorate
+
+<span class="c"># Los últimos 5 commits</span>
+<span class="t">git</span> <span class="k">log</span> -5
+
+<span class="c"># Qué cambió en cada commit (diff)</span>
+<span class="t">git</span> <span class="k">log</span> -p -2
+
+<span class="c"># Quién modificó cada línea de un archivo</span>
+<span class="t">git</span> <span class="k">blame</span> app.js</pre>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="Useful alias" data-pt="Alias útil">Alias útil</span><p data-en="Create <code>git config --global alias.lg "log --oneline --graph --all --decorate"</code> then just <code>git lg</code>." data-pt="Crie <code>git config --global alias.lg "log --oneline --graph --all --decorate"</code> e depois só <code>git lg</code>.">Crea <code>git config --global alias.lg "log --oneline --graph --all --decorate"</code> y luego solo <code>git lg</code>.</p></div>
+</section>
+
+<!-- 12 -->
+<section class="slide" data-title="Ver diferencias" data-en-title="See differences" data-pt-title="Ver diferenças">
+  <div class="slide-num">12</div>
+  <div class="kicker" data-en="Diagnosis" data-pt="Diagnóstico">Diagnóstico</div>
+  <h2 data-en="See <span class='hl'>differences</span>" data-pt="Ver <span class='hl'>diferenças</span>">Ver <span class="hl">diferencias</span></h2>
+  <p data-en="<code>git diff</code> shows what changed, line by line, before committing." data-pt="O <code>git diff</code> mostra o que mudou, linha a linha, antes de confirmar."><code>git diff</code> muestra qué cambió, línea por línea, antes de confirmar.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>git diff</div>
+    <pre><span class="c"># Qué cambió pero NO preparaste aún</span>
+<span class="t">git</span> <span class="k">diff</span>
+
+<span class="c"># Qué preparaste (staged) para el commit</span>
+<span class="t">git</span> <span class="k">diff</span> --staged
+
+<span class="c"># Comparar dos commits</span>
+<span class="t">git</span> <span class="k">diff</span> a1b2c3d e4f5g6h
+
+<span class="c"># Comparar dos ramas</span>
+<span class="t">git</span> <span class="k">diff</span> main feature
+
+<span class="c"># Solo qué archivos cambiaron (sin el contenido)</span>
+<span class="t">git</span> <span class="k">diff</span> --stat</pre>
+  </div>
+</section>
+
+<!-- 13 -->
+<section class="slide" data-title="Deshacer cambios" data-en-title="Undo changes" data-pt-title="Desfazer mudanças">
+  <div class="slide-num">13</div>
+  <div class="kicker" data-en="Correction" data-pt="Correção">Corrección</div>
+  <h2 data-en="Undo <span class='hl'>changes</span>" data-pt="Desfazer <span class='hl'>mudanças</span>">Deshacer <span class="hl">cambios</span></h2>
+  <p data-en="Three levels of undo, depending on when you are." data-pt="Três níveis de desfazer, conforme o momento.">Tres niveles de deshacer, según el momento en que estás.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>checkout · reset · restore</div>
+    <pre><span class="c"># Aún no preparaste el archivo (descarta cambios en working dir)</span>
+<span class="t">git</span> <span class="k">restore</span> app.js
+<span class="c"># (antes: git checkout -- app.js)</span>
+
+<span class="c"># Ya preparaste pero quieres sacarlo del staging</span>
+<span class="t">git</span> <span class="k">restore</span> --staged app.js
+<span class="c"># (antes: git reset HEAD app.js)</span>
+
+<span class="c"># Modificar el ÚLTIMO commit (mensaje o añadir archivos)</span>
+<span class="t">git</span> <span class="k">commit</span> --amend -m <span class="s">"Nuevo mensaje"</span>
+
+<span class="c"># Deshacer un commit creando uno nuevo (seguro, no toca historial)</span>
+<span class="t">git</span> <span class="k">revert</span> a1b2c3d</pre>
+  </div>
+  <div class="warn"><span class="warn-label" data-en="Careful" data-pt="Cuidado">Cuidado</span><p data-en="<code>git reset --hard</code> deletes changes forever. Use it only when you know you don't need them." data-pt="O <code>git reset --hard</code> apaga mudanças para sempre. Use só quando sabe que não precisa."><code>git reset --hard</code> borra cambios para siempre. Úsalo solo cuando sabes que no los necesitas.</p></div>
+</section>
+
+<!-- 14 -->
+<section class="slide" data-title="gitignore" data-en-title="gitignore" data-pt-title="gitignore">
+  <div class="slide-num">14</div>
+  <div class="kicker" data-en="Hygiene" data-pt="Higiene">Higiene</div>
+  <h2 data-en="Ignore files with <span class='hl'>.gitignore</span>" data-pt="Ignorar arquivos com <span class='hl'>.gitignore</span>">Ignorar archivos con <span class="hl">.gitignore</span></h2>
+  <p data-en="Some files must never enter the repo: secrets, dependencies, builds." data-pt="Alguns arquivos nunca devem entrar no repo: segredos, dependências, builds.">Algunos archivos nunca deben ir al repo: secretos, dependencias, compilados.</p>
+  <div class="cols">
+    <div>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>.gitignore</div>
+        <pre><span class="c"># Dependencias</span>
+node_modules/
+
+<span class="c"># Compilados</span>
+*.o
+*.class
+dist/
+build/
+
+<span class="c"># Secrets — NUNCA los subas</span>
+.env
+*.pem
+config/secrets.yml
+
+<span class="c"># SO</span>
+.DS_Store
+Thumbs.db
+
+<span class="c"># Logs</span>
+*.log</pre>
+      </div>
+    </div>
+    <div>
+      <h3 data-en="Ready templates" data-pt="Templates prontas">Plantillas listas</h3>
+      <p class="muted" data-en="Don't write yours from scratch. At gitignore.io or GitHub you pick your language and get the full file." data-pt="Não escreva do zero. No gitignore.io ou GitHub você escolhe a linguagem e recebe o arquivo completo.">No escribas el tuyo desde cero. En <code>gitignore.io</code> o GitHub eliges tu lenguaje y te da el archivo completo.</p>
+      <div class="tip"><span class="tip-label" data-en="Trick" data-pt="Truque">Truco</span><p data-en="Already pushed a file then ignored it? Adding to .gitignore isn't enough. Untrack it:<br><code>git rm --cached archivo</code>" data-pt="Já enviou um arquivo e depois ignorou? Só add no .gitignore não basta. Remova do rastreamento:<br><code>git rm --cached arquivo</code>">¿Ya subiste un archivo y luego lo ignoraste? No basta con añadirlo al .gitignore. Debes sacarlo del seguimiento:<br><code>git rm --cached archivo</code></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 15 -->
+<section class="slide" data-title="Ayuda integrada" data-en-title="Built-in help" data-pt-title="Ajuda integrada">
+  <div class="slide-num">15</div>
+  <div class="kicker" data-en="Self-help" data-pt="Autoajuda">Autoayuda</div>
+  <h2 data-en="Built-in <span class='hl'>help</span>" data-pt="Ajuda <span class='hl'>integrada</span>">Ayuda <span class="hl">integrada</span></h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>git help</div>
+    <pre><span class="c"># Ayuda general</span>
+<span class="t">git</span> <span class="k">help</span>
+
+<span class="c"># Manual de un comando específico</span>
+<span class="t">git</span> <span class="k">help</span> commit
+<span class="t">git</span> commit --help    <span class="c"># atajo</span>
+
+<span class="c"># Recordar las opciones de un comando</span>
+<span class="t">git</span> <span class="k">add</span> -h           <span class="c"># resumen corto</span>
+<span class="t">git</span> <span class="k">commit</span> -h</pre>
+  </div>
+  <div class="note"><span class="note-label" data-en="Remember" data-pt="Lembre-se">Recuerda</span><p data-en="The <code>git help</code> pages are long. With <code>-h</code> you get a quick summary of the most used options." data-pt="As páginas do <code>git help</code> são longas. Com <code>-h</code> você recebe um resumo rápido das opções mais usadas.">Las páginas de <code>git help</code> son largas. Con <code>-h</code> obtienes un resumen rápido de las opciones más usadas.</p></div>
+</section>
+
+<!-- 16 -->
+<section class="slide" data-title="Resumen de comandos" data-en-title="Commands summary" data-pt-title="Resumo de comandos">
+  <div class="slide-num">16</div>
+  <div class="kicker" data-en="Summary" data-pt="Resumo">Resumen</div>
+  <h2 data-en="Your basic <span class='hl'>toolbox</span>" data-pt="Sua caixa de <span class='hl'>ferramentas</span> básica">Tu <span class="hl">caja de herramientas</span> básica</h2>
+  <table class="tbl">
+    <tr><th data-en="Command" data-pt="Comando">Comando</th><th data-en="What it's for" data-pt="Para que serve">Para qué sirve</th></tr>
+    <tr><td><code>git init</code></td><td data-en="Create a new repository" data-pt="Criar um repositório novo">Crear un repositorio nuevo</td></tr>
+    <tr><td><code>git clone &lt;url&gt;</code></td><td data-en="Bring an existing repo" data-pt="Trazer um repo existente">Traer un repo existente</td></tr>
+    <tr><td><code>git status</code></td><td data-en="See what changed" data-pt="Ver o que mudou">Ver qué cambió</td></tr>
+    <tr><td><code>git add &lt;file&gt;</code></td><td data-en="Stage changes" data-pt="Preparar mudanças">Preparar cambios</td></tr>
+    <tr><td><code>git commit -m</code></td><td data-en="Save to history" data-pt="Salvar no histórico">Confirmar al historial</td></tr>
+    <tr><td><code>git log --oneline</code></td><td data-en="See compact history" data-pt="Ver histórico compacto">Ver historial compacto</td></tr>
+    <tr><td><code>git diff</code></td><td data-en="See line-by-line changes" data-pt="Ver mudanças linha a linha">Ver cambios línea a línea</td></tr>
+    <tr><td><code>git restore &lt;file&gt;</code></td><td data-en="Undo uncommitted changes" data-pt="Desfazer mudanças não confirmadas">Deshacer cambios sin confirmar</td></tr>
+    <tr><td><code>git revert &lt;hash&gt;</code></td><td data-en="Undo a commit (safe)" data-pt="Desfazer um commit (seguro)">Deshacer un commit (seguro)</td></tr>
+  </table>
+</section>
+
+<!-- 17 -->
+<section class="slide" data-title="Ejercicio práctico" data-en-title="Hands-on exercise" data-pt-title="Exercício prático">
+  <div class="slide-num">17</div>
+  <div class="kicker" data-en="Hands-on" data-pt="Mãos à obra">Manos a la obra</div>
+  <h2 data-en="Guided <span class='hl'>exercise</span>" data-pt="Exercício <span class='hl'>guiado</span>">Ejercicio <span class="hl">guiado</span></h2>
+  <p class="lead" data-en="Create your first real repo. Open a terminal and follow the steps." data-pt="Crie seu primeiro repo de verdade. Abra um terminal e siga os passos.">Crea tu primer repo de verdad. Abre una terminal y sigue los pasos.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>ejercicio.md</div>
+    <pre><span class="c"># 1. Crea la carpeta del proyecto</span>
+<span class="k">mkdir</span> recetas && <span class="k">cd</span> recetas
+
+<span class="c"># 2. Inicia el repositorio</span>
+<span class="t">git</span> <span class="k">init</span>
+
+<span class="c"># 3. Crea tu primer archivo</span>
+<span class="k">echo</span> <span class="s">"# Recetas de la Abuela"</span> > recetas.md
+<span class="k">echo</span> <span class="s">"- Tacos al pastor"</span> >> recetas.md
+
+<span class="c"># 4. Prepara y confirma</span>
+<span class="t">git</span> <span class="k">add</span> recetas.md
+<span class="t">git</span> <span class="k">commit</span> -m <span class="s">"Receta inicial: tacos al pastor"</span>
+
+<span class="c"># 5. Edita y vuelve a confirmar</span>
+<span class="k">echo</span> <span class="s">"- Mole poblano"</span> >> recetas.md
+<span class="t">git</span> <span class="k">commit</span> -am <span class="s">"Añadir mole poblano"</span>
+
+<span class="c"># 6. Mira tu historial</span>
+<span class="t">git</span> <span class="k">log</span> --oneline</pre>
+  </div>
+</section>
+
+<!-- 18 -->
+<section class="slide" data-title="Errores comunes" data-en-title="Common mistakes" data-pt-title="Erros comuns">
+  <div class="slide-num">18</div>
+  <div class="kicker" data-en="Traps" data-pt="Armadilhas">Trampas</div>
+  <h2 data-en="Common <span class='hl'>mistakes</span>" data-pt="Erros <span class='hl'>comuns</span>">Errores <span class="hl">comunes</span></h2>
+  <div class="cards" style="max-width:1100px">
+    <div class="card o"><div class="card-icon">😬</div><h4 data-en="unclear commit message" data-pt="commit sem mensagem clara">commit sin mensaje claro</h4><p data-en='"arreglé cosas" is useless. Describe the WHAT and the WHY.' data-pt='"arrumei coisas" não serve. Descreva o QUÊ e o POR QUÊ.'>"arreglé cosas" no sirve. Describe el QUÉ y el POR QUÉ.</p></div>
+    <div class="card o"><div class="card-icon">📦</div><h4 data-en="giant commit" data-pt="commit gigante">commit gigante</h4><p data-en="10 different changes in one commit. Split: one commit = one logical change." data-pt="10 mudanças diferentes num commit. Separe: um commit = uma mudança lógica.">10 cambios distintos en un commit. Separa: un commit = un cambio lógico.</p></div>
+    <div class="card o"><div class="card-icon">🔑</div><h4 data-en="uploading secrets" data-pt="subir secrets">subir secrets</h4><p data-en="API keys, passwords. Use .gitignore from day one." data-pt="API keys, senhas. Use .gitignore desde o dia um.">API keys, contraseñas. Usa .gitignore desde el día uno.</p></div>
+    <div class="card o"><div class="card-icon">🌲</div><h4 data-en="always working on main" data-pt="trabalhar sempre no main">trabajar siempre en main</h4><p data-en="Make changes on branches, not directly on main. See module 2." data-pt="Faça mudanças em branches, não direto no main. Veja o módulo 2.">Haz cambios en ramas, no directo en main. Lo verás en el módulo 2.</p></div>
+  </div>
+</section>
+
+<!-- 19 -->
+<section class="slide" data-title="Buenos commits" data-en-title="Good commits" data-pt-title="Bons commits">
+  <div class="slide-num">19</div>
+  <div class="kicker" data-en="Habit" data-pt="Hábito">Hábito</div>
+  <h2 data-en="Good <span class='hl'>commit messages</span>" data-pt="Boas <span class='hl'>mensagens de commit</span>">Buenos <span class="hl">mensajes de commit</span></h2>
+  <div class="cols">
+    <div>
+      <h3>❌ <span data-en="Bad" data-pt="Ruim">Mal</span></h3>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>malo</div>
+        <pre>fix
+update
+cosas
+wip
+asdfasdf</pre>
+      </div>
+    </div>
+    <div>
+      <h3>✅ <span data-en="Good" data-pt="Bom">Bien</span></h3>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>bueno</div>
+        <pre><span class="s">Añadir validación de email en registro</span>
+
+<span class="c">Evita que se registren correos sin @.</span>
+<span class="c">Ahora lanza error 400 si el formato falla.</span></pre>
+      </div>
+    </div>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="Rule" data-pt="Regra">Regla</span><p data-en="Imagine finishing the sentence: 'If I apply this commit, <strong>add email validation in registration</strong>.' If it sounds good, the message is good." data-pt="Imagine terminar a frase: 'Se eu aplicar este commit, <strong>adiciono validação de email no registro</strong>.' Se soar bem, a mensagem é boa.">Imagina terminar la frase: "Si aplico este commit, <strong>añadir validación de email en registro</strong>." Si suena bien, el mensaje es bueno.</p></div>
+</section>
+
+<!-- 20 -->
+<section class="slide" data-title="Conventional Commits" data-en-title="Conventional Commits" data-pt-title="Conventional Commits">
+  <div class="slide-num">20</div>
+  <div class="kicker" data-en="Standard" data-pt="Padrão">Estándar</div>
+  <h2>Conventional <span class="hl">Commits</span></h2>
+  <p data-en="A standard format so the history is readable and generatable (changelogs, versions)." data-pt="Um formato padrão para o histórico ser legível e gerável (changelogs, versões).">Un formato estándar para que el historial sea legible y generable (changelogs, versiones).</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="format" data-pt="formato">formato</span></div>
+    <pre><span class="v">tipo</span>(<span class="v">ámbito</span>): <span class="s">descripción</span>
+
+<span class="c"># Ejemplos</span>
+<span class="k">feat</span>(auth): <span class="s">añadir login con Google</span>
+<span class="k">fix</span>(api): <span class="s">corregir crash al subir archivos vacíos</span>
+<span class="k">docs</span>: <span class="s">actualizar guía de instalación</span>
+<span class="k">refactor</span>(db): <span class="s">simplizar consultas de usuarios</span>
+<span class="k">test</span>: <span class="s">añadir tests del módulo de pagos</span>
+<span class="k">chore</span>: <span class="s">actualizar dependencias</span>
+<span class="k">BREAKING CHANGE</span>: <span class="s">el endpoint /v1 ya no existe</span></pre>
+  </div>
+  <table class="tbl" style="max-width:700px">
+    <tr><th data-en="Type" data-pt="Tipo">Tipo</th><th data-en="When" data-pt="Quando">Cuándo</th></tr>
+    <tr><td><code>feat</code></td><td data-en="New feature" data-pt="Função nova">Función nueva</td></tr>
+    <tr><td><code>fix</code></td><td data-en="Bug fix" data-pt="Correção de bug">Corrección de bug</td></tr>
+    <tr><td><code>docs</code></td><td data-en="Docs only" data-pt="Só documentação">Solo documentación</td></tr>
+    <tr><td><code>refactor</code></td><td data-en="Internal change, no new feature" data-pt="Mudança interna, sem função nova">Cambio interno, sin nueva función</td></tr>
+    <tr><td><code>test</code></td><td data-en="Add or fix tests" data-pt="Add ou corrigir testes">Añadir o arreglar tests</td></tr>
+  </table>
+</section>
+
+<!-- 21 -->
+<section class="slide title-slide" data-title="Siguiente: Ramas" data-en-title="Next: Branches" data-pt-title="Próximo: Branches">
+  <img src="https://cdn.simpleicons.org/git/58a6ff" alt="Git" style="width:80px;height:80px;margin-bottom:1rem;filter:drop-shadow(0 0 18px rgba(88,166,255,.4))">
+  <h2 data-en="Ready for <span class='hl'>branches</span>" data-pt="Pronto para <span class='hl'>branches</span>">Listo para <span class="hl">ramas</span></h2>
+  <p class="lead" data-en="You can init, commit and read history. Now the fun part: branch your work without breaking anything." data-pt="Você sabe init, commit e ler o histórico. Agora a parte divertida: ramificar seu trabalho sem quebrar nada.">Ya sabes inicializar, confirmar y ver el historial. Ahora viene lo divertido: ramificar tu trabajo sin romper nada.</p>
+  <div class="cards" style="max-width:700px">
+    <a href="02-ramas.html" class="card b" style="text-decoration:none;color:inherit"><div class="card-icon">🌿</div><h4 data-en="Module 2: Branches & Merges" data-pt="Módulo 2: Branches & Merges">Módulo 2: Ramas y Merges</h4><p data-en="branch, checkout, merge, rebase, cherry-pick" data-pt="branch, checkout, merge, rebase, cherry-pick">branch, checkout, merge, rebase, cherry-pick</p></a>
+    <a href="index.html" class="card" style="text-decoration:none;color:inherit"><div class="card-icon">🏠</div><h4 data-en="Back to start" data-pt="Voltar ao início">Volver al inicio</h4><p data-en="Index of all modules" data-pt="Índice de todos os módulos">Índice de todos los módulos</p></a>
+  </div>
+</section>
+
+</div>
+
+<script src="assets/bg.js"></script>
+<script src="assets/slides.js"></script>
+</body>
+</html>

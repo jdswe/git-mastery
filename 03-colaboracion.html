@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colaboración — Git Mastery</title>
+<link rel="stylesheet" href="assets/slides.css">
+</head>
+<body>
+<div class="progress-wrap"><div class="progress"></div></div>
+<div class="topnav">
+  <a href="index.html" class="brand"><img src="https://cdn.simpleicons.org/git/58a6ff" alt="Git" style="height:20px">Git Mastery</a>
+  <button class="toc-btn" data-nav="toc">☰ Índice</button>
+</div>
+<div class="counter"><span class="cur">01</span> / 00</div>
+<div class="controls">
+  <button class="ctrl-btn" data-nav="prev">‹</button>
+  <button class="ctrl-btn" data-nav="next">›</button>
+</div>
+<div class="toc-overlay">
+  <button class="toc-close" data-nav="close-toc">✕</button>
+  <h2 data-en="Index — Collaboration" data-pt="Índice — Colaboração">Índice — Colaboración</h2>
+  <div class="toc-list"></div>
+</div>
+<div class="deck">
+
+<!-- 1 -->
+<section class="slide title-slide" data-title="Colaboración" data-en-title="Collaboration" data-pt-title="Colaboração">
+  <span class="badge" data-en="Module 3 · Intermediate" data-pt="Módulo 3 · Intermédio">Módulo 3 · Intermedio</span>
+  <img src="https://cdn.simpleicons.org/git/58a6ff" alt="Git" style="width:88px;height:88px;margin-bottom:1rem;filter:drop-shadow(0 0 20px rgba(88,166,255,.4))">
+  <h1 data-en="Remote <span class='hl'>collaboration</span>" data-pt="Colaboração <span class='hl'>remota</span>">Colaboración <span class="hl">remota</span></h1>
+  <p class="lead" data-en="Connect to GitHub/GitLab, sync with the team and set up your SSH keys." data-pt="Conecte ao GitHub/GitLab, sincronize com o time e configure suas chaves SSH.">Conecta con GitHub/GitLab, sincroniza con el equipo y configura tus llaves SSH.</p>
+  <div class="stats">
+    <div class="stat"><div class="num">20</div><div class="lbl" data-en="slides" data-pt="slides">slides</div></div>
+    <div class="stat"><div class="num">SSH</div><div class="lbl" data-en="keys" data-pt="chaves">llaves</div></div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="slide" data-title="¿Qué es un remote?" data-en-title="What is a remote?" data-pt-title="O que é um remote?">
+  <div class="slide-num">02</div>
+  <div class="kicker" data-en="Concept" data-pt="Conceito">Concepto</div>
+  <h2 data-en="What is a <span class='hl'>remote</span>?" data-pt="O que é um <span class='hl'>remote</span>?">¿Qué es un <span class="hl">remote</span>?</h2>
+  <p data-en="A remote is a version of your repo on another server. GitHub and GitLab are remotes." data-pt="Um remote é uma versão do seu repo em outro servidor. GitHub e GitLab são remotes.">Un remote es una versión de tu repo en otro servidor. GitHub y GitLab son remotos.</p>
+  <div class="diagram">
+    <div class="node g" data-en="Your PC" data-pt="Seu PC">Tu PC<br><span class="muted" style="font-size:.75rem">repo local</span></div>
+    <span class="arrow">⇄ push / pull</span>
+    <div class="node b" data-en="GitHub / GitLab" data-pt="GitHub / GitLab">GitHub / GitLab<br><span class="muted" style="font-size:.75rem">remote "origin"</span></div>
+  </div>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>remotes</div>
+    <pre><span class="c"># Ver los remotes de tu repo</span>
+<span class="t">git</span> <span class="k">remote</span> -v
+<span class="c"># origin  https://github.com/yo/proyecto.git (fetch)</span>
+<span class="c"># origin  https://github.com/yo/proyecto.git (push)</span>
+
+<span class="c"># Añadir un remote</span>
+<span class="t">git</span> <span class="k">remote</span> add origin <span class="s">git@github.com:yo/proyecto.git</span>
+
+<span class="c"># Cambiar la URL del remote</span>
+<span class="t">git</span> <span class="k">remote</span> set-url origin <span class="s">git@github.com:yo/proyecto.git</span>
+
+<span class="c"># Renombrar / borrar</span>
+<span class="t">git</span> <span class="k">remote</span> rename origin upstream
+<span class="t">git</span> <span class="k">remote</span> remove origin</pre>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="slide" data-title="HTTPS vs SSH" data-en-title="HTTPS vs SSH" data-pt-title="HTTPS vs SSH">
+  <div class="slide-num">03</div>
+  <div class="kicker" data-en="Decision" data-pt="Decisão">Decisión</div>
+  <h2>HTTPS <span class="hl">vs</span> SSH</h2>
+  <table class="tbl">
+    <tr><th></th><th>HTTPS</th><th>SSH</th></tr>
+    <tr><td data-en="Setup" data-pt="Setup">Configuración</td><td data-en="None, uses user/password" data-pt="Nenhuma, usa usuário/senha">Ninguna, usa usuario/contraseña</td><td data-en="Generate a key once" data-pt="Gera uma chave uma vez">Generas una llave una vez</td></tr>
+    <tr><td data-en="Auth" data-pt="Auth">Autenticación</td><td data-en="Token or password" data-pt="Token ou senha">Token o contraseña</td><td data-en="Private key, never typed" data-pt="Chave privada, sem digitar">Llave privada, sin escribirla</td></tr>
+    <tr><td data-en="Firewall" data-pt="Firewall">Cortafuegos</td><td data-en="Port 443 (always open)" data-pt="Porta 443 (sempre aberta)">Puerto 443 (siempre abierto)</td><td data-en="Port 22 (sometimes blocked)" data-pt="Porta 22 (às vezes bloqueada)">Puerto 22 (a veces bloqueado)</td></tr>
+    <tr><td data-en="Security" data-pt="Segurança">Seguridad</td><td data-en="Good with token" data-pt="Boa com token">Buena con token</td><td data-en="Very good, no reused creds" data-pt="Muito boa, sem creds reusadas">Muy buena, no reusas credenciales</td></tr>
+    <tr><td data-en="Comfort" data-pt="Comodidade">Comodidad</td><td data-en="Asks creds sometimes" data-pt="Pede creds às vezes">Pide credenciales a veces</td><td data-en="Transparent after setup" data-pt="Transparente após configurar">Transparente tras configurar</td></tr>
+  </table>
+  <div class="tip"><span class="tip-label" data-en="Recommendation" data-pt="Recomendação">Recomendación</span><p data-en="SSH for daily work. HTTPS if port 22 is blocked or in CI/CD with ephemeral tokens." data-pt="SSH pro dia a dia. HTTPS se a porta 22 está bloqueada ou em CI/CD com tokens efêmeros.">SSH para tu día a día. HTTPS si el puerto 22 está bloqueado o en CI/CD con tokens efímeros.</p></div>
+</section>
+
+<!-- 4 -->
+<section class="slide" data-title="Crear llaves SSH" data-en-title="Create SSH keys" data-pt-title="Criar chaves SSH">
+  <div class="slide-num">04</div>
+  <div class="kicker" data-en="Setup" data-pt="Setup">Setup</div>
+  <h2 data-en="Create your <span class='hl'>SSH keys</span>" data-pt="Criar suas <span class='hl'>chaves SSH</span>">Crear tus <span class="hl">llaves SSH</span></h2>
+  <p data-en="A pair: the private key you keep, the public key you paste on GitHub/GitLab. You authenticate without a password." data-pt="Um par: a chave privada que você guarda, a pública que você cola no GitHub/GitLab. Autentica sem senha.">Un par de llaves: la privada la guardas tú, la pública la pegas en GitHub/GitLab. Así te identificas sin contraseña.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="generate ed25519 key" data-pt="gerar chave ed25519">generar llave ed25519</span></div>
+    <pre><span class="c"># Genera el par de llaves (algoritmo moderno recomendado)</span>
+<span class="t">ssh-keygen</span> -t ed25519 -C <span class="s">"ana@ejemplo.com"</span>
+<span class="c">#   -t  tipo de llave (ed25519)</span>
+<span class="c">#   -C  comentario = tu email</span>
+
+<span class="c"># Preguntará:</span>
+<span class="c">#   Enter file:  Enter = ~/.ssh/id_ed25519</span>
+<span class="c">#   Passphrase:  contraseña opcional para la llave</span>
+
+<span class="c"># Si tu sistema no soporta ed25519:</span>
+<span class="t">ssh-keygen</span> -t rsa -b 4096 -C <span class="s">"ana@ejemplo.com"</span></pre>
+  </div>
+  <div class="note"><span class="note-label" data-en="Two files" data-pt="Dois arquivos">Dos archivos</span><p data-en="<code>id_ed25519</code> = PRIVATE (never share). <code>id_ed25519.pub</code> = PUBLIC (upload it to GitHub/GitLab)." data-pt="<code>id_ed25519</code> = PRIVADA (nunca compartilhe). <code>id_ed25519.pub</code> = PÚBLICA (suba no GitHub/GitLab)."><code>id_ed25519</code> = PRIVADA (nunca la compartas). <code>id_ed25519.pub</code> = PÚBLICA (esa sí la subes a GitHub/GitLab).</p></div>
+</section>
+
+<!-- 5 -->
+<section class="slide" data-title="El ssh-agent" data-en-title="The ssh-agent" data-pt-title="O ssh-agent">
+  <div class="slide-num">05</div>
+  <div class="kicker" data-en="Setup" data-pt="Setup">Setup</div>
+  <h2 data-en="The <span class='hl'>ssh-agent</span>" data-pt="O <span class='hl'>ssh-agent</span>">El <span class="hl">ssh-agent</span></h2>
+  <p data-en="The agent keeps your key in memory so it isn't asked every time. If you set a passphrase, you unlock it once per session." data-pt="O agent mantém sua chave na memória para não pedir toda hora. Se você pôs passphrase, desbloqueia uma vez por sessão.">El agent guarda tu llave en memoria para no pedirla cada vez. Si le pusiste passphrase, lo desbloqueas una vez por sesión.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>ssh-agent</div>
+    <pre><span class="c"># Arranca el agente en background</span>
+<span class="k">eval</span> <span class="s">"$(ssh-agent -s)"</span>
+<span class="c"># Agent pid 12345</span>
+
+<span class="c"># Añade tu llave privada al agente</span>
+<span class="t">ssh-add</span> ~/.ssh/id_ed25519
+
+<span class="c"># Ver las llaves cargadas</span>
+<span class="t">ssh-add</span> -l</pre>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="macOS" data-pt="macOS">macOS</span><p data-en="To start the agent on login, add the key to the keychain: <code>ssh-add --apple-use-keychain ~/.ssh/id_ed25519</code>." data-pt="Para o agent iniciar no login, add a chave ao keychain: <code>ssh-add --apple-use-keychain ~/.ssh/id_ed25519</code>.">Para que el agente arranque solo al iniciar sesión, añade la llave al llavero: <code>ssh-add --apple-use-keychain ~/.ssh/id_ed25519</code>.</p></div>
+</section>
+
+<!-- 6 -->
+<section class="slide" data-title="Registrar la llave pública" data-en-title="Register the public key" data-pt-title="Registrar a chave pública">
+  <div class="slide-num">06</div>
+  <div class="kicker" data-en="Setup" data-pt="Setup">Setup</div>
+  <h2 data-en="Register the <span class='hl'>public key</span>" data-pt="Registrar a <span class='hl'>chave pública</span>">Registrar la llave <span class="hl">pública</span></h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="copy the key" data-pt="copiar a chave">copiar la llave</span></div>
+    <pre><span class="c"># Copia el contenido de la llave PÚBLICA</span>
+<span class="k">cat</span> ~/.ssh/id_ed25519.pub
+<span class="c"># ssh-ed25519 AAAAC3Nza... ana@ejemplo.com</span>
+
+<span class="c"># macOS (al portapapeles)</span>
+<span class="k">pbcopy</span> &lt; ~/.ssh/id_ed25519.pub
+
+<span class="c"># Linux (con xclip)</span>
+<span class="k">xclip</span> -sel clip &lt; ~/.ssh/id_ed25519.pub
+
+<span class="c"># Windows (Git Bash)</span>
+<span class="k">clip</span> &lt; ~/.ssh/id_ed25519.pub</pre>
+  </div>
+  <div class="cols">
+    <div class="card p">
+      <div class="card-icon">🐙</div>
+      <h4 data-en="On GitHub" data-pt="No GitHub">En GitHub</h4>
+      <p data-en="Settings → SSH and GPG keys → New SSH key → paste and save." data-pt="Settings → SSH and GPG keys → New SSH key → cole e salve.">Settings → SSH and GPG keys → New SSH key → pega y guarda.</p>
+    </div>
+    <div class="card o">
+      <div class="card-icon">🦊</div>
+      <h4 data-en="On GitLab" data-pt="No GitLab">En GitLab</h4>
+      <p data-en="Preferences → SSH Keys → Add key → paste and save." data-pt="Preferences → SSH Keys → Add key → cole e salve.">Preferences → SSH Keys → Add key → pega y guarda.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="slide" data-title="Probar la conexión SSH" data-en-title="Test the SSH connection" data-pt-title="Testar a conexão SSH">
+  <div class="slide-num">07</div>
+  <div class="kicker" data-en="Verify" data-pt="Verificar">Verificación</div>
+  <h2 data-en="Test the <span class='hl'>connection</span>" data-pt="Testar a <span class='hl'>conexão</span>">Probar la <span class="hl">conexión</span></h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="test SSH" data-pt="testar SSH">test SSH</span></div>
+    <pre><span class="c"># GitHub</span>
+<span class="t">ssh</span> -T <span class="s">git@github.com</span>
+<span class="c"># Hi ana! You've successfully authenticated...</span>
+
+<span class="c"># GitLab</span>
+<span class="t">ssh</span> -T <span class="s">git@gitlab.com</span>
+<span class="c"># Welcome to GitLab, @ana!</span></pre>
+  </div>
+  <div class="note"><span class="note-label" data-en="The fingerprint" data-pt="O fingerprint">El fingerprint</span><p data-en="The first time it asks if you trust the server. GitHub and GitLab publish their official fingerprints; check they match before accepting." data-pt="Da primeira vez pergunta se confia no servidor. GitHub e GitLab publicam seus fingerprints; confira antes de aceitar.">La primera vez te pregunta si confías en el servidor. GitHub y GitLab publican sus fingerprints oficiales; comprueba que coincidan antes de aceptar.</p></div>
+</section>
+
+<!-- 8 -->
+<section class="slide" data-title="SSH multi-cuenta" data-en-title="SSH multi-account" data-pt-title="SSH multi-conta">
+  <div class="slide-num">08</div>
+  <div class="kicker" data-en="Multi-account" data-pt="Multi-conta">Multi-cuenta</div>
+  <h2 data-en="Several <span class='hl'>keys</span>, several accounts" data-pt="Várias <span class='hl'>chaves</span>, várias contas">Varias <span class="hl">llaves</span>, varias cuentas</h2>
+  <p data-en="Personal and work accounts? Use <code>~/.ssh/config</code> so Git knows which key to use." data-pt="Contas pessoal e de trabalho? Use <code>~/.ssh/config</code> para o Git saber qual chave usar.">¿Cuenta personal y de trabajo? Usa <code>~/.ssh/config</code> para que Git sepa qué llave usar.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>~/.ssh/config</div>
+    <pre><span class="c"># Cuenta personal de GitHub</span>
+Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_ed25519_personal
+    IdentitiesOnly yes
+
+<span class="c"># Cuenta de trabajo en GitHub</span>
+Host github-trabajo
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_ed25519_trabajo
+    IdentitiesOnly yes
+
+<span class="c"># GitLab</span>
+Host gitlab.com
+    HostName gitlab.com
+    User git
+    IdentityFile ~/.ssh/id_ed25519_gitlab</pre>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="Remote URL" data-pt="URL do remote">URL del remote</span><p data-en="For the work account use the alias as host: <code>git remote set-url origin git@github-trabajo:empresa/repo.git</code>" data-pt="Para a conta de trabalho use o alias como host: <code>git remote set-url origin git@github-trabajo:empresa/repo.git</code>">Para la cuenta de trabajo usa el alias como host: <code>git remote set-url origin git@github-trabajo:empresa/repo.git</code></p></div>
+</section>
+
+<!-- 9 -->
+<section class="slide" data-title="fetch vs pull" data-en-title="fetch vs pull" data-pt-title="fetch vs pull">
+  <div class="slide-num">09</div>
+  <div class="kicker" data-en="Sync" data-pt="Sincronizar">Sincronizar</div>
+  <h2><span class="hl">fetch</span> vs <span class="hl">pull</span></h2>
+  <div class="cols">
+    <div>
+      <h3>fetch</h3>
+      <p class="muted" data-en="Downloads remote changes but does NOT merge them with your work." data-pt="Baixa mudanças do remote mas NÃO mistura com seu trabalho.">Descarga los cambios del remoto, pero NO los mezcla con tu trabajo.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>fetch</div>
+        <pre><span class="t">git</span> <span class="k">fetch</span> origin
+<span class="c"># ahora compara lo que hay</span>
+<span class="t">git</span> <span class="k">log</span> HEAD..origin/main
+<span class="c"># cuando decidas, haces merge</span>
+<span class="t">git</span> <span class="k">merge</span> origin/main</pre>
+      </div>
+    </div>
+    <div>
+      <h3>pull</h3>
+      <p class="muted" data-en="fetch + merge in one step. Fast, but less control." data-pt="fetch + merge num passo. Rápido, mas menos controle.">fetch + merge en un solo paso. Rápido, pero menos control.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>pull</div>
+        <pre><span class="t">git</span> <span class="k">pull</span>
+<span class="c"># = git fetch + git merge</span>
+
+<span class="c"># mejor con rebase (historial limpio)</span>
+<span class="t">git</span> <span class="k">pull</span> --rebase</pre>
+      </div>
+    </div>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="Safe habit" data-pt="Hábito seguro">Hábito seguro</span><p data-en="Before a pull on a branch with work, use <code>git fetch</code> to see what's coming without touching your branch." data-pt="Antes de um pull num branch com trabalho, use <code>git fetch</code> para ver o que vem sem tocar seu branch.">Antes de un pull en una rama con trabajo, usa <code>git fetch</code> para ver qué viene sin tocar tu rama.</p></div>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-title="push" data-en-title="push" data-pt-title="push">
+  <div class="slide-num">10</div>
+  <div class="kicker" data-en="Sync" data-pt="Sincronizar">Sincronizar</div>
+  <h2 data-en="Upload with <span class='hl'>push</span>" data-pt="Subir com <span class='hl'>push</span>">Subir con <span class="hl">push</span></h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>push</div>
+    <pre><span class="c"># Subir la rama actual al remoto (la primera vez)</span>
+<span class="t">git</span> <span class="k">push</span> -u origin feature/login
+<span class="c"># -u = --set-upstream: enlaza local con remoto</span>
+
+<span class="c"># Las siguientes veces basta con</span>
+<span class="t">git</span> <span class="k">push</span>
+
+<span class="c"># Subir todas las ramas</span>
+<span class="t">git</span> <span class="k">push</span> origin --all
+
+<span class="c"># Subir los tags</span>
+<span class="t">git</span> <span class="k">push</span> origin --tags
+
+<span class="c"># Borrar una rama remota</span>
+<span class="t">git</span> <span class="k">push</span> origin --delete feature/login</pre>
+  </div>
+  <div class="warn"><span class="warn-label" data-en="Rejected" data-pt="Rejeitado">Rechazado</span><p data-en="If the remote has commits you don't, the push is rejected. Do <code>git pull --rebase</code> first, then push again." data-pt="Se o remote tem commits que você não tem, o push é rejeitado. Faça <code>git pull --rebase</code> antes e push de novo.">Si el remoto tiene commits que tú no tienes, el push se rechaza. Haz <code>git pull --rebase</code> primero y luego vuelve a push.</p></div>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-title="Flujo de trabajo en equipo" data-en-title="Team workflow" data-pt-title="Fluxo de trabalho em equipe">
+  <div class="slide-num">11</div>
+  <div class="kicker" data-en="Routine" data-pt="Rotina">Rutina</div>
+  <h2 data-en="Daily <span class='hl'>workflow</span>" data-pt="Fluxo de <span class='hl'>trabalho</span> diário">Flujo de <span class="hl">trabajo</span> diario</h2>
+  <div class="diagram">
+    <div class="node b">feature/x</div>
+    <span class="arrow">commit →</span>
+    <div class="node g">fetch</div>
+    <span class="arrow">→ rebase →</span>
+    <div class="node p">push</div>
+    <span class="arrow">→ PR</span>
+    <div class="node o" data-en="merge to main" data-pt="merge no main">merge to main</div>
+  </div>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="routine" data-pt="rotina">rutina</span></div>
+    <pre><span class="c"># 1. Actualiza main y crea tu rama desde ahí</span>
+<span class="t">git</span> <span class="k">switch</span> main && <span class="t">git</span> <span class="k">pull</span> --rebase
+<span class="t">git</span> <span class="k">switch</span> -c feature/login
+
+<span class="c"># 2. Trabaja, haz commits</span>
+<span class="t">git</span> <span class="k">commit</span> -am <span class="s">"feat(auth): añadir login"</span>
+
+<span class="c"># 3. Antes de push, rebasea con main actualizado</span>
+<span class="t">git</span> <span class="k">fetch</span> origin
+<span class="t">git</span> <span class="k">rebase</span> origin/main
+
+<span class="c"># 4. Sube y abre el PR</span>
+<span class="t">git</span> <span class="k">push</span> -u origin feature/login</pre>
+  </div>
+</section>
+
+<!-- 12 -->
+<section class="slide" data-title="Conflictos con remoto" data-en-title="Remote conflicts" data-pt-title="Conflitos com remoto">
+  <div class="slide-num">12</div>
+  <div class="kicker" data-en="Remote conflicts" data-pt="Conflitos remotos">Conflictos remotos</div>
+  <h2 data-en="Conflicts when <span class='hl'>syncing</span>" data-pt="Conflitos ao <span class='hl'>sincronizar</span>">Conflictos al <span class="hl">sincronizar</span></h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="resolve rejected push" data-pt="resolver push rejeitado">resolver push rechazado</span></div>
+    <pre><span class="c"># El push falla: "non-fast-forward"</span>
+<span class="t">git</span> <span class="k">push</span>
+<span class="c"># ! [rejected]  feature/login -> feature/login (fetch first)</span>
+
+<span class="c"># 1. Trae los cambios del remoto</span>
+<span class="t">git</span> <span class="k">fetch</span> origin
+
+<span class="c"># 2. Replántate encima de lo que ya está allá</span>
+<span class="t">git</span> <span class="k">rebase</span> origin/feature/login
+
+<span class="c"># 3. Resuelve conflictos si aparecen</span>
+<span class="c">#    edita archivos → git add → git rebase --continue</span>
+
+<span class="c"># 4. Vuelve a hacer push (forzar el rebase, no el merge)</span>
+<span class="t">git</span> <span class="k">push</span> --force-with-lease</pre>
+  </div>
+  <div class="warn"><span class="warn-label" data-en="--force vs --force-with-lease" data-pt="--force vs --force-with-lease">--force vs --force-with-lease</span><p data-en="Never use bare <code>--force</code>: it can overwrite a teammate's work. <code>--force-with-lease</code> only forces if no one else pushed." data-pt="Nunca use <code>--force</code> puro: pode sobrescrever o trabalho de um colega. O <code>--force-with-lease</code> só força se ninguém mais subiu.">Nunca uses <code>--force</code> a secas: puede pisar el trabajo de un compañero. <code>--force-with-lease</code> solo fuerza si nadie más subió commits.</p></div>
+</section>
+
+<!-- 13 -->
+<section class="slide" data-title="PRs/MRs desde el terminal" data-en-title="PRs/MRs from the terminal" data-pt-title="PRs/MRs do terminal">
+  <div class="slide-num">13</div>
+  <div class="kicker" data-en="Automation" data-pt="Automação">Automatización</div>
+  <h2 data-en="PRs/MRs <span class='hl'>without leaving the terminal</span>" data-pt="PRs/MRs <span class='hl'>sem sair do terminal</span>">PRs/MRs <span class="hl">sin salir del terminal</span></h2>
+  <p data-en="With the official CLIs you open PRs and MRs without a browser." data-pt="Com as CLIs oficiais você abre PRs e MRs sem navegador.">Con las CLIs oficiales abres PRs y MRs sin abrir el navegador.</p>
+  <div class="cols">
+    <div>
+      <h3>🐙 GitHub — <code>gh</code></h3>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>gh pr create</div>
+        <pre><span class="t">gh</span> pr create \
+  --title <span class="s">"feat: login"</span> \
+  --body <span class="s">"Añade login con Google"</span>
+<span class="t">gh</span> pr list
+<span class="t">gh</span> pr checkout 42
+<span class="t">gh</span> pr merge 42 --squash</pre>
+      </div>
+    </div>
+    <div>
+      <h3>🦊 GitLab — <code>glab</code></h3>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>glab mr create</div>
+        <pre><span class="t">glab</span> mr create \
+  --title <span class="s">"feat: login"</span> \
+  --description <span class="s">"Login con Google"</span>
+<span class="t">glab</span> mr list
+<span class="t">glab</span> mr checkout 42
+<span class="t">glab</span> mr merge 42</pre>
+      </div>
+    </div>
+  </div>
+  <div class="note"><span class="note-label" data-en="CLIs" data-pt="CLIs">CLIs</span><p data-en="<code>gh</code> = GitHub CLI. <code>glab</code> = GitLab CLI. You'll see them in depth in their modules." data-pt="<code>gh</code> = CLI do GitHub. <code>glab</code> = CLI do GitLab. Você vai ver a fundo nos módulos deles."><code>gh</code> = GitHub CLI. <code>glab</code> = GitLab CLI. Las verás a fondo en sus módulos.</p></div>
+</section>
+
+<!-- 14 -->
+<section class="slide" data-title="fork y upstream" data-en-title="fork and upstream" data-pt-title="fork e upstream">
+  <div class="slide-num">14</div>
+  <div class="kicker" data-en="Open source" data-pt="Open source">Open source</div>
+  <h2><span class="hl">Fork</span> and <span class="hl">upstream</span></h2>
+  <p data-en="On others' projects you can't push. You fork (your copy) and point at the original as <code>upstream</code>." data-pt="Em projetos de outros você não pode push. Você faz fork (sua cópia) e aponta ao original como <code>upstream</code>.">En proyectos ajenos no tienes permiso de push. Haces un fork (tu copia) y apuntas al original como <code>upstream</code>.</p>
+  <div class="diagram">
+    <div class="node g" data-en="upstream" data-pt="upstream">upstream<br><span class="muted" style="font-size:.75rem">repo original</span></div>
+    <span class="arrow">← pull --rebase</span>
+    <div class="node b" data-en="origin" data-pt="origin">origin<br><span class="muted" style="font-size:.75rem">tu fork</span></div>
+    <span class="arrow">← push</span>
+    <div class="node o" data-en="your local" data-pt="seu local">tu local</div>
+  </div>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="fork flow" data-pt="fork flow">fork flow</span></div>
+    <pre><span class="c"># Clona tu fork (origin apunta a tu copia)</span>
+<span class="t">git</span> <span class="k">clone</span> <span class="s">git@github.com:yo/proyecto.git</span>
+<span class="k">cd</span> proyecto
+
+<span class="c"># Añade el repo original como upstream</span>
+<span class="t">git</span> <span class="k">remote</span> add upstream <span class="s">git@github.com:original/proyecto.git</span>
+
+<span class="c"># Mantente al día con el original</span>
+<span class="t">git</span> <span class="k">fetch</span> upstream
+<span class="t">git</span> <span class="k">rebase</span> upstream/main</pre>
+  </div>
+</section>
+
+<!-- 15 -->
+<section class="slide" data-title="Tracking branches" data-en-title="Tracking branches" data-pt-title="Tracking branches">
+  <div class="slide-num">15</div>
+  <div class="kicker" data-en="Convenience" data-pt="Conveniência">Conveniencia</div>
+  <h2 data-en="Branches that <span class='hl'>track</span> the remote" data-pt="Branches que <span class='hl'>seguem</span> o remote">Ramas que <span class="hl">siguen</span> al remoto</h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>tracking</div>
+    <pre><span class="c"># Crear rama local que sigue a una remota</span>
+<span class="t">git</span> <span class="k">switch</span> -c feature origin/feature
+<span class="c"># o automático si el nombre coincide</span>
+<span class="t">git</span> <span class="k">switch</span> feature
+
+<span class="c"># Enlazar una rama local ya existente</span>
+<span class="t">git</span> <span class="k">branch</span> -u origin/feature
+
+<span class="c"># Ver qué rama sigue a cuál</span>
+<span class="t">git</span> <span class="k">branch</span> -vv
+
+<span class="c"># Configurar pull para usar siempre rebase</span>
+<span class="t">git</span> <span class="k">config</span> --global pull.rebase true</pre>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="By default" data-pt="Por padrão">Por defecto</span><p data-en="When you clone, your local <code>main</code> already tracks <code>origin/main</code>. So a bare <code>git pull</code> works with no args." data-pt="Ao clonar, seu <code>main</code> local já segue <code>origin/main</code>. Então um <code>git pull</code> funciona sem args.">Cuando clonas, tu rama <code>main</code> local ya sigue a <code>origin/main</code>. Por eso un simple <code>git pull</code> funciona sin argumentos.</p></div>
+</section>
+
+<!-- 16 -->
+<section class="slide" data-title="Revisión de código" data-en-title="Code review" data-pt-title="Revisão de código">
+  <div class="slide-num">16</div>
+  <div class="kicker" data-en="Culture" data-pt="Cultura">Cultura</div>
+  <h2 data-en="Code <span class='hl'>review</span>" data-pt="Revisão de <span class='hl'>código</span>">Revisión de <span class="hl">código</span></h2>
+  <div class="cards" style="max-width:1100px">
+    <div class="card g"><div class="card-icon">📥</div><h4 data-en="Ask for review early" data-pt="Peça revisão cedo">Pide revisión pronto</h4><p data-en="A 50-line PR reviews well. A 500-line one gets approved out of exhaustion. Small commits = small PRs." data-pt="Um PR de 50 linhas revisa bem. Um de 500 é aprovado por cansaço. Commits pequenos = PRs pequenos.">Un PR de 50 líneas se revisa bien. Uno de 500 se aprueba por cansancio. Commits pequeños = PRs pequeños.</p></div>
+    <div class="card b"><div class="card-icon">💬</div><h4 data-en="Comment the code, not the person" data-pt="Comente o código, não a pessoa">Comenta el código, no la persona</h4><p data-en='"Here it might fail if X" not "you wrote this wrong."' data-pt='"Aqui pode falhar se X" não "você escreveu isso errado."'>"Aquí podría fallar si X" no "escribiste mal esto".</p></div>
+    <div class="card p"><div class="card-icon">🎯</div><h4 data-en="Answer every comment" data-pt="Responda cada comentário">Responde cada comentario</h4><p data-en="Even with an emoji. The author knows you read it." data-pt="Até com um emoji. O autor sabe que você leu.">Aunque sea con un emoji. El autor sabe que lo leíste.</p></div>
+    <div class="card o"><div class="card-icon">✅</div><h4 data-en="Approve when CI is green" data-pt="Aprove quando o CI está verde">Aprueba cuando el CI pasa</h4><p data-en="Green CI + human review = merge. Don't wait for perfection." data-pt="CI verde + revisão humana = merge. Não espere perfeição.">Verde en CI + revisión humana = merge. No esperes a la perfección.</p></div>
+  </div>
+</section>
+
+<!-- 17 -->
+<section class="slide" data-title="Checklist de colaboración" data-en-title="Collaboration checklist" data-pt-title="Checklist de colaboração">
+  <div class="slide-num">17</div>
+  <div class="kicker" data-en="Checklist" data-pt="Checklist">Checklist</div>
+  <h2 data-en="Collaboration <span class='hl'>checklist</span>" data-pt="Checklist de <span class='hl'>colaboração</span>">Checklist de <span class="hl">colaboración</span></h2>
+  <ul class="checklist">
+    <li class="done" data-en="SSH key generated and registered">Llave SSH generada y registrada</li>
+    <li class="done" data-en="ssh-agent loaded on login">ssh-agent cargado al iniciar sesión</li>
+    <li class="done" data-en="pull set to rebase by default">pull configurado con rebase por defecto</li>
+    <li class="done" data-en="main always clean: work on feature/">main siempre limpio: trabajo en feature/</li>
+    <li class="done" data-en="Small commits with conventional commits">Commits pequeños con conventional commits</li>
+    <li class="done" data-en="Before push: fetch + rebase origin/main">Antes de push: fetch + rebase origin/main</li>
+    <li class="done" data-en="PRs with description and steps to test">PRs con descripción y pasos para probar</li>
+    <li class="done" data-en="Delete branches after closing the PR">Borro ramas tras cerrar el PR</li>
+    <li class="done" data-en=".gitignore kept up to date">Mantengo .gitignore al día</li>
+    <li class="done" data-en="CLI (gh or glab) set up to open PRs fast">Configuré la CLI (gh o glab) para abrir PRs rápido</li>
+  </ul>
+</section>
+
+<!-- 18 -->
+<section class="slide" data-title="Resumen de remotos" data-en-title="Remote commands summary" data-pt-title="Resumo de remotos">
+  <div class="slide-num">18</div>
+  <div class="kicker" data-en="Summary" data-pt="Resumo">Resumen</div>
+  <h2 data-en="Collaboration <span class='hl'>commands</span>" data-pt="Comandos de <span class='hl'>colaboração</span>">Comandos de <span class="hl">colaboración</span></h2>
+  <table class="tbl">
+    <tr><th data-en="Action" data-pt="Ação">Acción</th><th>Comando</th></tr>
+    <tr><td data-en="See remotes" data-pt="Ver remotes">Ver remotos</td><td><code>git remote -v</code></td></tr>
+    <tr><td data-en="Add remote" data-pt="Add remote">Añadir remote</td><td><code>git remote add &lt;name&gt; &lt;url&gt;</code></td></tr>
+    <tr><td data-en="Download changes" data-pt="Baixar mudanças">Descargar cambios</td><td><code>git fetch &lt;remote&gt;</code></td></tr>
+    <tr><td data-en="Download and merge" data-pt="Baixar e mesclar">Descargar y mezclar</td><td><code>git pull</code> / <code>git pull --rebase</code></td></tr>
+    <tr><td data-en="Upload changes" data-pt="Subir mudanças">Subir cambios</td><td><code>git push</code> / <code>git push -u &lt;remote&gt; &lt;branch&gt;</code></td></tr>
+    <tr><td data-en="Safe force push" data-pt="Force push seguro">Forzar push seguro</td><td><code>git push --force-with-lease</code></td></tr>
+    <tr><td data-en="Delete remote branch" data-pt="Apagar branch remoto">Borrar rama remota</td><td><code>git push &lt;remote&gt; --delete &lt;branch&gt;</code></td></tr>
+    <tr><td data-en="Create SSH key" data-pt="Criar chave SSH">Crear llave SSH</td><td><code>ssh-keygen -t ed25519 -C "email"</code></td></tr>
+    <tr><td data-en="Load key" data-pt="Carregar chave">Cargar llave</td><td><code>ssh-add ~/.ssh/id_ed25519</code></td></tr>
+    <tr><td data-en="Test connection" data-pt="Testar conexão">Probar conexión</td><td><code>ssh -T git@github.com</code></td></tr>
+  </table>
+</section>
+
+<!-- 19 -->
+<section class="slide" data-title="Setup SSH completo" data-en-title="Full SSH setup" data-pt-title="Setup SSH completo">
+  <div class="slide-num">19</div>
+  <div class="kicker" data-en="SSH setup" data-pt="Setup SSH">Setup SSH</div>
+  <h2 data-en="SSH setup <span class='hl'>from zero to ready</span>" data-pt="Setup SSH <span class='hl'>do zero ao pronto</span>">Setup SSH de <span class="hl">cero a listo</span></h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="full sequence" data-pt="sequência completa">secuencia completa</span></div>
+    <pre><span class="c"># 1. Genera la llave</span>
+<span class="t">ssh-keygen</span> -t ed25519 -C <span class="s">"ana@ejemplo.com"</span>
+
+<span class="c"># 2. Arranca el agente y carga la llave</span>
+<span class="k">eval</span> <span class="s">"$(ssh-agent -s)"</span>
+<span class="t">ssh-add</span> ~/.ssh/id_ed25519
+
+<span class="c"># 3. Copia la llave pública</span>
+<span class="k">cat</span> ~/.ssh/id_ed25519.pub
+<span class="c">#   → péga la salida en GitHub/GitLab (SSH keys)</span>
+
+<span class="c"># 4. Prueba la conexión</span>
+<span class="t">ssh</span> -T <span class="s">git@github.com</span>
+<span class="c">#   Hi ana! ...</span>
+
+<span class="c"># 5. Cambia tu remote a SSH</span>
+<span class="t">git</span> <span class="k">remote</span> set-url origin <span class="s">git@github.com:yo/proyecto.git</span>
+
+<span class="c"># 6. Verifica que ya no pide credenciales</span>
+<span class="t">git</span> <span class="k">fetch</span></pre>
+  </div>
+</section>
+
+<!-- 20 -->
+<section class="slide title-slide" data-title="Siguiente: GitHub" data-en-title="Next: GitHub" data-pt-title="Próximo: GitHub">
+  <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" style="width:80px;height:80px;margin-bottom:1rem;filter:drop-shadow(0 0 18px rgba(255,255,255,.2))">
+  <h2 data-en="Now the <span class='hl'>GitHub</span> ecosystem" data-pt="Agora o ecossistema <span class='hl'>GitHub</span>">Ahora el ecosistema <span class="hl">GitHub</span></h2>
+  <p class="lead" data-en="PRs, Actions, Pages and the gh CLI — installed from zero." data-pt="PRs, Actions, Pages e a CLI gh — instalados do zero.">PRs, Actions, Pages y la CLI <code>gh</code> — instalada desde cero.</p>
+  <div class="cards" style="max-width:700px">
+    <a href="04-github.html" class="card p" style="text-decoration:none;color:inherit"><div class="card-icon">🐙</div><h4 data-en="Module 4: GitHub" data-pt="Módulo 4: GitHub">Módulo 4: GitHub</h4><p data-en="PRs, Actions, Pages and gh CLI" data-pt="PRs, Actions, Pages e CLI gh">PRs, Actions, Pages y CLI gh</p></a>
+    <a href="index.html" class="card" style="text-decoration:none;color:inherit"><div class="card-icon">🏠</div><h4 data-en="Back to start" data-pt="Voltar ao início">Volver al inicio</h4><p data-en="Full index" data-pt="Índice completo">Índice completo</p></a>
+  </div>
+</section>
+
+</div>
+<script src="assets/bg.js"></script>
+<script src="assets/slides.js"></script>
+</body>
+</html>

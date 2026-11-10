@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub — Git Mastery</title>
+<link rel="stylesheet" href="assets/slides.css">
+</head>
+<body>
+<div class="progress-wrap"><div class="progress"></div></div>
+<div class="topnav">
+  <a href="index.html" class="brand"><span>🌿</span>Git Mastery</a>
+  <button class="toc-btn" data-nav="toc">☰ Índice</button>
+</div>
+<div class="counter"><span class="cur">01</span> / 00</div>
+<div class="controls">
+  <button class="ctrl-btn" data-nav="prev">‹</button>
+  <button class="ctrl-btn" data-nav="next">›</button>
+</div>
+<div class="toc-overlay">
+  <button class="toc-close" data-nav="close-toc">✕</button>
+  <h2 data-en="Index — GitHub" data-pt="Índice — GitHub">Índice — GitHub</h2>
+  <div class="toc-list"></div>
+</div>
+<div class="deck">
+
+<!-- 1 -->
+<section class="slide title-slide" data-title="GitHub" data-en-title="GitHub" data-pt-title="GitHub">
+  <span class="badge" data-en="Module 4 · Intermediate" data-pt="Módulo 4 · Intermédio">Módulo 4 · Intermedio</span>
+  <div class="emoji-big">🐙</div>
+  <h1 data-en="The <span class='hl'>GitHub</span> ecosystem" data-pt="O ecossistema do <span class='hl'>GitHub</span>">El ecosistema <span class="hl">GitHub</span></h1>
+  <p class="lead" data-en="Pull Requests, Actions, Pages, security and the gh CLI — installed and configured from zero." data-pt="Pull Requests, Actions, Pages, segurança e a CLI gh — instalados e configurados do zero.">Pull Requests, Actions, Pages, seguridad y la CLI <code>gh</code> — instalada y configurada desde cero.</p>
+  <div class="stats">
+    <div class="stat"><div class="num">22</div><div class="lbl" data-en="slides" data-pt="slides">slides</div></div>
+    <div class="stat"><div class="num">100M+</div><div class="lbl" data-en="developers" data-pt="devs">desarrolladores</div></div>
+    <div class="stat"><div class="num">gh</div><div class="lbl" data-en="CLI included" data-pt="CLI incluída">CLI incluida</div></div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="slide" data-title="¿Qué es GitHub?" data-en-title="What is GitHub?" data-pt-title="O que é o GitHub?">
+  <div class="slide-num">02</div>
+  <div class="kicker" data-en="Concept" data-pt="Conceito">Concepto</div>
+  <h2 data-en="What is <span class='hl'>GitHub</span>?" data-pt="O que é o <span class='hl'>GitHub</span>?">¿Qué es <span class="hl">GitHub</span>?</h2>
+  <p data-en="A platform to host Git repositories in the cloud, plus collaboration, automation and security tools on top." data-pt="Uma plataforma para hospedar repositórios Git na nuvem, com ferramentas de colaboração, automação e segurança por cima.">Una plataforma para alojar repositorios Git en la nube, más herramientas de colaboración, automatización y seguridad por encima.</p>
+  <div class="cards" style="max-width:1000px">
+    <div class="card p"><div class="card-icon">📦</div><h4 data-en="Hosting" data-pt="Hospedagem">Hosting</h4><p data-en="Your repos in the cloud. Public free, private free." data-pt="Seus repositórios na nuvem. Públicos grátis, privados grátis.">Tus repos en la nube. Públicos gratis, privados gratis.</p></div>
+    <div class="card b"><div class="card-icon">🔄</div><h4 data-en="Collaboration" data-pt="Colaboração">Colaboración</h4><p data-en="Pull Requests, Issues, Discussions, Projects." data-pt="Pull Requests, Issues, Discussions, Projects.">Pull Requests, Issues, Discussions, Projects.</p></div>
+    <div class="card g"><div class="card-icon">⚙️</div><h4 data-en="Automation" data-pt="Automação">Automatización</h4><p data-en="GitHub Actions: CI/CD inside the platform." data-pt="GitHub Actions: CI/CD dentro da plataforma.">GitHub Actions: CI/CD dentro de la plataforma.</p></div>
+    <div class="card o"><div class="card-icon">🛡️</div><h4 data-en="Security" data-pt="Segurança">Seguridad</h4><p data-en="Dependabot, code scanning, secret scanning." data-pt="Dependabot, code scanning, secret scanning.">Dependabot, code scanning, secret scanning.</p></div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="slide" data-title="Repositorios" data-en-title="Repositories" data-pt-title="Repositórios">
+  <div class="slide-num">03</div>
+  <div class="kicker" data-en="Basics" data-pt="Básico">Básico</div>
+  <h2 data-en="Repositories" data-pt="Repositórios">Repositorios</h2>
+  <p data-en="A repo on GitHub is your project's home. Create it on the web, then connect your local Git to it." data-pt="Um repositório no GitHub é a casa do seu projeto. Crie na web e depois conecte seu Git local a ele.">Un repo en GitHub es la casa de tu proyecto. Lo creas en la web y luego conectas tu Git local a él.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="connect a local repo" data-pt="conectar um repo local">conectar un repo local</span></div>
+    <pre><span class="c"># Creaste el repo vacío en github.com → conecta tu local</span>
+<span class="t">git</span> <span class="k">remote</span> add origin <span class="s">git@github.com:yo/proyecto.git</span>
+<span class="t">git</span> <span class="k">branch</span> -M main
+<span class="t">git</span> <span class="k">push</span> -u origin main
+
+<span class="c"># Clonar uno existente</span>
+<span class="t">git</span> <span class="k">clone</span> <span class="s">git@github.com:yo/proyecto.git</span></pre>
+  </div>
+  <div class="note"><span class="note-label" data-en="Visibility" data-pt="Visibilidade">Visibilidad</span><p data-en="Public = anyone can read. Private = only invited people. Both are free." data-pt="Público = qualquer um pode ler. Privado = só convidados. Os dois são grátis.">Público = cualquiera puede leer. Privado = solo invitados. Ambos gratis.</p></div>
+</section>
+
+<!-- 4 -->
+<section class="slide" data-title="Fork y clone" data-en-title="Fork and clone" data-pt-title="Fork e clone">
+  <div class="slide-num">04</div>
+  <div class="kicker" data-en="Open source" data-pt="Open source">Open source</div>
+  <h2><span class="hl" data-en="Fork" data-pt="Fork">Fork</span> <span data-en="and" data-pt="e">y</span> <span class="hl" data-en="clone" data-pt="clone">clone</span></h2>
+  <p data-en="A fork is your personal copy of someone else's repo. You can change it freely, then propose changes back." data-pt="Um fork é sua cópia pessoal do repositório de outra pessoa. Você muda à vontade e depois propõe as mudanças de volta.">Un fork es tu copia personal del repo de otra persona. Lo cambias libremente y luego propones cambios de vuelta.</p>
+  <div class="diagram">
+    <div class="node g" data-en="original" data-pt="original">original</div>
+    <span class="arrow">→ fork →</span>
+    <div class="node b" data-en="your fork" data-pt="seu fork">tu fork</div>
+    <span class="arrow">→ clone →</span>
+    <div class="node o" data-en="your PC" data-pt="seu PC">tu PC</div>
+  </div>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>fork flow</div>
+    <pre><span class="c"># 1. Fork en la web (botón Fork) → crea yo/proyecto</span>
+<span class="c"># 2. Clona tu fork</span>
+<span class="t">git</span> <span class="k">clone</span> <span class="s">git@github.com:yo/proyecto.git</span>
+<span class="c"># 3. Añade el original como upstream</span>
+<span class="t">git</span> <span class="k">remote</span> add upstream <span class="s">git@github.com:original/proyecto.git</span></pre>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="slide" data-title="Pull Requests" data-en-title="Pull Requests" data-pt-title="Pull Requests">
+  <div class="slide-num">05</div>
+  <div class="kicker" data-en="Core feature" data-pt="Recurso central">Recurso central</div>
+  <h2><span class="hl">Pull Requests</span></h2>
+  <p data-en="A PR is a proposal: 'merge my branch into main'. It shows the diff, runs checks and collects reviews before merging." data-pt="Um PR é uma proposta: 'misture minha branch no main'. Mostra o diff, roda verificações e coleta revisões antes de mesclar.">Un PR es una propuesta: 'mezcla mi rama en main'. Muestra el diff, corre chequeos y junta revisiones antes de mergear.</p>
+  <div class="diagram">
+    <div class="node b" data-en="feature branch" data-pt="branch feature">rama feature</div>
+    <span class="arrow">→ open PR →</span>
+    <div class="node p" data-en="review + CI" data-pt="revisão + CI">revisión + CI</div>
+    <span class="arrow">→ merge →</span>
+    <div class="node g">main</div>
+  </div>
+  <div class="cards" style="max-width:1000px">
+    <div class="card g"><h4 data-en="1. Open" data-pt="1. Abrir">1. Abrir</h4><p data-en="Push your branch, click 'Compare & pull request', write a clear title and description." data-pt="Envie sua branch, clique em 'Compare & pull request', escreva título e descrição claros.">Sube tu rama, pulsa 'Compare & pull request', escribe título y descripción claros.</p></div>
+    <div class="card b"><h4 data-en="2. Review" data-pt="2. Revisar">2. Revisar</h4><p data-en="Teammates comment line by line. Request changes or approve." data-pt="Colegas comentam linha a linha. Pedem mudanças ou aprovam.">Compañeros comentan línea por línea. Piden cambios o aprueban.</p></div>
+    <div class="card p"><h4 data-en="3. Checks" data-pt="3. Verificações">3. Chequeos</h4><p data-en="Actions run tests, linters, builds. Must pass to merge." data-pt="Actions rodam testes, linters, builds. Precisam passar para mesclar.">Actions corren tests, linters, builds. Deben pasar para mergear.</p></div>
+    <div class="card o"><h4 data-en="4. Merge" data-pt="4. Mesclar">4. Mergear</h4><p data-en="Merge, squash-merge or rebase-merge. Then delete the branch." data-pt="Merge, squash-merge ou rebase-merge. Depois apague a branch.">Merge, squash-merge o rebase-merge. Luego borra la rama.</p></div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="slide" data-title="Issues" data-en-title="Issues" data-pt-title="Issues">
+  <div class="slide-num">06</div>
+  <div class="kicker" data-en="Tracking" data-pt="Rastreamento">Seguimiento</div>
+  <h2><span class="hl">Issues</span></h2>
+  <p data-en="Issues track bugs, tasks and ideas. Each one has a number, assignee, labels and linked PRs." data-pt="Issues rastreiam bugs, tarefas e ideias. Cada um tem número, responsável, labels e PRs vinculados.">Las Issues rastrean bugs, tareas e ideas. Cada una tiene número, responsable, labels y PRs vinculados.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="reference in commits" data-pt="referenciar em commits">referenciar en commits</span></div>
+    <pre><span class="c"># Un commit puede cerrar un issue al mergear</span>
+<span class="t">git</span> <span class="k">commit</span> -m <span class="s">"fix: login crash. Closes #42"</span>
+<span class="c">#  Closes, Fixes, Resolves + #numero → cierra al merge</span></pre>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="Tip" data-pt="Dica">Tip</span><p data-en="Label templates keep issues organized: bug, enhancement, good-first-issue, help-wanted." data-pt="Templates de labels mantêm issues organizadas: bug, enhancement, good-first-issue, help-wanted.">Plantillas de labels mantienen las issues ordenadas: bug, enhancement, good-first-issue, help-wanted.</p></div>
+</section>
+
+<!-- 7 -->
+<section class="slide" data-title="Projects y Discussions" data-en-title="Projects and Discussions" data-pt-title="Projects e Discussions">
+  <div class="slide-num">07</div>
+  <div class="kicker" data-en="Beyond code" data-pt="Além do código">Más allá del código</div>
+  <h2 data-en="Projects & <span class='hl'>Discussions</span>" data-pt="Projects & <span class='hl'>Discussions</span>">Projects y <span class="hl">Discussions</span></h2>
+  <div class="cards" style="max-width:1000px">
+    <div class="card b"><div class="card-icon">📋</div><h4 data-en="Projects" data-pt="Projects">Projects</h4><p data-en="Kanban boards that group issues and PRs across repos. Plan sprints and releases." data-pt="Quadros Kanban que agrupam issues e PRs de vários repos. Planeje sprints e releases.">Tableros Kanban que agrupan issues y PRs de varios repos. Planea sprints y releases.</p></div>
+    <div class="card p"><div class="card-icon">💬</div><h4 data-en="Discussions" data-pt="Discussions">Discussions</h4><p data-en="Q&A and threads, like a forum. For questions that aren't bugs." data-pt="P&R e threads, tipo fórum. Para perguntas que não são bugs.">Preguntas y respuestas en hilos, como un foro. Para dudas que no son bugs.</p></div>
+    <div class="card g"><div class="card-icon">⭐</div><h4 data-en="Stars & Watch" data-pt="Stars & Watch">Stars & Watch</h4><p data-en="Stars = bookmark/popularity. Watch = get notifications on activity." data-pt="Stars = favorito/popularidade. Watch = notificações de atividade.">Stars = favorito/popularidad. Watch = notificaciones de actividad.</p></div>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="slide" data-title="GitHub Actions" data-en-title="GitHub Actions" data-pt-title="GitHub Actions">
+  <div class="slide-num">08</div>
+  <div class="kicker" data-en="CI/CD" data-pt="CI/CD">CI/CD</div>
+  <h2>GitHub <span class="hl">Actions</span></h2>
+  <p data-en="Automate on events: push, PR, schedule, release. Define jobs in YAML inside .github/workflows/." data-pt="Automatize em eventos: push, PR, schedule, release. Defina jobs em YAML em .github/workflows/.">Automatiza en eventos: push, PR, schedule, release. Defines jobs en YAML dentro de .github/workflows/.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>.github/workflows/ci.yml</div>
+    <pre><span class="k">name</span>: CI
+<span class="k">on</span>: [push, pull_request]
+<span class="k">jobs</span>:
+  <span class="v">test</span>:
+    <span class="k">runs-on</span>: <span class="s">ubuntu-latest</span>
+    <span class="k">steps</span>:
+      - <span class="k">uses</span>: <span class="s">actions/checkout@v4</span>
+      - <span class="k">uses</span>: <span class="s">actions/setup-node@v4</span>
+        <span class="k">with</span>:
+          <span class="v">node-version</span>: <span class="s">'20'</span>
+      - <span class="k">run</span>: <span class="s">npm ci</span>
+      - <span class="k">run</span>: <span class="s">npm test</span></pre>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="Why it matters" data-pt="Por que importa">Por qué importa</span><p data-en="Every PR shows green/red checks. No broken code reaches main." data-pt="Todo PR mostra checks verde/vermelho. Nenhum código quebrado chega ao main.">Cada PR muestra checks verde/rojo. Ningún código roto llega a main.</p></div>
+</section>
+
+<!-- 9 -->
+<section class="slide" data-title="GitHub Pages" data-en-title="GitHub Pages" data-pt-title="GitHub Pages">
+  <div class="slide-num">09</div>
+  <div class="kicker" data-en="Hosting" data-pt="Hospedagem">Hosting</div>
+  <h2>GitHub <span class="hl">Pages</span></h2>
+  <p data-en="Publish a static site for free from your repo. Great for docs and demos." data-pt="Publique um site estático grátis do seu repo. Ótimo para docs e demos.">Publica un sitio estático gratis desde tu repo. Ideal para docs y demos.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="two ways" data-pt="duas formas">dos formas</span></div>
+    <pre><span class="c"># Opción A: rama gh-pages con HTML/CSS/JS</span>
+<span class="t">git</span> <span class="k">switch</span> --orphan gh-pages
+<span class="c"># Settings → Pages → Branch: gh-pages</span>
+
+<span class="c"># Opción B: genera con Actions (build de Vite/Next)</span>
+<span class="c"># Settings → Pages → Source: GitHub Actions</span>
+<span class="c"># → URL: https://usuario.github.io/repositorio/</span></pre>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-title="Releases y Tags" data-en-title="Releases and Tags" data-pt-title="Releases e Tags">
+  <div class="slide-num">10</div>
+  <div class="kicker" data-en="Versioning" data-pt="Versionamento">Versionado</div>
+  <h2 data-en="Releases & <span class='hl'>Tags</span>" data-pt="Releases & <span class='hl'>Tags</span>">Releases y <span class="hl">Tags</span></h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="tags" data-pt="tags">tags</span></div>
+    <pre><span class="c"># Crear un tag anotado</span>
+<span class="t">git</span> <span class="k">tag</span> -a v1.0.0 -m <span class="s">"Primera versión estable"</span>
+<span class="t">git</span> <span class="k">push</span> origin v1.0.0
+
+<span class="c"># Listar tags</span>
+<span class="t">git</span> <span class="k">tag</span> --list
+
+<span class="c"># Borrar un tag</span>
+<span class="t">git</span> <span class="k">tag</span> -d v1.0.0
+<span class="t">git</span> <span class="k">push</span> origin --delete v1.0.0</pre>
+  </div>
+  <div class="note"><span class="note-label" data-en="Release" data-pt="Release">Release</span><p data-en="A release = tag + release notes + downloadable assets. Created on the web or with the gh CLI." data-pt="Um release = tag + notas + arquivos pra baixar. Criado na web ou com a CLI gh.">Un release = tag + notas de versión + archivos descargables. Se crea en la web o con la CLI gh.</p></div>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-title="Seguridad" data-en-title="Security" data-pt-title="Segurança">
+  <div class="slide-num">11</div>
+  <div class="kicker" data-en="Security" data-pt="Segurança">Seguridad</div>
+  <h2 data-en="<span class='hl'>Security</span> built in" data-pt="<span class='hl'>Segurança</span> embutida"><span class="hl">Seguridad</span> integrada</h2>
+  <div class="cards" style="max-width:1000px">
+    <div class="card o"><div class="card-icon">🤖</div><h4 data-en="Dependabot" data-pt="Dependabot">Dependabot</h4><p data-en="Opens PRs to bump vulnerable dependencies automatically." data-pt="Abre PRs pra atualizar dependências vulneráveis automaticamente.">Abre PRs para actualizar dependencias vulnerables automáticamente.</p></div>
+    <div class="card p"><div class="card-icon">🔍</div><h4 data-en="Code scanning" data-pt="Code scanning">Code scanning</h4><p data-en="Finds vulnerabilities in your code with CodeQL on every PR." data-pt="Acha vulnerabilidades no seu código com CodeQL em todo PR.">Encuentra vulnerabilidades en tu código con CodeQL en cada PR.</p></div>
+    <div class="card g"><div class="card-icon">🔐</div><h4 data-en="Secret scanning" data-pt="Secret scanning">Secret scanning</h4><p data-en="Detects pushed secrets (keys, tokens) and alerts you." data-pt="Detecta segredos enviados (chaves, tokens) e alerta.">Detecta secretos subidos (keys, tokens) y te alerta.</p></div>
+    <div class="card b"><div class="card-icon">🔑</div><h4 data-en="Signed commits" data-pt="Commits assinados">Commits firmados</h4><p data-en="Verified badge proves a commit is really yours." data-pt="Selo 'Verified' prova que o commit é seu mesmo.">El sello 'Verified' prueba que el commit es tuyo de verdad.</p></div>
+  </div>
+</section>
+
+<!-- 12 -->
+<section class="slide" data-title="La CLI gh — instalar" data-en-title="The gh CLI — install" data-pt-title="A CLI gh — instalar">
+  <div class="slide-num">12</div>
+  <div class="kicker" data-en="CLI · install" data-pt="CLI · instalar">CLI · instalar</div>
+  <h2 data-en="Install <span class='hl'>gh</span> — per OS" data-pt="Instalar <span class='hl'>gh</span> — por SO">Instalar <span class="hl">gh</span> — por sistema</h2>
+  <p data-en="The official GitHub CLI lets you do everything from the terminal. Pick your system:" data-pt="A CLI oficial do GitHub faz tudo pelo terminal. Escolha seu sistema:">La CLI oficial de GitHub te deja hacer todo desde el terminal. Elige tu sistema:</p>
+  <div class="os-tabs" data-os-group="gh-install">
+    <div class="os-tab active" data-os="win">🪟 Windows</div>
+    <div class="os-tab" data-os="mac">🍎 macOS</div>
+    <div class="os-tab" data-os="linux">🐧 Linux</div>
+  </div>
+  <div class="os-panel active" data-os="win" data-os-group="gh-install">
+    <div class="code-block"><div class="code-header"><div class="dots"><span></span><span></span><span></span></div>Windows</div>
+      <pre><span class="c"># Opción 1: winget (Windows 10/11)</span>
+<span class="t">winget</span> install --id GitHub.cli
+
+<span class="c"># Opción 2: Scoop</span>
+<span class="t">scoop</span> install gh
+
+<span class="c"># Opción 3: Chocolatey</span>
+<span class="t">choco</span> install gh
+
+<span class="c"># Verifica</span>
+<span class="t">gh</span> --version</pre>
+    </div>
+  </div>
+  <div class="os-panel" data-os="mac" data-os-group="gh-install">
+    <div class="code-block"><div class="code-header"><div class="dots"><span></span><span></span><span></span></div>macOS</div>
+      <pre><span class="c"># Homebrew (lo más común)</span>
+<span class="t">brew</span> install gh
+
+<span class="c"># MacPorts</span>
+<span class="t">port</span> install gh
+
+<span class="c"># Verifica</span>
+<span class="t">gh</span> --version</pre>
+    </div>
+  </div>
+  <div class="os-panel" data-os="linux" data-os-group="gh-install">
+    <div class="code-block"><div class="code-header"><div class="dots"><span></span><span></span><span></span></div>Linux</div>
+      <pre><span class="c"># Debian / Ubuntu (repo oficial)</span>
+<span class="k">curl</span> -fsSL <span class="s">https://cli.github.com/packages/githubcli-archive-keyring.gpg</span> \
+  | <span class="k">sudo</span> dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+<span class="k">echo</span> <span class="s">"deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main"</span> \
+  | <span class="k">sudo</span> tee /etc/apt/sources.list.d/github-cli.list &gt; /dev/null
+<span class="k">sudo</span> apt update && <span class="k">sudo</span> apt install gh
+
+<span class="c"># Fedora / RHEL</span>
+<span class="k">sudo</span> dnf install gh
+
+<span class="c"># Arch</span>
+<span class="k">sudo</span> pacman -S github-cli
+
+<span class="c"># Verifica</span>
+<span class="t">gh</span> --version</pre>
+    </div>
+  </div>
+</section>
+
+<!-- 13 -->
+<section class="slide" data-title="gh — autenticación" data-en-title="gh — authenticate" data-pt-title="gh — autenticar">
+  <div class="slide-num">13</div>
+  <div class="kicker" data-en="CLI · setup" data-pt="CLI · setup">CLI · configurar</div>
+  <h2 data-en="<span class='hl'>gh</span> — authenticate" data-pt="<span class='hl'>gh</span> — autenticar"><span class="hl">gh</span> — autenticar</h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="login" data-pt="login">login</span></div>
+    <pre><span class="c"># Login interactivo (abre el navegador)</span>
+<span class="t">gh</span> auth login
+<span class="c">#  → elige GitHub.com → HTTPS o SSH → pega el token</span>
+
+<span class="c"># Comprueba el estado</span>
+<span class="t">gh</span> auth status
+
+<span class="c"># Renueva / cambia de cuenta</span>
+<span class="t">gh</span> auth refresh
+
+<span class="c"># Logout</span>
+<span class="t">gh</span> auth logout</pre>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="Tip" data-pt="Dica">Tip</span><p data-en="After auth, gh also configures git credentials for you, so git push works without typing passwords." data-pt="Depois do login, o gh configura as credenciais do git pra você, então o push funciona sem senha.">Tras el login, gh también configura las credenciales de git, así push funciona sin pedir contraseña.</p></div>
+</section>
+
+<!-- 14 -->
+<section class="slide" data-title="gh — repos" data-en-title="gh — repos" data-pt-title="gh — repos">
+  <div class="slide-num">14</div>
+  <div class="kicker" data-en="CLI · repos" data-pt="CLI · repos">CLI · repos</div>
+  <h2 data-en="<span class='hl'>gh</span> — manage repos" data-pt="<span class='hl'>gh</span> — gerenciar repos"><span class="hl">gh</span> — gestionar repos</h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="repo commands" data-pt="comandos de repo">comandos de repo</span></div>
+    <pre><span class="c"># Crear un repo nuevo desde el terminal</span>
+<span class="t">gh</span> repo create mi-proyecto --public --source=. --remote=origin --push
+
+<span class="c"># Clonar</span>
+<span class="t">gh</span> repo clone usuario/repo
+
+<span class="c"># Ver un repo en el navegador</span>
+<span class="t">gh</span> repo view --web
+
+<span class="c"># Hacer fork</span>
+<span class="t">gh</span> repo fork usuario/repo --clone</pre>
+  </div>
+</section>
+
+<!-- 15 -->
+<section class="slide" data-title="gh — PRs" data-en-title="gh — PRs" data-pt-title="gh — PRs">
+  <div class="slide-num">15</div>
+  <div class="kicker" data-en="CLI · pull requests" data-pt="CLI · pull requests">CLI · pull requests</div>
+  <h2 data-en="<span class='hl'>gh</span> — Pull Requests" data-pt="<span class='hl'>gh</span> — Pull Requests"><span class="hl">gh</span> — Pull Requests</h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>pr</div>
+    <pre><span class="c"># Crear PR con un comando</span>
+<span class="t">gh</span> pr create --title <span class="s">"feat: login"</span> --body <span class="s">"Añade login con Google"</span>
+
+<span class="c"># Listar PRs abiertos</span>
+<span class="t">gh</span> pr list
+
+<span class="c"># Ver el PR actual en el navegador</span>
+<span class="t">gh</span> pr view --web
+
+<span class="c"># Bajar el PR #42 a tu local</span>
+<span class="t">gh</span> pr checkout 42
+
+<span class="c"># Hacer review desde el terminal</span>
+<span class="t">gh</span> pr review --approve --comment <span class="s">"Buen trabajo"</span>
+
+<span class="c"># Mergear (squash)</span>
+<span class="t">gh</span> pr merge 42 --squash --delete-branch</pre>
+  </div>
+</section>
+
+<!-- 16 -->
+<section class="slide" data-title="gh — issues y más" data-en-title="gh — issues and more" data-pt-title="gh — issues e mais">
+  <div class="slide-num">16</div>
+  <div class="kicker" data-en="CLI · more" data-pt="CLI · mais">CLI · más</div>
+  <h2 data-en="<span class='hl'>gh</span> — issues, actions, gist" data-pt="<span class='hl'>gh</span> — issues, actions, gist"><span class="hl">gh</span> — issues, actions, gist</h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="more commands" data-pt="mais comandos">más comandos</span></div>
+    <pre><span class="c"># Issues</span>
+<span class="t">gh</span> issue create --title <span class="s">"Bug en login"</span> --body <span class="s">"Pasos..."</span>
+<span class="t">gh</span> issue list
+<span class="t">gh</span> issue view 7 --comments
+
+<span class="c"># Ver runs de Actions</span>
+<span class="t">gh</span> run list
+<span class="t">gh</span> run view
+<span class="t">gh</span> run watch      <span class="c"># sigue en vivo</span>
+
+<span class="c"># Crear un release</span>
+<span class="t">gh</span> release create v1.0.0 --notes <span class="s">"Primera versión"</span>
+
+<span class="c"># Gist (snippet compartible)</span>
+<span class="t">gh</span> gist create archivo.js --public
+
+<span class="c"># Abrir el repo en el navegador</span>
+<span class="t">gh</span> repo view --web</pre>
+  </div>
+</section>
+
+<!-- 17 -->
+<section class="slide" data-title="gh extensions" data-en-title="gh extensions" data-pt-title="gh extensions">
+  <div class="slide-num">17</div>
+  <div class="kicker" data-en="CLI · extend" data-pt="CLI · extender">CLI · extender</div>
+  <h2 data-en="<span class='hl'>gh</span> extensions" data-pt="extensões do <span class='hl'>gh</span>">Extensiones de <span class="hl">gh</span></h2>
+  <p data-en="Install community extensions that add new gh subcommands." data-pt="Instale extensões da comunidade que adicionam novos subcomandos ao gh.">Instala extensiones de la comunidad que añaden nuevos subcomandos a gh.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="extensions" data-pt="extensões">extensiones</span></div>
+    <pre><span class="c"># Instalar una extensión</span>
+<span class="t">gh</span> extension install dlvhdr/gh-dash
+
+<span class="c"># Listar instaladas</span>
+<span class="t">gh</span> extension list
+
+<span class="c"># Ejecutar (el nombre se vuelve subcomando)</span>
+<span class="t">gh</span> dash
+
+<span class="c"># Crear la tuya</span>
+<span class="t">gh</span> extension create mi-ext</pre>
+  </div>
+</section>
+
+<!-- 18 -->
+<section class="slide" data-title="GitHub Flow con gh" data-en-title="GitHub Flow with gh" data-pt-title="GitHub Flow com gh">
+  <div class="slide-num">18</div>
+  <div class="kicker" data-en="Full flow" data-pt="Fluxo completo">Flujo completo</div>
+  <h2 data-en="A full PR flow <span class='hl'>without leaving the terminal</span>" data-pt="Um fluxo de PR completo <span class='hl'>sem sair do terminal</span>">Un flujo de PR completo <span class="hl">sin salir del terminal</span></h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="the whole loop" data-pt="o loop todo">el ciclo entero</span></div>
+    <pre><span class="c"># 1. Crea la rama</span>
+<span class="t">git</span> <span class="k">switch</span> -c feature/login
+
+<span class="c"># 2. Trabaja y confirma</span>
+<span class="t">git</span> <span class="k">commit</span> -am <span class="s">"feat(auth): login"</span>
+
+<span class="c"># 3. Sube y abre el PR</span>
+<span class="t">git</span> <span class="k">push</span> -u origin feature/login
+<span class="t">gh</span> pr create --fill   <span class="c"># usa el último commit como base</span>
+
+<span class="c"># 4. Mira el CI</span>
+<span class="t">gh</span> run watch
+
+<span class="c"># 5. Mergear y limpiar</span>
+<span class="t">gh</span> pr merge --squash --delete-branch</pre>
+  </div>
+</section>
+
+<!-- 19 -->
+<section class="slide" data-title="Configuración recomendada" data-en-title="Recommended config" data-pt-title="Configuração recomendada">
+  <div class="slide-num">19</div>
+  <div class="kicker" data-en="Pro tips" data-pt="Dicas de pro">Pro tips</div>
+  <h2 data-en="<span class='hl'>Recommended</span> config" data-pt="Configuração <span class='hl'>recomendada</span>">Configuración <span class="hl">recomendada</span></h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>git + gh config</div>
+    <pre><span class="c"># Editor y rama por defecto</span>
+<span class="t">git</span> <span class="k">config</span> --global init.defaultBranch main
+<span class="t">git</span> <span class="k">config</span> --global pull.rebase true
+
+<span class="c"># gh usa el editor de código</span>
+<span class="t">gh</span> config set editor <span class="s">code --wait</span>
+
+<span class="c"># Plantilla de PR en el repo: .github/PULL_REQUEST_TEMPLATE.md</span>
+<span class="c"># Plantilla de issue: .github/ISSUE_TEMPLATE/*.md</span></pre>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="Tip" data-pt="Dica">Tip</span><p data-en="PR/issue templates fill the description automatically, so every PR follows your team's format." data-pt="Templates de PR/issue preenchem a descrição, então todo PR segue o formato do time.">Las plantillas de PR/issue rellenan la descripción, así cada PR sigue el formato de tu equipo.</p></div>
+</section>
+
+<!-- 20 -->
+<section class="slide" data-title="Resumen gh" data-en-title="gh summary" data-pt-title="Resumo gh">
+  <div class="slide-num">20</div>
+  <div class="kicker" data-en="Summary" data-pt="Resumo">Resumen</div>
+  <h2 data-en="<span class='hl'>gh</span> command map" data-pt="Mapa de comandos <span class='hl'>gh</span>">Mapa de comandos <span class="hl">gh</span></h2>
+  <table class="tbl">
+    <tr><th data-en="Command" data-pt="Comando">Comando</th><th data-en="What it does" data-pt="O que faz">Qué hace</th></tr>
+    <tr><td><code>gh auth login</code></td><td data-en="Log in with your account" data-pt="Entrar com sua conta">Entrar con tu cuenta</td></tr>
+    <tr><td><code>gh repo create/clone</code></td><td data-en="Create or clone a repo" data-pt="Criar ou clonar um repo">Crear o clonar un repo</td></tr>
+    <tr><td><code>gh pr create/list/merge</code></td><td data-en="Manage pull requests" data-pt="Gerenciar pull requests">Gestionar pull requests</td></tr>
+    <tr><td><code>gh pr checkout N</code></td><td data-en="Bring PR #N to local" data-pt="Trazer o PR #N ao local">Traer el PR #N a local</td></tr>
+    <tr><td><code>gh issue create/list/view</code></td><td data-en="Manage issues" data-pt="Gerenciar issues">Gestionar issues</td></tr>
+    <tr><td><code>gh run list/watch</code></td><td data-en="See Actions runs live" data-pt="Ver runs de Actions ao vivo">Ver runs de Actions en vivo</td></tr>
+    <tr><td><code>gh release create</code></td><td data-en="Create a release + tag" data-pt="Criar um release + tag">Crear un release + tag</td></tr>
+    <tr><td><code>gh gist create</code></td><td data-en="Share a code snippet" data-pt="Compartilhar um snippet">Compartir un snippet</td></tr>
+    <tr><td><code>gh extension install</code></td><td data-en="Add a community extension" data-pt="Adicionar uma extensão">Añadir una extensión</td></tr>
+  </table>
+</section>
+
+<!-- 21 -->
+<section class="slide" data-title="Errores comunes" data-en-title="Common mistakes" data-pt-title="Erros comuns">
+  <div class="slide-num">21</div>
+  <div class="kicker" data-en="Traps" data-pt="Armadilhas">Trampas</div>
+  <h2 data-en="Common <span class='hl'>mistakes</span>" data-pt="Erros <span class='hl'>comuns</span>">Errores <span class="hl">comunes</span></h2>
+  <div class="cards" style="max-width:1100px">
+    <div class="card o"><div class="card-icon">🙈</div><h4 data-en="Merge without CI green" data-pt="Mesclar sem CI verde">Mergear sin CI verde</h4><p data-en="Always wait for checks. A red check is a bug on the way to main." data-pt="Sempre espere os checks. Check vermelho é bug a caminho do main.">Siempre espera los checks. Un check rojo es un bug camino a main.</p></div>
+    <div class="card o"><div class="card-icon">📝</div><h4 data-en="PR with no description" data-pt="PR sem descrição">PR sin descripción</h4><p data-en="Say what changed, why, and how to test it." data-pt="Diga o que mudou, por que e como testar.">Di qué cambió, por qué y cómo probarlo.</p></div>
+    <div class="card o"><div class="card-icon">🗑️</div><h4 data-en="Never delete branches" data-pt="Nunca apagar branches">Nunca borrar ramas</h4><p data-en="Dead branches pile up. Delete after merge." data-pt="Branches mortas se acumulam. Apague após mesclar.">Las ramas muertas se acumulan. Borra tras mergear.</p></div>
+  </div>
+</section>
+
+<!-- 22 -->
+<section class="slide title-slide" data-title="Siguiente: GitLab" data-en-title="Next: GitLab" data-pt-title="Próximo: GitLab">
+  <div class="emoji-big">🦊</div>
+  <h2 data-en="Now the <span class='hl'>GitLab</span> side" data-pt="Agora o lado do <span class='hl'>GitLab</span>">Ahora el lado de <span class="hl">GitLab</span></h2>
+  <p class="lead" data-en="Merge Requests, CI/CD pipelines and the glab CLI." data-pt="Merge Requests, pipelines de CI/CD e a CLI glab.">Merge Requests, pipelines de CI/CD y la CLI <code>glab</code>.</p>
+  <div class="cards" style="max-width:700px">
+    <a href="05-gitlab.html" class="card o" style="text-decoration:none;color:inherit"><div class="card-icon">🦊</div><h4 data-en="Module 5: GitLab" data-pt="Módulo 5: GitLab">Módulo 5: GitLab</h4><p data-en="MRs, pipelines and glab CLI" data-pt="MRs, pipelines e CLI glab">MRs, pipelines y CLI glab</p></a>
+    <a href="index.html" class="card" style="text-decoration:none;color:inherit"><div class="card-icon">🏠</div><h4 data-en="Back to start" data-pt="Voltar ao início">Volver al inicio</h4><p data-en="Full index" data-pt="Índice completo">Índice completo</p></a>
+  </div>
+</section>
+
+</div>
+<script src="assets/bg.js"></script>
+<script src="assets/slides.js"></script>
+</body>
+</html>

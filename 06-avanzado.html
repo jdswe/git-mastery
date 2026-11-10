@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Git Avanzado — Git Mastery</title>
+<link rel="stylesheet" href="assets/slides.css">
+</head>
+<body>
+<div class="progress-wrap"><div class="progress"></div></div>
+<div class="topnav">
+  <a href="index.html" class="brand"><img src="https://cdn.simpleicons.org/git/f05033" alt="Git" style="height:20px">Git Mastery</a>
+  <button class="toc-btn" data-nav="toc">☰ Índice</button>
+</div>
+<div class="counter"><span class="cur">01</span> / 00</div>
+<div class="controls">
+  <button class="ctrl-btn" data-nav="prev">‹</button>
+  <button class="ctrl-btn" data-nav="next">›</button>
+</div>
+<div class="toc-overlay">
+  <button class="toc-close" data-nav="close-toc">✕</button>
+  <h2 data-en="Index — Advanced" data-pt="Índice — Avançado">Índice — Avanzado</h2>
+  <div class="toc-list"></div>
+</div>
+<div class="deck">
+
+<!-- 1 -->
+<section class="slide title-slide" data-title="Git Avanzado" data-en-title="Advanced Git" data-pt-title="Git Avançado">
+  <span class="badge" data-en="Module 6 · Advanced" data-pt="Módulo 6 · Avançado">Módulo 6 · Avanzado</span>
+  <img src="https://cdn.simpleicons.org/git/bc8cff" alt="Git" style="width:88px;height:88px;margin-bottom:1rem;filter:drop-shadow(0 0 20px rgba(188,140,255,.4))">
+  <h1 data-en="<span class='hl'>Advanced</span> Git" data-pt="Git <span class='hl'>Avançado</span>">Git <span class="hl">Avanzado</span></h1>
+  <p class="lead" data-en="Interactive rebase, reflog, bisect, hooks, submodules, worktrees — the tools that separate good devs from great ones." data-pt="Rebase interativo, reflog, bisect, hooks, submodules, worktrees — as ferramentas que separam bons devs de grandes.">Rebase interactivo, reflog, bisect, hooks, submodules, worktrees — las herramientas que separan a los buenos de los grandes.</p>
+  <div class="stats">
+    <div class="stat"><div class="num">18</div><div class="lbl" data-en="slides" data-pt="slides">slides</div></div>
+    <div class="stat"><div class="num">🔥</div><div class="lbl" data-en="power tools" data-pt="ferramentas">herramientas</div></div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="slide" data-title="Rebase interactivo — teoría" data-en-title="Interactive rebase — theory" data-pt-title="Rebase interativo — teoria">
+  <div class="slide-num">02</div>
+  <div class="kicker" data-en="Theory" data-pt="Teoria">Teoría</div>
+  <h2 data-en="Interactive <span class='hl'>rebase</span>" data-pt="Rebase <span class='hl'>interativo</span>">Rebase <span class="hl">interactivo</span></h2>
+  <p data-en="Rewrite history of your local commits before sharing them. Squash, edit messages, reorder or delete." data-pt="Reescreva o histórico dos seus commits locais antes de compartilhar. Squash, edite mensagens, reordene ou delete.">Reescribe el historial de tus commits locales antes de compartirlos. Aplasta, edita mensajes, reordena o elimina.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>rebase -i</div>
+    <pre><span class="c"># Editar los últimos 4 commits</span>
+<span class="t">git</span> <span class="k">rebase</span> -i HEAD~4
+
+<span class="c"># Se abre el editor con:</span>
+pick a1b2c3 feat: inicio login
+pick d4e5f6 wip
+pick g7h8i9 arreglé algo
+pick j0k1l2 fix typo
+
+<span class="c"># Cambias pick por:</span>
+<span class="c">#  r  → reword (solo edita el mensaje)</span>
+<span class="c">#  s  → squash  (aplasta en el anterior)</span>
+<span class="c">#  f  → fixup   (como squash pero descarta el mensaje)</span>
+<span class="c">#  d  → drop    (elimina el commit)</span>
+<span class="c">#  e  → edit    (pausa para modificar el commit)</span></pre>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="slide" data-title="Rebase interactivo — práctica" data-en-title="Interactive rebase — practice" data-pt-title="Rebase interativo — prática">
+  <div class="slide-num">03</div>
+  <div class="kicker" data-en="Practice" data-pt="Prática">Práctica</div>
+  <h2 data-en="Rebase: clean your branch <span class='hl'>step by step</span>" data-pt="Rebase: limpe sua branch <span class='hl'>passo a passo</span>">Rebase: limpiar tu rama <span class="hl">paso a paso</span></h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="practice" data-pt="prática">práctica</span></div>
+    <pre><span class="c"># Tienes estos 4 commits sucios:</span>
+<span class="c"># a1b feat: inicio login</span>
+<span class="c"># d4e wip</span>
+<span class="c"># g7h arreglé algo</span>
+<span class="c"># j0k fix typo</span>
+
+<span class="t">git</span> <span class="k">rebase</span> -i HEAD~4
+<span class="c"># Cambias a:</span>
+<span class="c"># pick a1b feat: inicio login</span>
+<span class="c"># fixup d4e wip</span>
+<span class="c"># fixup g7h arreglé algo</span>
+<span class="c"># fixup j0k fix typo</span>
+
+<span class="c"># Resultado: un único commit limpio</span>
+<span class="c"># a1b feat(auth): inicio login</span>
+
+<span class="c"># Si ya subiste la rama, fuerza con seguridad:</span>
+<span class="t">git</span> <span class="k">push</span> --force-with-lease</pre>
+  </div>
+  <div class="warn"><span class="warn-label" data-en="Rule" data-pt="Regra">Regla</span><p data-en="Only rebase commits that haven't been seen by others. Never rebase main or shared branches." data-pt="Só rebase commits que não foram vistos por outros. Nunca o main ou branches compartilhadas.">Solo rebasea commits que nadie más ha visto. Nunca rebasees main ni ramas compartidas.</p></div>
+</section>
+
+<!-- 4 -->
+<section class="slide" data-title="reflog — teoría" data-en-title="reflog — theory" data-pt-title="reflog — teoria">
+  <div class="slide-num">04</div>
+  <div class="kicker" data-en="Theory + practice" data-pt="Teoria + prática">Teoría + práctica</div>
+  <h2 data-en="The <span class='hl'>reflog</span> — your safety net" data-pt="O <span class='hl'>reflog</span> — sua rede de segurança">El <span class="hl">reflog</span> — tu red de seguridad</h2>
+  <p data-en="Git records every move of HEAD. Even if you delete a branch or reset, reflog lets you go back." data-pt="O Git registra todo movimento do HEAD. Mesmo se você deletar uma branch ou resetar, o reflog te deixa voltar.">Git registra cada movimiento de HEAD. Aunque borres una rama o hagas reset, reflog te deja volver.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>reflog</div>
+    <pre><span class="c"># Ver el reflog completo</span>
+<span class="t">git</span> <span class="k">reflog</span>
+<span class="c"># a1b2c3 HEAD@{0}: commit: feat: login</span>
+<span class="c"># d4e5f6 HEAD@{1}: rebase: finish</span>
+<span class="c"># g7h8i9 HEAD@{2}: switch: moving from main</span>
+
+<span class="c"># Accidente: hiciste reset --hard y perdiste commits</span>
+<span class="t">git</span> <span class="k">reflog</span>              <span class="c"># busca el hash que necesitas</span>
+<span class="t">git</span> <span class="k">switch</span> -c recovery HEAD@{3}  <span class="c"># crea rama desde ese punto</span>
+
+<span class="c"># Ver reflog de una rama específica</span>
+<span class="t">git</span> <span class="k">reflog</span> feature/login</pre>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="30 days" data-pt="30 dias">30 días</span><p data-en="Reflog entries live for 30 days (90 for unreachable). After that, garbage collection removes them." data-pt="Entradas do reflog vivem 30 dias (90 para inalcançáveis). Depois o garbage collection as remove.">Las entradas del reflog viven 30 días (90 para las inalcanzables). Después las borra el garbage collection.</p></div>
+</section>
+
+<!-- 5 -->
+<section class="slide" data-title="git bisect" data-en-title="git bisect" data-pt-title="git bisect">
+  <div class="slide-num">05</div>
+  <div class="kicker" data-en="Theory + practice" data-pt="Teoria + prática">Teoría + práctica</div>
+  <h2 data-en="Find bugs with <span class='hl'>git bisect</span>" data-pt="Achar bugs com <span class='hl'>git bisect</span>">Encontrar bugs con <span class="hl">git bisect</span></h2>
+  <p data-en="bisect does a binary search through commit history to find which commit introduced a bug." data-pt="O bisect faz uma busca binária no histórico para achar qual commit introduziu um bug.">bisect hace una búsqueda binaria en el historial para encontrar qué commit introdujo un bug.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>bisect</div>
+    <pre><span class="c"># 1. Inicia bisect</span>
+<span class="t">git</span> <span class="k">bisect</span> start
+
+<span class="c"># 2. Marca el commit actual como "malo" (bug presente)</span>
+<span class="t">git</span> <span class="k">bisect</span> bad
+
+<span class="c"># 3. Marca el último commit que sí funcionaba como "bueno"</span>
+<span class="t">git</span> <span class="k">bisect</span> good v1.0.0   <span class="c"># o un hash</span>
+
+<span class="c"># Git te lleva a la mitad del historial</span>
+<span class="c"># Prueba si el bug está:</span>
+<span class="t">git</span> <span class="k">bisect</span> good    <span class="c"># o</span>
+<span class="t">git</span> <span class="k">bisect</span> bad
+
+<span class="c"># Repite hasta que Git te diga el commit culpable</span>
+<span class="c"># Vuelve al estado normal</span>
+<span class="t">git</span> <span class="k">bisect</span> reset</pre>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="slide" data-title="bisect automático" data-en-title="automated bisect" data-pt-title="bisect automatizado">
+  <div class="slide-num">06</div>
+  <div class="kicker" data-en="Practice" data-pt="Prática">Práctica</div>
+  <h2 data-en="<span class='hl'>Automated</span> bisect" data-pt="bisect <span class='hl'>automatizado</span>">bisect <span class="hl">automatizado</span></h2>
+  <p data-en="Pass a script that returns 0 (good) or 1 (bad) and bisect runs itself." data-pt="Passe um script que retorna 0 (bom) ou 1 (mau) e o bisect roda sozinho.">Pasa un script que retorna 0 (bueno) o 1 (malo) y bisect corre solo.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>bisect run</div>
+    <pre><span class="c"># Script de prueba: test.sh</span>
+<span class="c">#!/bin/bash</span>
+<span class="t">npm</span> test 2>&1 | <span class="k">grep</span> -q <span class="s">"PASS"</span>
+
+<span class="c"># Bisect automático: prueba ~log2(N) commits</span>
+<span class="t">git</span> <span class="k">bisect</span> start
+<span class="t">git</span> <span class="k">bisect</span> bad HEAD
+<span class="t">git</span> <span class="k">bisect</span> good v1.0.0
+<span class="t">git</span> <span class="k">bisect</span> run bash test.sh
+
+<span class="c"># → Encuentra el commit culpable en segundos</span>
+<span class="t">git</span> <span class="k">bisect</span> reset</pre>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="Tip" data-pt="Dica">Tip</span><p data-en="For 1000 commits, bisect only needs ~10 tests. Far faster than checking one by one." data-pt="Para 1000 commits, o bisect precisa de apenas ~10 testes. Muito mais rápido que verificar um a um.">Para 1000 commits, bisect solo necesita ~10 pruebas. Mucho más rápido que revisar uno a uno.</p></div>
+</section>
+
+<!-- 7 -->
+<section class="slide" data-title="Git Hooks — teoría" data-en-title="Git Hooks — theory" data-pt-title="Git Hooks — teoria">
+  <div class="slide-num">07</div>
+  <div class="kicker" data-en="Theory" data-pt="Teoria">Teoría</div>
+  <h2 data-en="Git <span class='hl'>Hooks</span>" data-pt="Git <span class='hl'>Hooks</span>">Git <span class="hl">Hooks</span></h2>
+  <p data-en="Scripts that Git runs automatically on events: before commit, after push, before merge…" data-pt="Scripts que o Git roda automaticamente em eventos: antes do commit, após o push, antes do merge…">Scripts que Git ejecuta automáticamente en eventos: antes de commit, después de push, antes de merge…</p>
+  <table class="tbl">
+    <tr><th data-en="Hook" data-pt="Hook">Hook</th><th data-en="When it runs" data-pt="Quando roda">Cuándo corre</th><th data-en="Common use" data-pt="Uso comum">Uso típico</th></tr>
+    <tr><td><code>pre-commit</code></td><td data-en="Before commit" data-pt="Antes do commit">Antes del commit</td><td data-en="Lint, format, tests" data-pt="Lint, format, testes">Lint, format, tests</td></tr>
+    <tr><td><code>commit-msg</code></td><td data-en="Validate the message" data-pt="Validar a mensagem">Validar el mensaje</td><td data-en="Conventional commits" data-pt="Conventional commits">Conventional commits</td></tr>
+    <tr><td><code>pre-push</code></td><td data-en="Before push" data-pt="Antes do push">Antes de push</td><td data-en="Run full test suite" data-pt="Rodar suite completa">Correr suite de tests</td></tr>
+    <tr><td><code>post-merge</code></td><td data-en="After merge" data-pt="Após merge">Después de merge</td><td data-en="npm install if package.json changed" data-pt="npm install se package.json mudou">npm install si cambió package.json</td></tr>
+    <tr><td><code>pre-rebase</code></td><td data-en="Before rebase" data-pt="Antes do rebase">Antes de rebase</td><td data-en="Guard shared branches" data-pt="Proteger branches compartilhadas">Proteger ramas compartidas</td></tr>
+  </table>
+</section>
+
+<!-- 8 -->
+<section class="slide" data-title="Git Hooks — práctica" data-en-title="Git Hooks — practice" data-pt-title="Git Hooks — prática">
+  <div class="slide-num">08</div>
+  <div class="kicker" data-en="Practice" data-pt="Prática">Práctica</div>
+  <h2 data-en="Hooks in <span class='hl'>practice</span>" data-pt="Hooks na <span class='hl'>prática</span>">Hooks en <span class="hl">práctica</span></h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>.git/hooks/pre-commit</div>
+    <pre><span class="c">#!/bin/sh</span>
+<span class="c"># Corre lint antes de cada commit</span>
+<span class="t">npm</span> run lint --silent
+if [ $? -ne 0 ]; then
+  <span class="k">echo</span> <span class="s">"❌ Lint falló. Corrígelo antes de confirmar."</span>
+  <span class="k">exit</span> 1
+fi</pre>
+  </div>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="with Husky (team-shared hooks)" data-pt="com Husky (hooks compartilhados no time)">con Husky (hooks compartidos en equipo)</span></div>
+    <pre><span class="c"># Instala Husky (hooks se comparten via package.json)</span>
+<span class="t">npm</span> install --save-dev husky
+<span class="t">npx</span> husky init
+
+<span class="c"># .husky/pre-commit</span>
+<span class="t">npm</span> run lint && <span class="t">npm</span> test</pre>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="Why Husky?" data-pt="Por que Husky?">¿Por qué Husky?</span><p data-en="Hooks in .git/ are local only. Husky stores them in .husky/ which IS committed and shared with the whole team." data-pt="Hooks em .git/ são só locais. O Husky os guarda em .husky/ que É commitado e compartilhado com o time.">Los hooks en .git/ son solo locales. Husky los guarda en .husky/ que SÍ se commitea y comparte con el equipo.</p></div>
+</section>
+
+<!-- 9 -->
+<section class="slide" data-title="Submodules — teoría" data-en-title="Submodules — theory" data-pt-title="Submodules — teoria">
+  <div class="slide-num">09</div>
+  <div class="kicker" data-en="Theory" data-pt="Teoria">Teoría</div>
+  <h2 data-en="Git <span class='hl'>submodules</span>" data-pt="Git <span class='hl'>submodules</span>">Git <span class="hl">submodules</span></h2>
+  <p data-en="A repo inside another repo. The parent stores a pointer (commit hash) to the child." data-pt="Um repo dentro de outro. O pai armazena um ponteiro (hash de commit) para o filho.">Un repo dentro de otro. El padre almacena un puntero (hash de commit) hacia el hijo.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>submodule</div>
+    <pre><span class="c"># Añadir un submodule</span>
+<span class="t">git</span> <span class="k">submodule</span> add <span class="s">git@github.com:org/libreria.git</span> libs/libreria
+
+<span class="c"># Clonar un repo con submodules</span>
+<span class="t">git</span> <span class="k">clone</span> --recurse-submodules <span class="s">git@github.com:org/app.git</span>
+
+<span class="c"># Si ya clonaste sin --recurse</span>
+<span class="t">git</span> <span class="k">submodule</span> update --init --recursive
+
+<span class="c"># Actualizar todos los submodules al último commit de su rama</span>
+<span class="t">git</span> <span class="k">submodule</span> update --remote --merge
+
+<span class="c"># Ver el estado de cada submodule</span>
+<span class="t">git</span> <span class="k">submodule</span> status</pre>
+  </div>
+  <div class="warn"><span class="warn-label" data-en="Complexity" data-pt="Complexidade">Complejidad</span><p data-en="Submodules are powerful but complex. For most teams, a package manager (npm, pip) is simpler. Use submodules only when you need a full repo with its history." data-pt="Submodules são poderosos mas complexos. Para a maioria dos times, um gerenciador de pacotes (npm, pip) é mais simples.">Los submodules son potentes pero complejos. Para la mayoría de equipos, un gestor de paquetes (npm, pip) es más simple. Usa submodules solo cuando necesitas el repo completo con su historial.</p></div>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-title="Worktrees — teoría y práctica" data-en-title="Worktrees — theory and practice" data-pt-title="Worktrees — teoria e prática">
+  <div class="slide-num">10</div>
+  <div class="kicker" data-en="Theory + practice" data-pt="Teoria + prática">Teoría + práctica</div>
+  <h2 data-en="Git <span class='hl'>worktrees</span>" data-pt="Git <span class='hl'>worktrees</span>">Git <span class="hl">worktrees</span></h2>
+  <p data-en="Check out multiple branches at the same time in different folders — from the same repo, without stashing." data-pt="Faça checkout de múltiplas branches ao mesmo tempo em pastas diferentes — do mesmo repo, sem stash.">Abre múltiples ramas al mismo tiempo en carpetas distintas — del mismo repo, sin stash.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>worktree</div>
+    <pre><span class="c"># Añadir un worktree para una rama</span>
+<span class="t">git</span> <span class="k">worktree</span> add ../hotfix hotfix/crash
+
+<span class="c"># Ahora tienes dos carpetas con el mismo repo</span>
+<span class="c"># ~/proyecto        → main</span>
+<span class="c"># ~/hotfix          → hotfix/crash</span>
+
+<span class="c"># Ver los worktrees activos</span>
+<span class="t">git</span> <span class="k">worktree</span> list
+
+<span class="c"># Eliminar un worktree cuando terminas</span>
+<span class="t">git</span> <span class="k">worktree</span> remove ../hotfix</pre>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="When to use" data-pt="Quando usar">Cuándo usar</span><p data-en="Perfect for a quick hotfix while in the middle of another feature. No stashing, no switching. Two folders, two branches, same .git." data-pt="Perfeito para um hotfix rápido enquanto está no meio de outra feature. Sem stash, sem switch. Duas pastas, dois branches, mesmo .git.">Perfecto para un hotfix rápido mientras estás en medio de otra feature. Sin stash, sin cambiar de rama. Dos carpetas, dos ramas, el mismo .git.</p></div>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-title="git archive y exportar" data-en-title="git archive and export" data-pt-title="git archive e exportar">
+  <div class="slide-num">11</div>
+  <div class="kicker" data-en="Utility" data-pt="Utilitário">Utilidad</div>
+  <h2 data-en="<span class='hl'>Export</span> without .git/" data-pt="<span class='hl'>Exportar</span> sem .git/">Exportar sin <span class="hl">.git/</span></h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>archive</div>
+    <pre><span class="c"># Exportar el proyecto como ZIP sin la carpeta .git/</span>
+<span class="t">git</span> <span class="k">archive</span> --format=zip HEAD > proyecto.zip
+
+<span class="c"># Solo una subcarpeta</span>
+<span class="t">git</span> <span class="k">archive</span> --format=tar HEAD:src > src.tar
+
+<span class="c"># Un commit o tag específico</span>
+<span class="t">git</span> <span class="k">archive</span> --format=zip v1.0.0 > v1.0.0.zip</pre>
+  </div>
+</section>
+
+<!-- 12 -->
+<section class="slide" data-title="git notes" data-en-title="git notes" data-pt-title="git notes">
+  <div class="slide-num">12</div>
+  <div class="kicker" data-en="Utility" data-pt="Utilitário">Utilidad</div>
+  <h2 data-en="<span class='hl'>Notes</span> on commits" data-pt="<span class='hl'>Notas</span> em commits">Notas en <span class="hl">commits</span></h2>
+  <p data-en="Add metadata to a commit without rewriting its hash. Used in automated tools and code review workflows." data-pt="Adicione metadados a um commit sem reescrever seu hash. Usado em ferramentas automatizadas.">Añade metadatos a un commit sin reescribir su hash. Se usa en herramientas automáticas y flujos de revisión.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>notes</div>
+    <pre><span class="c"># Añadir una nota a un commit</span>
+<span class="t">git</span> <span class="k">notes</span> add -m <span class="s">"Revisado por Ana · jira=PROJ-42"</span> a1b2c3d
+
+<span class="c"># Ver las notas de un commit</span>
+<span class="t">git</span> <span class="k">notes</span> show a1b2c3d
+
+<span class="c"># Ver el log con notas</span>
+<span class="t">git</span> <span class="k">log</span> --show-notes=*</pre>
+  </div>
+</section>
+
+<!-- 13 -->
+<section class="slide" data-title="git replace y filter-branch" data-en-title="History rewriting tools" data-pt-title="Ferramentas de reescrita">
+  <div class="slide-num">13</div>
+  <div class="kicker" data-en="Power tools" data-pt="Ferramentas potentes">Herramientas potentes</div>
+  <h2 data-en="Rewrite history <span class='hl'>cleanly</span>" data-pt="Reescrever histórico <span class='hl'>com segurança</span>">Reescribir historial <span class="hl">con seguridad</span></h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>git-filter-repo</div>
+    <pre><span class="c"># Instala git-filter-repo (reemplaza filter-branch, más rápido)</span>
+<span class="t">pip</span> install git-filter-repo   <span class="c"># o brew install git-filter-repo</span>
+
+<span class="c"># Eliminar un archivo de TODO el historial</span>
+<span class="t">git</span> filter-repo --path secreto.env --invert-paths
+
+<span class="c"># Cambiar el email del autor en todo el historial</span>
+<span class="t">git</span> filter-repo --email-callback \
+  <span class="s">"return email if email != b'viejo@mail.com' else b'nuevo@mail.com'"</span></pre>
+  </div>
+  <div class="warn"><span class="warn-label" data-en="Destructive" data-pt="Destrutivo">Destructivo</span><p data-en="filter-repo rewrites all commits, changing hashes. Everyone must reclone. Coordinate with your team." data-pt="O filter-repo reescreve todos os commits, mudando hashes. Todos devem reclonar. Coordene com o time.">filter-repo reescribe todos los commits, cambiando los hashes. Todos deben reclonar. Coordínate con el equipo.</p></div>
+</section>
+
+<!-- 14 -->
+<section class="slide" data-title="Sparse checkout" data-en-title="Sparse checkout" data-pt-title="Sparse checkout">
+  <div class="slide-num">14</div>
+  <div class="kicker" data-en="Large repos" data-pt="Repos grandes">Repos grandes</div>
+  <h2 data-en="<span class='hl'>Sparse checkout</span>" data-pt="<span class='hl'>Sparse checkout</span>">Sparse <span class="hl">checkout</span></h2>
+  <p data-en="Only check out the folders you need. Useful for monorepos with hundreds of packages." data-pt="Faça checkout apenas das pastas que você precisa. Útil para monorepos com centenas de pacotes.">Solo abre las carpetas que necesitas. Útil para monorepos con cientos de paquetes.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>sparse-checkout</div>
+    <pre><span class="c"># Clona sin los archivos de trabajo</span>
+<span class="t">git</span> <span class="k">clone</span> --filter=blob:none --sparse <span class="s">git@github.com:org/monorepo.git</span>
+<span class="k">cd</span> monorepo
+
+<span class="c"># Inicializa sparse en modo cone (rápido)</span>
+<span class="t">git</span> <span class="k">sparse-checkout</span> set --cone
+
+<span class="c"># Añade solo las carpetas que necesitas</span>
+<span class="t">git</span> <span class="k">sparse-checkout</span> add packages/api packages/shared
+
+<span class="c"># Ver qué está incluido</span>
+<span class="t">git</span> <span class="k">sparse-checkout</span> list</pre>
+  </div>
+</section>
+
+<!-- 15 -->
+<section class="slide" data-title="git attributes" data-en-title="git attributes" data-pt-title="git attributes">
+  <div class="slide-num">15</div>
+  <div class="kicker" data-en="Fine control" data-pt="Controle fino">Control fino</div>
+  <h2 data-en="<span class='hl'>.gitattributes</span>" data-pt="<span class='hl'>.gitattributes</span>">.git<span class="hl">attributes</span></h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>.gitattributes</div>
+    <pre><span class="c"># Normaliza line endings (Windows ↔ Unix)</span>
+*         text=auto
+*.sh      text eol=lf
+*.bat     text eol=crlf
+
+<span class="c"># Archivos binarios: no hacer diff ni merge</span>
+*.png     binary
+*.pdf     binary
+
+<span class="c"># Usar un diff driver personalizado</span>
+*.docx    diff=word
+
+<span class="c"># Excluir archivos de git archive (exportar)</span>
+.github/  export-ignore
+tests/    export-ignore</pre>
+  </div>
+</section>
+
+<!-- 16 -->
+<section class="slide" data-title="Resumen avanzado" data-en-title="Advanced summary" data-pt-title="Resumo avançado">
+  <div class="slide-num">16</div>
+  <div class="kicker" data-en="Summary" data-pt="Resumo">Resumen</div>
+  <h2 data-en="Advanced <span class='hl'>command map</span>" data-pt="Mapa de comandos <span class='hl'>avançados</span>">Mapa de comandos <span class="hl">avanzados</span></h2>
+  <table class="tbl">
+    <tr><th data-en="Command" data-pt="Comando">Comando</th><th data-en="What it does" data-pt="O que faz">Qué hace</th></tr>
+    <tr><td><code>git rebase -i HEAD~N</code></td><td data-en="Rewrite last N commits interactively" data-pt="Reescrever os últimos N commits">Reescribe los últimos N commits</td></tr>
+    <tr><td><code>git reflog</code></td><td data-en="See every HEAD movement" data-pt="Ver todo movimento do HEAD">Ver cada movimiento de HEAD</td></tr>
+    <tr><td><code>git bisect</code></td><td data-en="Binary search for the bad commit" data-pt="Busca binária do commit ruim">Búsqueda binaria del commit malo</td></tr>
+    <tr><td><code>git submodule</code></td><td data-en="Manage repos inside repos" data-pt="Gerenciar repos dentro de repos">Gestionar repos dentro de repos</td></tr>
+    <tr><td><code>git worktree add</code></td><td data-en="Check out a branch in another folder" data-pt="Checkout de uma branch em outra pasta">Abrir una rama en otra carpeta</td></tr>
+    <tr><td><code>git archive</code></td><td data-en="Export the project without .git/" data-pt="Exportar o projeto sem .git/">Exportar el proyecto sin .git/</td></tr>
+    <tr><td><code>git sparse-checkout</code></td><td data-en="Check out only needed folders" data-pt="Checkout só das pastas necessárias">Abrir solo las carpetas necesarias</td></tr>
+    <tr><td><code>git filter-repo</code></td><td data-en="Rewrite entire history" data-pt="Reescrever todo o histórico">Reescribir todo el historial</td></tr>
+  </table>
+</section>
+
+<!-- 17 -->
+<section class="slide title-slide" data-title="Siguiente: Senior" data-en-title="Next: Senior" data-pt-title="Próximo: Sênior">
+  <img src="https://cdn.simpleicons.org/git/f78166" alt="Git" style="width:80px;height:80px;margin-bottom:1rem;filter:drop-shadow(0 0 18px rgba(247,129,102,.4))">
+  <h2 data-en="Now the <span class='hl'>senior level</span>" data-pt="Agora o nível <span class='hl'>sênior</span>">Ahora el <span class="hl">nivel senior</span></h2>
+  <p class="lead" data-en="Git internals, branching strategies, monorepos, signed commits and security auditing." data-pt="Internals do Git, estratégias de branch, monorepos, commits assinados e auditoria de segurança.">Git internals, estrategias de branching, monorepos, commits firmados y auditoría de seguridad.</p>
+  <div class="cards" style="max-width:700px">
+    <a href="07-senior.html" class="card" style="text-decoration:none;color:inherit;--card-border:var(--accent)"><div class="card-icon">🏆</div><h4 data-en="Module 7: Senior level" data-pt="Módulo 7: Nível sênior">Módulo 7: Nivel Senior</h4><p data-en="internals, monorepos, signing" data-pt="internals, monorepos, assinatura">internals, monorepos, firma</p></a>
+    <a href="index.html" class="card" style="text-decoration:none;color:inherit"><div class="card-icon">🏠</div><h4 data-en="Back to start" data-pt="Voltar ao início">Volver al inicio</h4><p data-en="Full index" data-pt="Índice completo">Índice completo</p></a>
+  </div>
+</section>
+
+</div>
+<script src="assets/bg.js"></script>
+<script src="assets/slides.js"></script>
+</body>
+</html>

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitLab — Git Mastery</title>
+<link rel="stylesheet" href="assets/slides.css">
+</head>
+<body>
+<div class="progress-wrap"><div class="progress"></div></div>
+<div class="topnav">
+  <a href="index.html" class="brand"><img src="https://cdn.simpleicons.org/gitlab/fc6d26" alt="GitLab" style="height:20px">Git Mastery</a>
+  <button class="toc-btn" data-nav="toc">☰ Índice</button>
+</div>
+<div class="counter"><span class="cur">01</span> / 00</div>
+<div class="controls">
+  <button class="ctrl-btn" data-nav="prev">‹</button>
+  <button class="ctrl-btn" data-nav="next">›</button>
+</div>
+<div class="toc-overlay">
+  <button class="toc-close" data-nav="close-toc">✕</button>
+  <h2 data-en="Index — GitLab" data-pt="Índice — GitLab">Índice — GitLab</h2>
+  <div class="toc-list"></div>
+</div>
+<div class="deck">
+
+<!-- 1 -->
+<section class="slide title-slide" data-title="GitLab" data-en-title="GitLab" data-pt-title="GitLab">
+  <span class="badge" data-en="Module 5 · Intermediate" data-pt="Módulo 5 · Intermédio">Módulo 5 · Intermedio</span>
+  <img src="https://cdn.simpleicons.org/gitlab/fc6d26" alt="GitLab" style="width:88px;height:88px;margin-bottom:1rem;filter:drop-shadow(0 0 20px rgba(252,109,38,.4))">
+  <h1 data-en="The <span class='hl'>GitLab</span> platform" data-pt="A plataforma <span class='hl'>GitLab</span>">La plataforma <span class="hl">GitLab</span></h1>
+  <p class="lead" data-en="Merge Requests, CI/CD pipelines, registry, environments and the glab CLI." data-pt="Merge Requests, pipelines de CI/CD, registry, ambientes e a CLI glab.">Merge Requests, pipelines de CI/CD, registry, entornos y la CLI <code>glab</code>.</p>
+  <div class="stats">
+    <div class="stat"><div class="num">22</div><div class="lbl" data-en="slides" data-pt="slides">slides</div></div>
+    <div class="stat"><div class="num">CI/CD</div><div class="lbl" data-en="built in" data-pt="embutido">incluido</div></div>
+    <div class="stat"><div class="num">glab</div><div class="lbl" data-en="CLI included" data-pt="CLI incluída">CLI incluida</div></div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="slide" data-title="¿Qué es GitLab?" data-en-title="What is GitLab?" data-pt-title="O que é o GitLab?">
+  <div class="slide-num">02</div>
+  <div class="kicker" data-en="Concept" data-pt="Conceito">Concepto</div>
+  <h2 data-en="What is <span class='hl'>GitLab</span>?" data-pt="O que é o <span class='hl'>GitLab</span>?">¿Qué es <span class="hl">GitLab</span>?</h2>
+  <p data-en="A single platform for the whole DevOps lifecycle: Git hosting, issues, CI/CD, security and deployment." data-pt="Uma plataforma única para todo o ciclo DevOps: hospedagem Git, issues, CI/CD, segurança e deploy.">Una plataforma única para todo el ciclo DevOps: hosting de Git, issues, CI/CD, seguridad y despliegue.</p>
+  <div class="cards" style="max-width:1000px">
+    <div class="card o"><div class="card-icon">📦</div><h4 data-en="Git hosting" data-pt="Hospedagem Git">Hosting Git</h4><p data-en="Repos, like GitHub. Public or private." data-pt="Repos, como o GitHub. Público ou privado.">Repos, como GitHub. Público o privado.</p></div>
+    <div class="card b"><div class="card-icon">🔀</div><h4 data-en="Merge Requests" data-pt="Merge Requests">Merge Requests</h4><p data-en="GitLab's name for Pull Requests." data-pt="O nome do GitLab para Pull Requests.">El nombre de GitLab para los Pull Requests.</p></div>
+    <div class="card g"><div class="card-icon">⚙️</div><h4 data-en="CI/CD" data-pt="CI/CD">CI/CD</h4><p data-en="Pipelines defined in .gitlab-ci.yml, the heart of GitLab." data-pt="Pipelines definidos no .gitlab-ci.yml, o coração do GitLab.">Pipelines definidos en .gitlab-ci.yml, el corazón de GitLab.</p></div>
+    <div class="card p"><div class="card-icon">🏃</div><h4 data-en="Runners" data-pt="Runners">Runners</h4><p data-en="The machines that execute pipeline jobs." data-pt="As máquinas que executam os jobs do pipeline.">Las máquinas que ejecutan los jobs del pipeline.</p></div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="slide" data-title="GitLab vs GitHub" data-en-title="GitLab vs GitHub" data-pt-title="GitLab vs GitHub">
+  <div class="slide-num">03</div>
+  <div class="kicker" data-en="Comparison" data-pt="Comparação">Comparación</div>
+  <h2>GitLab <span class="hl">vs</span> GitHub</h2>
+  <table class="tbl">
+    <tr><th></th><th data-en="GitLab" data-pt="GitLab">GitLab</th><th data-en="GitHub" data-pt="GitHub">GitHub</th></tr>
+    <tr><td data-en="PR name" data-pt="Nome do PR">Nombre del PR</td><td>Merge Request (MR)</td><td>Pull Request (PR)</td></tr>
+    <tr><td data-en="CI/CD" data-pt="CI/CD">CI/CD</td><td data-en="Built in (.gitlab-ci.yml)" data-pt="Embutido (.gitlab-ci.yml)">Integrado (.gitlab-ci.yml)</td><td data-en="GitHub Actions (workflows)" data-pt="GitHub Actions (workflows)">GitHub Actions (workflows)</td></tr>
+    <tr><td data-en="Self-host" data-pt="Self-host">Self-host</td><td data-en="Yes (free CE/EE)" data-pt="Sim (CE/EE grátis)">Sí (CE/EE gratis)</td><td data-en="Enterprise Server (paid)" data-pt="Enterprise Server (pago)">Enterprise Server (pago)</td></tr>
+    <tr><td data-en="Registry" data-pt="Registry">Registry</td><td data-en="Containers, packages, Terraform" data-pt="Containers, pacotes, Terraform">Containers, paquetes, Terraform</td><td data-en="Packages, Containers" data-pt="Packages, Containers">Packages, Containers</td></tr>
+    <tr><td data-en="Issues board" data-pt="Quadro de issues">Tablero de issues</td><td data-en="Boards + Epics + Milestones" data-pt="Boards + Epics + Milestones">Boards + Epics + Milestones</td><td data-en="Projects (Kanban)" data-pt="Projects (Kanban)">Projects (Kanban)</td></tr>
+    <tr><td data-en="CLI" data-pt="CLI">CLI</td><td>glab</td><td>gh</td></tr>
+  </table>
+  <div class="note"><span class="note-label" data-en="Bottom line" data-pt="Resumo">Conclusión</span><p data-en="Both are excellent. GitLab leans toward full DevOps in one place; GitHub leans toward the developer community and Actions." data-pt="Os dois são excelentes. O GitLab visa DevOps completo num lugar; o GitHub visa a comunidade dev e as Actions.">Ambos son excelentes. GitLab apunta a DevOps completo en un solo lugar; GitHub apunta a la comunidad dev y a Actions.</p></div>
+</section>
+
+<!-- 4 -->
+<section class="slide" data-title="Merge Requests" data-en-title="Merge Requests" data-pt-title="Merge Requests">
+  <div class="slide-num">04</div>
+  <div class="kicker" data-en="Core feature" data-pt="Recurso central">Recurso central</div>
+  <h2><span class="hl">Merge Requests</span> <span class="muted">(MR)</span></h2>
+  <p data-en="An MR proposes to merge a source branch into a target branch. It runs the pipeline, collects reviews and merges." data-pt="Um MR propõe mesclar uma branch de origem num destino. Roda o pipeline, coleta revisões e mescla.">Un MR propone mezclar una rama origen en una rama destino. Corre el pipeline, junta revisiones y mergea.</p>
+  <div class="diagram">
+    <div class="node b" data-en="source branch" data-pt="branch origem">rama origen</div>
+    <span class="arrow">→ MR →</span>
+    <div class="node p" data-en="pipeline + review" data-pt="pipeline + revisão">pipeline + revisión</div>
+    <span class="arrow">→ merge →</span>
+    <div class="node g" data-en="target (main)" data-pt="destino (main)">destino (main)</div>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="Practice" data-pt="Prática">Práctica</span><p data-en="Every MR shows: the diff, the pipeline status, approvals and a squash option for a clean history." data-pt="Todo MR mostra: o diff, o status do pipeline, aprovações e a opção de squash para um histórico limpo.">Cada MR muestra: el diff, el estado del pipeline, aprobaciones y la opción de squash para un historial limpio.</p></div>
+</section>
+
+<!-- 5 -->
+<section class="slide" data-title="CI/CD — teoría" data-en-title="CI/CD — theory" data-pt-title="CI/CD — teoria">
+  <div class="slide-num">05</div>
+  <div class="kicker" data-en="Theory" data-pt="Teoria">Teoría</div>
+  <h2 data-en="CI/CD <span class='hl'>in theory</span>" data-pt="CI/CD <span class='hl'>na teoria</span>">CI/CD <span class="hl">en teoría</span></h2>
+  <div class="cards" style="max-width:1000px">
+    <div class="card g"><div class="card-icon">🔄</div><h4 data-en="CI" data-pt="CI">CI</h4><p data-en="Continuous Integration: merge code often, run tests automatically on every push." data-pt="Integração Contínua: misture código sempre, rode testes a cada push.">Integración Continua: mezcla código seguido, corre tests automáticamente en cada push.</p></div>
+    <div class="card b"><div class="card-icon">🚀</div><h4 data-en="CD" data-pt="CD">CD</h4><p data-en="Continuous Delivery/Deployment: ship to staging/prod automatically when it passes." data-pt="Entrega/Deploy Contínuo: publique em staging/prod automaticamente ao passar.">Entrega/Despliegue Continuo: publica a staging/prod automáticamente al pasar.</p></div>
+    <div class="card p"><div class="card-icon">🎯</div><h4 data-en="Pipeline" data-pt="Pipeline">Pipeline</h4><p data-en="Stages → jobs. Stages run in order; jobs in a stage run in parallel." data-pt="Stages → jobs. Stages rodam em ordem; jobs de um stage rodam em paralelo.">Stages → jobs. Los stages corren en orden; los jobs de un stage corren en paralelo.</p></div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="slide" data-title="CI/CD — práctica 1" data-en-title="CI/CD — practice 1" data-pt-title="CI/CD — prática 1">
+  <div class="slide-num">06</div>
+  <div class="kicker" data-en="Practice" data-pt="Prática">Práctica</div>
+  <h2 data-en="Your first <span class='hl'>.gitlab-ci.yml</span>" data-pt="Seu primeiro <span class='hl'>.gitlab-ci.yml</span>">Tu primer <span class="hl">.gitlab-ci.yml</span></h2>
+  <p data-en="A complete, working pipeline: install deps, lint, test, build." data-pt="Um pipeline completo e funcional: instalar deps, lint, testar, build.">Un pipeline completo y funcional: instalar deps, lint, test, build.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>.gitlab-ci.yml</div>
+    <pre><span class="k">stages</span>:
+  - <span class="v">install</span>
+  - <span class="v">test</span>
+  - <span class="v">build</span>
+
+<span class="k">cache</span>:
+  <span class="v">key</span>: <span class="s">${CI_COMMIT_REF_SLUG}</span>
+  <span class="v">paths</span>:
+    - <span class="s">node_modules/</span>
+
+<span class="k">install_deps</span>:
+  <span class="k">stage</span>: <span class="s">install</span>
+  <span class="k">image</span>: <span class="s">node:20</span>
+  <span class="k">script</span>:
+    - <span class="t">npm</span> ci
+
+<span class="k">lint</span>:
+  <span class="k">stage</span>: <span class="s">test</span>
+  <span class="k">image</span>: <span class="s">node:20</span>
+  <span class="k">script</span>:
+    - <span class="t">npm</span> run lint
+
+<span class="k">test</span>:
+  <span class="k">stage</span>: <span class="s">test</span>
+  <span class="k">image</span>: <span class="s">node:20</span>
+  <span class="k">script</span>:
+    - <span class="t">npm</span> test
+  <span class="k">coverage</span>: <span class="s">'/Lines\s*:\s*(\d+\.\d+)%/'</span>
+
+<span class="k">build</span>:
+  <span class="k">stage</span>: <span class="s">build</span>
+  <span class="k">image</span>: <span class="s">node:20</span>
+  <span class="k">script</span>:
+    - <span class="t">npm</span> run build
+  <span class="k">artifacts</span>:
+    <span class="v">paths</span>:
+      - <span class="s">dist/</span></pre>
+  </div>
+  <div class="note"><span class="note-label" data-en="How it runs" data-pt="Como roda">Cómo corre</span><p data-en="Push → GitLab runs install, then test + lint in parallel, then build. dist/ is saved as an artifact for the next stages." data-pt="Push → o GitLab roda install, depois test + lint em paralelo, depois build. O dist/ é salvo como artifact.">Push → GitLab corre install, luego test + lint en paralelo, luego build. dist/ se guarda como artifact para los siguientes.</p></div>
+</section>
+
+<!-- 7 -->
+<section class="slide" data-title="CI/CD — práctica 2" data-en-title="CI/CD — practice 2" data-pt-title="CI/CD — prática 2">
+  <div class="slide-num">07</div>
+  <div class="kicker" data-en="Practice · deploy" data-pt="Prática · deploy">Práctica · deploy</div>
+  <h2 data-en="Deploy with <span class='hl'>environments</span>" data-pt="Deploy com <span class='hl'>ambientes</span>">Despliegue con <span class="hl">entornos</span></h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>.gitlab-ci.yml (deploy)</div>
+    <pre><span class="k">deploy_staging</span>:
+  <span class="k">stage</span>: <span class="s">deploy</span>
+  <span class="k">image</span>: <span class="s">alpine</span>
+  <span class="k">environment</span>:
+    <span class="v">name</span>: <span class="s">staging</span>
+    <span class="v">url</span>: <span class="s">https://staging.app.com</span>
+  <span class="k">script</span>:
+    - <span class="t">sh</span> deploy.sh staging
+  <span class="k">only</span>:
+    - <span class="v">main</span>
+
+<span class="k">deploy_prod</span>:
+  <span class="k">stage</span>: <span class="s">deploy</span>
+  <span class="k">environment</span>:
+    <span class="v">name</span>: <span class="s">production</span>
+  <span class="k">script</span>:
+    - <span class="t">sh</span> deploy.sh prod
+  <span class="k">when</span>: <span class="s">manual</span>      <span class="c"># botón play en el pipeline</span>
+  <span class="k">only</span>:
+    - <span class="v">tags</span></pre>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="Practice" data-pt="Prática">Práctica</span><p data-en="<code>only: main</code> runs on main. <code>when: manual</code> needs a human to click play. <code>environment</code> tracks each deploy in Operations → Environments." data-pt="O <code>only: main</code> roda no main. O <code>when: manual</code> precisa de humano. O <code>environment</code> rastreia cada deploy."><code>only: main</code> corre en main. <code>when: manual</code> necesita que un humano pulse play. <code>environment</code> registra cada despliegue en Operations → Environments.</p></div>
+</section>
+
+<!-- 8 -->
+<section class="slide" data-title="Runners" data-en-title="Runners" data-pt-title="Runners">
+  <div class="slide-num">08</div>
+  <div class="kicker" data-en="Theory + practice" data-pt="Teoria + prática">Teoría + práctica</div>
+  <h2><span class="hl">Runners</span></h2>
+  <p data-en="A runner is the machine that executes your jobs. GitLab provides shared runners; you can add your own." data-pt="Um runner é a máquina que executa seus jobs. O GitLab oferece runners compartilhados; você pode add os seus.">Un runner es la máquina que ejecuta tus jobs. GitLab ofrece runners compartidos; puedes añadir los tuyos.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="register your own runner" data-pt="registrar seu próprio runner">registrar tu propio runner</span></div>
+    <pre><span class="c"># 1. Instala el runner (ej: Linux)</span>
+<span class="k">sudo</span> curl -L <span class="s">https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64</span> \
+  -o /usr/local/bin/gitlab-runner
+<span class="k">sudo</span> chmod +x /usr/local/bin/gitlab-runner
+
+<span class="c"># 2. Regístralo (URL + token los da Settings → CI/CD → Runners)</span>
+<span class="k">sudo</span> gitlab-runner register
+
+<span class="c"># 3. Arráncalo</span>
+<span class="k">sudo</span> gitlab-runner start</pre>
+  </div>
+  <div class="note"><span class="note-label" data-en="Tags" data-pt="Tags">Tags</span><p data-en="Tag a job (<code>tags: [docker]</code>) so it runs only on runners with that tag — e.g. a runner with Docker installed." data-pt="Marque um job (<code>tags: [docker]</code>) para rodar só em runners com essa tag — ex: um runner com Docker.">Etiqueta un job (<code>tags: [docker]</code>) para que corra solo en runners con esa etiqueta — ej. un runner con Docker.</p></div>
+</section>
+
+<!-- 9 -->
+<section class="slide" data-title="Variables y secrets" data-en-title="Variables and secrets" data-pt-title="Variáveis e segredos">
+  <div class="slide-num">09</div>
+  <div class="kicker" data-en="Practice" data-pt="Prática">Práctica</div>
+  <h2 data-en="CI/CD <span class='hl'>variables</span>" data-pt="Variáveis de <span class='hl'>CI/CD</span>">Variables de <span class="hl">CI/CD</span></h2>
+  <p data-en="Store tokens and config without putting them in the repo. Settings → CI/CD → Variables." data-pt="Guarde tokens e configs sem colocar no repo. Settings → CI/CD → Variables.">Guarda tokens y config sin meterlos en el repo. Settings → CI/CD → Variables.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="use a variable" data-pt="usar uma variável">usar una variable</span></div>
+    <pre><span class="c"># En .gitlab-ci.yml las variables llegan como entorno</span>
+<span class="k">deploy</span>:
+  <span class="k">script</span>:
+    - <span class="t">curl</span> -H <span class="s">"Authorization: Bearer $DEPLOY_TOKEN"</span> \
+           $DEPLOY_URL
+
+<span class="c"># Marca una variable como "masked" para que no salga en los logs</span>
+<span class="c"># Marca "protected" para que solo exista en ramas/tags protegidas</span></pre>
+  </div>
+  <div class="warn"><span class="warn-label" data-en="Careful" data-pt="Cuidado">Cuidado</span><p data-en="A masked variable must be base64-safe and long enough, or GitLab won't mask it." data-pt="Uma variável masked precisa ser base64-safe e longa o bastante, senão o GitLab não mascara.">Una variable masked debe ser base64-safe y suficientemente larga, o GitLab no la enmascara.</p></div>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-title="Container Registry" data-en-title="Container Registry" data-pt-title="Container Registry">
+  <div class="slide-num">10</div>
+  <div class="kicker" data-en="Practice" data-pt="Prática">Práctica</div>
+  <h2 data-en="Container <span class='hl'>Registry</span>" data-pt="Container <span class='hl'>Registry</span>">Container <span class="hl">Registry</span></h2>
+  <p data-en="Every GitLab project has a built-in Docker registry. Build and push images in the pipeline." data-pt="Todo projeto GitLab tem um registry Docker embutido. Build e push de imagens no pipeline.">Cada proyecto GitLab tiene un registry Docker integrado. Construye y sube imágenes en el pipeline.</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="build & push image" data-pt="build & push imagem">construir y subir imagen</span></div>
+    <pre><span class="k">docker_build</span>:
+  <span class="k">image</span>: <span class="s">docker:24</span>
+  <span class="k">services</span>:
+    - <span class="s">docker:24-dind</span>
+  <span class="k">script</span>:
+    - <span class="t">docker</span> login -u <span class="s">$CI_REGISTRY_USER</span> -p <span class="s">$CI_REGISTRY_PASSWORD</span> <span class="s">$CI_REGISTRY</span>
+    - <span class="t">docker</span> build -t <span class="s">$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA</span> .
+    - <span class="t">docker</span> push <span class="s">$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA</span></pre>
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-title="GitLab Flow" data-en-title="GitLab Flow" data-pt-title="GitLab Flow">
+  <div class="slide-num">11</div>
+  <div class="kicker" data-en="Strategy" data-pt="Estratégia">Estrategia</div>
+  <h2>GitLab <span class="hl">Flow</span></h2>
+  <div class="graph">
+<span class="gb">main</span> ────────●────────●────────●──
+                \        \        \
+<span class="gb">pre-prod</span>      ●────────●────────●──
+                 \        \        \
+<span class="gb">prod</span>           ●────────●────────●──</div>
+  <p data-en="main is the source of truth. Each environment (pre-prod, prod) is a branch that cherry-picks or merges from main. Deploy = merge to that branch." data-pt="O main é a fonte da verdade. Cada ambiente (pre-prod, prod) é uma branch que cherry-picks/merges do main. Deploy = merge para essa branch.">main es la fuente de verdad. Cada entorno (pre-prod, prod) es una rama que hace cherry-pick/merge desde main. Desplegar = mergear a esa rama.</p>
+  <div class="tip"><span class="tip-label" data-en="Practice" data-pt="Prática">Práctica</span><p data-en="Merge main → pre-prod tests it; merge pre-prod → prod ships it. Each environment is observable and rollbackable." data-pt="Merge main → pre-prod testa; merge pre-prod → prod publica. Cada ambiente é observável e rollbackável.">Merge main → pre-prod lo prueba; merge pre-prod → prod lo publica. Cada entorno es observable y reversible.</p></div>
+</section>
+
+<!-- 12 -->
+<section class="slide" data-title="Issues, Boards, Epics" data-en-title="Issues, Boards, Epics" data-pt-title="Issues, Boards, Epics">
+  <div class="slide-num">12</div>
+  <div class="kicker" data-en="Planning" data-pt="Planejamento">Planificación</div>
+  <h2 data-en="Issues, <span class='hl'>Boards</span>, Epics" data-pt="Issues, <span class='hl'>Boards</span>, Epics">Issues, <span class="hl">Boards</span>, Epics</h2>
+  <div class="cards" style="max-width:1000px">
+    <div class="card b"><div class="card-icon">📋</div><h4 data-en="Issue" data-pt="Issue">Issue</h4><p data-en="A task or bug. Has labels, milestone, assignee, linked MR." data-pt="Uma tarefa ou bug. Tem labels, milestone, responsável, MR vinculado.">Una tarea o bug. Tiene labels, milestone, responsable, MR vinculado.</p></div>
+    <div class="card p"><div class="card-icon">🔀</div><h4 data-en="Boards" data-pt="Boards">Boards</h4><p data-en="Kanban: drag issues across columns (Open → Doing → Closed)." data-pt="Kanban: arraste issues entre colunas (Open → Doing → Closed).">Kanban: arrastra issues entre columnas (Open → Doing → Closed).</p></div>
+    <div class="card g"><div class="card-icon">🎯</div><h4 data-en="Epic" data-pt="Épico">Epic</h4><p data-en="Groups many issues under one big feature." data-pt="Agrupa muitas issues num grande recurso.">Agrupa muchas issues bajo una gran función.</p></div>
+    <div class="card o"><div class="card-icon">🏁</div><h4 data-en="Milestone" data-pt="Milestone">Milestone</h4><p data-en="A release or sprint date that issues target." data-pt="Uma data de release/sprint que as issues miram.">Una fecha de release/sprint que las issues apuntan.</p></div>
+  </div>
+</section>
+
+<!-- 13 -->
+<section class="slide" data-title="La CLI glab — instalar" data-en-title="The glab CLI — install" data-pt-title="A CLI glab — instalar">
+  <div class="slide-num">13</div>
+  <div class="kicker" data-en="CLI · install" data-pt="CLI · instalar">CLI · instalar</div>
+  <h2 data-en="Install <span class='hl'>glab</span> — per system" data-pt="Instalar <span class='hl'>glab</span> — por sistema">Instalar <span class="hl">glab</span> — por sistema</h2>
+  <p data-en="The official GitLab CLI does everything from the terminal." data-pt="A CLI oficial do GitLab faz tudo pelo terminal.">La CLI oficial de GitLab hace todo desde el terminal.</p>
+  <div class="os-tabs" data-os-group="glab-install">
+    <div class="os-tab active" data-os="win">🪟 Windows</div>
+    <div class="os-tab" data-os="mac">🍎 macOS</div>
+    <div class="os-tab" data-os="linux">🐧 Linux</div>
+  </div>
+  <div class="os-panel active" data-os="win" data-os-group="glab-install">
+    <div class="code-block"><div class="code-header"><div class="dots"><span></span><span></span><span></span></div>Windows</div>
+      <pre><span class="c"># winget</span>
+<span class="t">winget</span> install Glab.Glab
+
+<span class="c"># Scoop</span>
+<span class="t">scoop</span> install glab
+
+<span class="c"># Chocolatey</span>
+<span class="t">choco</span> install glab
+
+<span class="c"># Verifica</span>
+<span class="t">glab</span> --version</pre>
+    </div>
+  </div>
+  <div class="os-panel" data-os="mac" data-os-group="glab-install">
+    <div class="code-block"><div class="code-header"><div class="dots"><span></span><span></span><span></span></div>macOS</div>
+      <pre><span class="c"># Homebrew</span>
+<span class="t">brew</span> install glab
+
+<span class="c"># MacPorts</span>
+<span class="t">port</span> install glab
+
+<span class="c"># Verifica</span>
+<span class="t">glab</span> --version</pre>
+    </div>
+  </div>
+  <div class="os-panel" data-os="linux" data-os-group="glab-install">
+    <div class="code-block"><div class="code-header"><div class="dots"><span></span><span></span><span></span></div>Linux</div>
+      <pre><span class="c"># Debian / Ubuntu (paquete oficial)</span>
+<span class="k">curl</span> -s <span class="s">https://apt.fury.io/glab/gpg.key</span> | <span class="k">sudo</span> gpg --dearmor -o /usr/share/keyrings/glab.gpg
+<span class="k">echo</span> <span class="s">"deb [signed-by=/usr/share/keyrings/glab.gpg] https://apt.fury.io/glab/ * *"</span> \
+  | <span class="k">sudo</span> tee /etc/apt/sources.list.d/glab.list
+<span class="k">sudo</span> apt update && <span class="k">sudo</span> apt install glab
+
+<span class="c"># Fedora / RHEL</span>
+<span class="k">sudo</span> dnf install glab
+
+<span class="c"># Arch</span>
+<span class="k">sudo</span> pacman -S glab
+
+<span class="c"># Verifica</span>
+<span class="t">glab</span> --version</pre>
+    </div>
+  </div>
+</section>
+
+<!-- 14 -->
+<section class="slide" data-title="glab — autenticación" data-en-title="glab — authenticate" data-pt-title="glab — autenticar">
+  <div class="slide-num">14</div>
+  <div class="kicker" data-en="CLI · setup" data-pt="CLI · setup">CLI · configurar</div>
+  <h2 data-en="<span class='hl'>glab</span> — authenticate" data-pt="<span class='hl'>glab</span> — autenticar"><span class="hl">glab</span> — autenticar</h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="login" data-pt="login">login</span></div>
+    <pre><span class="c"># Login interactivo (abre el navegador o pide token)</span>
+<span class="t">glab</span> auth login
+<span class="c">#  → elige gitlab.com o self-hosted → pega tu token</span>
+
+<span class="c"># Crea el token en: User Settings → Access Tokens</span>
+<span class="c">#  scope: api, read_repository, write_repository</span>
+
+<span class="c"># Comprueba el estado</span>
+<span class="t">glab</span> auth status
+
+<span class="c"># Para self-hosted, indica la instancia</span>
+<span class="t">glab</span> auth login --hostname gitlab.miempresa.com</pre>
+  </div>
+</section>
+
+<!-- 15 -->
+<section class="slide" data-title="glab — Merge Requests" data-en-title="glab — Merge Requests" data-pt-title="glab — Merge Requests">
+  <div class="slide-num">15</div>
+  <div class="kicker" data-en="CLI · MRs" data-pt="CLI · MRs">CLI · MRs</div>
+  <h2 data-en="<span class='hl'>glab</span> — Merge Requests" data-pt="<span class='hl'>glab</span> — Merge Requests"><span class="hl">glab</span> — Merge Requests</h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div>mr</div>
+    <pre><span class="c"># Crear MR</span>
+<span class="t">glab</span> mr create --title <span class="s">"feat: login"</span> \
+  --description <span class="s">"Añade login con Google"</span> --target-branch main
+
+<span class="c"># Listar MRs abiertos</span>
+<span class="t">glab</span> mr list
+
+<span class="c"># Ver el MR actual en el navegador</span>
+<span class="t">glab</span> mr view --web
+
+<span class="c"># Bajar el MR !42 a tu local</span>
+<span class="t">glab</span> mr checkout 42
+
+<span class="c"># Aprobar y mergear</span>
+<span class="t">glab</span> mr approve 42
+<span class="t">glab</span> mr merge 42 --squash --remove-source-branch</pre>
+  </div>
+</section>
+
+<!-- 16 -->
+<section class="slide" data-title="glab — issues, pipelines, más" data-en-title="glab — issues, pipelines, more" data-pt-title="glab — issues, pipelines, mais">
+  <div class="slide-num">16</div>
+  <div class="kicker" data-en="CLI · more" data-pt="CLI · mais">CLI · más</div>
+  <h2 data-en="<span class='hl'>glab</span> — issues, pipelines, repo" data-pt="<span class='hl'>glab</span> — issues, pipelines, repo"><span class="hl">glab</span> — issues, pipelines, repo</h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="more commands" data-pt="mais comandos">más comandos</span></div>
+    <pre><span class="c"># Issues</span>
+<span class="t">glab</span> issue create --title <span class="s">"Bug en login"</span>
+<span class="t">glab</span> issue list
+<span class="t">glab</span> issue view 7
+
+<span class="c"># Pipelines</span>
+<span class="t">glab</span> ci list
+<span class="t">glab</span> ci view
+<span class="t">glab</span> ci status        <span class="c"># estado del pipeline actual</span>
+
+<span class="c"># Crear / clonar repo</span>
+<span class="t">glab</span> repo create mi-proyecto --private
+<span class="t">glab</span> repo clone grupo/proyecto
+
+<span class="c"># Releases y snippets</span>
+<span class="t">glab</span> release create v1.0.0
+<span class="t">glab</span> snippet create archivo.js
+
+<span class="c"># Abrir el repo en el navegador</span>
+<span class="t">glab</span> repo view --web</pre>
+  </div>
+</section>
+
+<!-- 17 -->
+<section class="slide" data-title="glab vs gh" data-en-title="glab vs gh" data-pt-title="glab vs gh">
+  <div class="slide-num">17</div>
+  <div class="kicker" data-en="Compare" data-pt="Comparar">Comparar</div>
+  <h2 data-en="<span class='hl'>glab</span> vs <span class='hl'>gh</span>" data-pt="<span class='hl'>glab</span> vs <span class='hl'>gh</span>"><span class="hl">glab</span> vs <span class="hl">gh</span></h2>
+  <table class="tbl">
+    <tr><th data-en="Action" data-pt="Ação">Acción</th><th data-en="GitHub (gh)" data-pt="GitHub (gh)">GitHub (gh)</th><th data-en="GitLab (glab)" data-pt="GitLab (glab)">GitLab (glab)</th></tr>
+    <tr><td data-en="Login" data-pt="Login">Login</td><td><code>gh auth login</code></td><td><code>glab auth login</code></td></tr>
+    <tr><td data-en="Create PR/MR" data-pt="Criar PR/MR">Crear PR/MR</td><td><code>gh pr create</code></td><td><code>glab mr create</code></td></tr>
+    <tr><td data-en="List" data-pt="Listar">Listar</td><td><code>gh pr list</code></td><td><code>glab mr list</code></td></tr>
+    <tr><td data-en="Checkout" data-pt="Checkout">Checkout</td><td><code>gh pr checkout N</code></td><td><code>glab mr checkout N</code></td></tr>
+    <tr><td data-en="Merge" data-pt="Merge">Merge</td><td><code>gh pr merge</code></td><td><code>glab mr merge</code></td></tr>
+    <tr><td data-en="CI runs" data-pt="Runs de CI">Runs de CI</td><td><code>gh run list</code></td><td><code>glab ci list</code></td></tr>
+    <tr><td data-en="Issues" data-pt="Issues">Issues</td><td><code>gh issue</code></td><td><code>glab issue</code></td></tr>
+    <tr><td data-en="Repo" data-pt="Repo">Repo</td><td><code>gh repo</code></td><td><code>glab repo</code></td></tr>
+  </table>
+</section>
+
+<!-- 18 -->
+<section class="slide" data-title="Flujo completo con glab" data-en-title="Full flow with glab" data-pt-title="Fluxo completo com glab">
+  <div class="slide-num">18</div>
+  <div class="kicker" data-en="Full flow" data-pt="Fluxo completo">Flujo completo</div>
+  <h2 data-en="A full MR flow <span class='hl'>without leaving the terminal</span>" data-pt="Um fluxo de MR completo <span class='hl'>sem sair do terminal</span>">Un flujo de MR completo <span class="hl">sin salir del terminal</span></h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="the whole loop" data-pt="o loop todo">el ciclo entero</span></div>
+    <pre><span class="c"># 1. Rama</span>
+<span class="t">git</span> <span class="k">switch</span> -c feature/login
+
+<span class="c"># 2. Trabaja y confirma</span>
+<span class="t">git</span> <span class="k">commit</span> -am <span class="s">"feat(auth): login"</span>
+
+<span class="c"># 3. Sube y abre el MR</span>
+<span class="t">git</span> <span class="k">push</span> -u origin feature/login
+<span class="t">glab</span> mr create --fill --target-branch main
+
+<span class="c"># 4. Mira el pipeline</span>
+<span class="t">glab</span> ci status
+
+<span class="c"># 5. Mergear y limpiar</span>
+<span class="t">glab</span> mr merge --squash --remove-source-branch</pre>
+  </div>
+</section>
+
+<!-- 19 -->
+<section class="slide" data-title="Plantillas .gitlab" data-en-title=".gitlab templates" data-pt-title="Templates .gitlab">
+  <div class="slide-num">19</div>
+  <div class="kicker" data-en="Pro tips" data-pt="Dicas de pro">Pro tips</div>
+  <h2 data-en="Recommended <span class='hl'>templates</span>" data-pt="<span class='hl'>Templates</span> recomendados">Plantillas <span class="hl">recomendadas</span></h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span data-en="project files" data-pt="arquivos do projeto">archivos del proyecto</span></div>
+    <pre><span class="c"># .gitlab/merge_request_templates/Default.md  → rellena la desc. del MR</span>
+<span class="c"># .gitlab/issue_templates/Bug.md              → rellena issues de bug</span>
+<span class="c"># .gitlab-ci.yml                              → el pipeline</span>
+<span class="c"># .gitlab/ISSUE_TEMPLATE.md                   → plantilla general</span>
+
+<span class="c"># Auto DevOps: GitLab detecta tu lenguaje y crea un pipeline automático</span>
+<span class="c"># Settings → CI/CD → Auto DevOps pipeline</span></pre>
+  </div>
+  <div class="tip"><span class="tip-label" data-en="Tip" data-pt="Dica">Tip</span><p data-en="MR templates force every MR to explain what, why and how to test — consistent reviews." data-pt="Templates de MR forçam cada MR a explicar o quê, por quê e como testar — revisões consistentes.">Las plantillas de MR obligan a cada MR a explicar qué, por qué y cómo probar — revisiones consistentes.</p></div>
+</section>
+
+<!-- 20 -->
+<section class="slide" data-title="Resumen glab" data-en-title="glab summary" data-pt-title="Resumo glab">
+  <div class="slide-num">20</div>
+  <div class="kicker" data-en="Summary" data-pt="Resumo">Resumen</div>
+  <h2 data-en="<span class='hl'>glab</span> command map" data-pt="Mapa de comandos <span class='hl'>glab</span>">Mapa de comandos <span class="hl">glab</span></h2>
+  <table class="tbl">
+    <tr><th data-en="Command" data-pt="Comando">Comando</th><th data-en="What it does" data-pt="O que faz">Qué hace</th></tr>
+    <tr><td><code>glab auth login</code></td><td data-en="Log in with your account" data-pt="Entrar com sua conta">Entrar con tu cuenta</td></tr>
+    <tr><td><code>glab mr create/list/merge</code></td><td data-en="Manage Merge Requests" data-pt="Gerenciar Merge Requests">Gestionar Merge Requests</td></tr>
+    <tr><td><code>glab mr checkout N</code></td><td data-en="Bring MR !N to local" data-pt="Trazer o MR !N ao local">Traer el MR !N a local</td></tr>
+    <tr><td><code>glab issue create/list/view</code></td><td data-en="Manage issues" data-pt="Gerenciar issues">Gestionar issues</td></tr>
+    <tr><td><code>glab ci list/status</code></td><td data-en="See pipelines" data-pt="Ver pipelines">Ver pipelines</td></tr>
+    <tr><td><code>glab repo create/clone</code></td><td data-en="Create or clone a repo" data-pt="Criar ou clonar um repo">Crear o clonar un repo</td></tr>
+    <tr><td><code>glab release create</code></td><td data-en="Create a release + tag" data-pt="Criar um release + tag">Crear un release + tag</td></tr>
+    <tr><td><code>glab snippet create</code></td><td data-en="Share a code snippet" data-pt="Compartilhar um snippet">Compartir un snippet</td></tr>
+  </table>
+</section>
+
+<!-- 21 -->
+<section class="slide" data-title="Errores comunes" data-en-title="Common mistakes" data-pt-title="Erros comuns">
+  <div class="slide-num">21</div>
+  <div class="kicker" data-en="Traps" data-pt="Armadilhas">Trampas</div>
+  <h2 data-en="Common <span class='hl'>mistakes</span>" data-pt="Erros <span class='hl'>comuns</span>">Errores <span class="hl">comunes</span></h2>
+  <div class="cards" style="max-width:1100px">
+    <div class="card o"><div class="card-icon">🔓</div><h4 data-en="Unprotected main" data-pt="main sem proteção">main sin proteger</h4><p data-en="Anyone can push to main. Protect it: Settings → Repository → Protected branches." data-pt="Qualquer um pode push no main. Proteja: Settings → Repository → Protected branches.">Cualquiera puede push a main. Protégela: Settings → Repository → Protected branches.</p></div>
+    <div class="card o"><div class="card-icon">🔑</div><h4 data-en="Token in the repo" data-pt="Token no repo">Token en el repo</h4><p data-en="Use CI/CD variables, never hardcode secrets in .gitlab-ci.yml." data-pt="Use variáveis de CI/CD, nunca hardcode segredos no .gitlab-ci.yml.">Usa variables de CI/CD, nunca hardcodees secretos en .gitlab-ci.yml.</p></div>
+    <div class="card o"><div class="card-icon">🐌</div><h4 data-en="No cache" data-pt="Sem cache">Sin cache</h4><p data-en="Every job reinstalls deps. Add a cache: key + paths: node_modules/." data-pt="Todo job reinstala deps. Add um cache: key + paths: node_modules/.">Cada job reinstala deps. Añade un cache: key + paths: node_modules/.</p></div>
+  </div>
+</section>
+
+<!-- 22 -->
+<section class="slide title-slide" data-title="Siguiente: Avanzado" data-en-title="Next: Advanced" data-pt-title="Próximo: Avançado">
+  <img src="https://cdn.simpleicons.org/git/bc8cff" alt="Git" style="width:80px;height:80px;margin-bottom:1rem;filter:drop-shadow(0 0 18px rgba(188,140,255,.4))">
+  <h2 data-en="Now <span class='hl'>advanced Git</span>" data-pt="Agora <span class='hl'>Git avançado</span>">Ahora <span class="hl">Git avanzado</span></h2>
+  <p class="lead" data-en="Interactive rebase, reflog, bisect, hooks, submodules and worktrees." data-pt="Rebase interativo, reflog, bisect, hooks, submodules e worktrees.">Rebase interactivo, reflog, bisect, hooks, submodules y worktrees.</p>
+  <div class="cards" style="max-width:700px">
+    <a href="06-avanzado.html" class="card p" style="text-decoration:none;color:inherit"><div class="card-icon">⚡</div><h4 data-en="Module 6: Advanced Git" data-pt="Módulo 6: Git Avançado">Módulo 6: Git Avanzado</h4><p data-en="rebase, reflog, bisect, hooks" data-pt="rebase, reflog, bisect, hooks">rebase, reflog, bisect, hooks</p></a>
+    <a href="index.html" class="card" style="text-decoration:none;color:inherit"><div class="card-icon">🏠</div><h4 data-en="Back to start" data-pt="Voltar ao início">Volver al inicio</h4><p data-en="Full index" data-pt="Índice completo">Índice completo</p></a>
+  </div>
+</section>
+
+</div>
+<script src="assets/bg.js"></script>
+<script src="assets/slides.js"></script>
+</body>
+</html>
